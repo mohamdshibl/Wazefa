@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wazefa/view/onboarding/onboard_screen.dart';
 
 void main() {
   runApp( MyApp());
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage()
+        debugShowCheckedModeBanner: false,
+      home: OnBoardingScreen()
     );
   }
 }
