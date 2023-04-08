@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:sizer/sizer.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:flutter_sizer/flutter_sizer.dart';
 import '../../constantts/constants.dart';
 import '../login and register/login_screen.dart';
 
@@ -43,12 +43,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
 
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            children: [
-              Row(
-                //mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+         //mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding:  EdgeInsets.all(12),
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image(image:AssetImage('assets/images/Logo.png') ,),
                   Spacer(),
@@ -59,62 +60,62 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                      child: Text('Skip',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: Adaptive.sp (16),
+                      fontSize: 16.dp,
                     ),
                      ),
                    ),
                 ],
               ),
-              SizedBox(height: 20,),
-              Expanded(
-                child: PageView.builder(
+            ),
+            SizedBox(height: 20,),
+            Expanded(
+              child: PageView.builder(
+                controller: boardController,
+                itemBuilder: (context,index) => buildBoardingItem(boarding[index]),
+                itemCount: boarding.length,
+                onPageChanged: (int index){
+                  if (index == boarding.length-1){
+                    setState(() {
+                      isLast =true;
+                    });
+                  }else{
+                    setState(() {
+                      isLast=false;
+                    });
+                  }
+
+                },
+              ),
+            ),
+            SizedBox(height: 40,),
+            Row (
+              children: [
+                SmoothPageIndicator(
                   controller: boardController,
-                  itemBuilder: (context,index) => buildBoardingItem(boarding[index]),
-                  itemCount: boarding.length,
-                  onPageChanged: (int index){
-                    if (index == boarding.length-1){
-                      setState(() {
-                        isLast =true;
-                      });
-                    }else{
-                      setState(() {
-                        isLast=false;
-                      });
-                    }
-
-                  },
+                  count: boarding.length,
+                  effect: const ExpandingDotsEffect(
+                    dotColor: Colors.grey,
+                    activeDotColor: Colors.blue,
+                  ),
                 ),
-              ),
-              //SizedBox(height: 40,),
-              Row (
-                children: [
-                  SmoothPageIndicator(
-                    controller: boardController,
-                    count: boarding.length,
-                    effect: const ExpandingDotsEffect(
-                      dotColor: Colors.grey,
-                      activeDotColor: Colors.blue,
-                    ),
-                  ),
-                  Spacer(),
-                  FloatingActionButton(onPressed: (){
-                    if (isLast){
-                      navigateToAndStop(context, LoginScreen());
-                    }else{
-                      boardController.nextPage
-                        (
-                          duration: Duration(milliseconds: 1000),
-                          curve: Curves.fastLinearToSlowEaseIn
-                      );
-                    }
+                Spacer(),
+                FloatingActionButton(onPressed: (){
+                  if (isLast){
+                    navigateToAndStop(context, LoginScreen());
+                  }else{
+                    boardController.nextPage
+                      (
+                        duration: Duration(milliseconds: 1000),
+                        curve: Curves.fastLinearToSlowEaseIn
+                    );
+                  }
 
-                  },
-                    child: const Icon(Icons.arrow_forward_ios),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                },
+                  child: const Icon(Icons.arrow_forward_ios),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
 
@@ -122,15 +123,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 }
 Widget buildBoardingItem(BoardingModel board) => Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
+ // crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     Expanded(child: Image(image:AssetImage(board.image), )),
-    const SizedBox(height: 30,),
+     SizedBox(height: 30,),
     Text(board.title,
-      style: const TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+      style:  TextStyle(fontSize: 24.dp,fontWeight: FontWeight.bold),),
     SizedBox(height: 20,),
     Text(board.body,
-      style: const TextStyle(fontSize: 14,),),
+      style: TextStyle(fontSize: 14,),),
   ],
 );
 // appBar: AppBar(

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:sizer/sizer.dart';
 import 'package:wazefa/view/login%20and%20register/login_screen.dart';
-
+import 'package:flutter_sizer/flutter_sizer.dart';
 import '../../constantts/constants.dart';
 
 class RegistrationScreen extends StatelessWidget {
@@ -32,7 +32,7 @@ class RegistrationScreen extends StatelessWidget {
                     ],
                   ),
                   Text('Cereate Account',
-                    style: TextStyle(fontSize: Adaptive.sp (28),),),
+                    style: TextStyle(fontSize: 28.dp,),),
                   SizedBox(height: 8,),
                   Text('Please create an account to find your dream job',
                     style:Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),),
@@ -98,7 +98,7 @@ class RegistrationScreen extends StatelessWidget {
                   SizedBox(height: 30,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children:  [
                       Text('--------------'),
                       SizedBox(width: 20,),
                       Text('Or Sign up With Account'),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:wazefa/view/login%20and%20register/register.dart';
-
 import '../../constantts/constants.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 
 class LoginScreen extends StatelessWidget {
 //  const LoginScreen({Key? key}) : super(key: key);
@@ -25,12 +24,12 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     Image(image:AssetImage('assets/images/Logo.png') ,),
                   ],
                 ),
                 Text('Login',
-                  style: TextStyle(fontSize: Adaptive.sp (28),),),
+                  style: TextStyle(fontSize: 28.dp,),),
                 SizedBox(height: 8,),
                 Text('Please login to find your dream job',
                   style:Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),),
@@ -77,14 +76,14 @@ class LoginScreen extends StatelessWidget {
                           ),
                           //SizedBox(width: 5,),
                           Text('Remember me',
-                            style: TextStyle(fontSize: Adaptive.sp (14),),
+                            style: TextStyle(fontSize: 14.dp,),
                           ),
                         ],
                       ),
                      ),
                      TextButton(
                        child: Text('Forgot Password?',
-                      style: TextStyle(fontSize: Adaptive.sp (14),),),
+                      style: TextStyle(fontSize: 14.dp,),),
                        onPressed: () {  },
                     ),
 
@@ -113,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 30,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text('--------------'),
                     SizedBox(width: 20,),
                     Text('Or Login With Account'),
