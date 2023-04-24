@@ -1,10 +1,10 @@
 # wazefa
 
-A new Flutter project.
+My new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project provides every employer with specialized recruitment consultants to passionately help through out the full hiring journey until the perfect candidate is hired
 
 A few resources to get you started if this is your first Flutter project:
 
