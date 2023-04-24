@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-  var _ischecked = false;
+  final _ischecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 30,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text('--------------'),
                     SizedBox(width: 20,),
                     Text('Or Login With Account'),

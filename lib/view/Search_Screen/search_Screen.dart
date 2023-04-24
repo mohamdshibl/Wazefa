@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:sizer/sizer.dart';
+import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
+
+import '../../constantts/constants.dart';
+
 
 class SearchScreen extends StatelessWidget {
  // const SearchScreen({Key? key}) : super(key: key);
@@ -82,20 +86,25 @@ class SearchScreen extends StatelessWidget {
                       ],
                     )
                 ),
-                ListTile(
-                  leading: const Image(image: AssetImage('assets/images/clock.png'),),
-                  title: Text('Junior UI Designer',
-                    style: TextStyle(
-                        fontSize: 14.dp,),
+                InkWell(
+                  onTap: (){
+                    navigateTo(context, const SearchViewFilter());
+                  },
+                  child: ListTile(
+                    leading: const Image(image: AssetImage('assets/images/clock.png'),),
+                    title: Text('Junior UI Designer',
+                      style: TextStyle(
+                          fontSize: 11.sp,),
+                    ),
+                    trailing: const Image(
+                      image: AssetImage('assets/images/close-circle.png'),),
                   ),
-                  trailing: const Image(
-                    image: AssetImage('assets/images/close-circle.png'),),
                 ),
                 ListTile(
                   leading: const Image(image: AssetImage('assets/images/clock.png'),),
                   title: Text('Junior UI Designer',
                     style: TextStyle(
-                      fontSize: 14.dp,),
+                      fontSize: 11.sp,),
                   ),
                   trailing: const Image(
                     image: AssetImage('assets/images/close-circle.png'),),
@@ -129,7 +138,7 @@ class SearchScreen extends StatelessWidget {
                   leading: const Image(image: AssetImage('assets/images/search-status.png'),),
                   title: Text('Junior UI Designer',
                     style: TextStyle(
-                      fontSize: 14.dp,),
+                      fontSize: 11.sp,),
                   ),
                   trailing: const Image(
                     image: AssetImage('assets/images/ar.png'),),
@@ -138,7 +147,7 @@ class SearchScreen extends StatelessWidget {
                   leading: const Image(image: AssetImage('assets/images/search-status.png'),),
                   title: Text('Junior UI Designer',
                     style: TextStyle(
-                      fontSize: 14.dp,),
+                      fontSize: 11.sp,),
                   ),
                   trailing:  Image(
                     image: AssetImage('assets/images/ar.png'),

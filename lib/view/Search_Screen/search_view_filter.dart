@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
-
+import 'package:sizer/sizer.dart';
+import '../../constants/colors.dart';
+import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
+import '../../constantts/constants.dart';
+import '../Splash/ss.dart';
 
 class SearchViewFilter extends StatelessWidget {
    const SearchViewFilter({Key? key}) : super(key: key);
@@ -31,6 +34,7 @@ class SearchViewFilter extends StatelessWidget {
                       SizedBox(
                         width: 5.w,
                       ),
+                      /// search bar
                       Container(
                         margin:  EdgeInsets.fromLTRB(0, 0, 0, 0),
                         padding: EdgeInsets.fromLTRB(12, 14, 26, 10),
@@ -58,14 +62,92 @@ class SearchViewFilter extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height:20 ,),
-                Row(
-                  children: [
-                    Image.asset(AssetsImages.splashLogo,),
-                  ],
+                SizedBox(height:10 ,),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12,0,12,0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(25.0),
+                                      topRight: Radius.circular(25.0)
+                                  ),
+                                ),
+                                context: context,
+                                isScrollControlled: true,
+                                builder:(context) {
+                              return FilterBottomSheet();
+
+                            } );
+                          },
+                          icon: Image.asset(AssetsImages.filter,),
+                        ),
+                      ),
+                      SizedBox(width: 2.w,),
+                      Expanded(
+                        flex: 7,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: ActionChip(
+                                  label: const Text('Remote'),
+                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
+                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
+                                  backgroundColor: cardPrimaryColor,
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(25.0),
+                                              topRight: Radius.circular(25.0)
+                                          ),
+                                        ),
+                                        context: context,
+                                        isScrollControlled: true,
+                                        builder:(context) {
+                                          return chipsBottomSheet();
+
+                                        } );
+                                  }
+                              ),
+                            ),
+                            SizedBox(width: 2.w,),
+                            Expanded(
+                              flex: 1,
+                              child: ActionChip(
+                                  label: const Text('Remote'),
+                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
+                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
+                                  backgroundColor: cardPrimaryColor,
+                                  onPressed: () {  }
+                              ),
+                            ),
+                            SizedBox(width: 2.w,),
+                            Expanded(
+                              flex: 1,
+                              child: ActionChip(
+                                  label: const Text('Remote'),
+                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
+                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
+                                  backgroundColor: cardPrimaryColor,
+                                  onPressed: () {  }
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ),
                 SizedBox(height:20 ,),
-                /// popular searches
+                /// Featuring 120+ jobs
                 Container(
                     height: 5.h,
                     width: 360.w,
@@ -80,7 +162,7 @@ class SearchViewFilter extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Recent searches',
+                            'Featuring 120+ jobs',
                             style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
@@ -90,68 +172,168 @@ class SearchViewFilter extends StatelessWidget {
                       ],
                     )
                 ),
-                ListTile(
-                  leading: const Image(image: AssetImage('assets/images/clock.png'),),
-                  title: Text('Junior UI Designer',
-                    style: TextStyle(
-                      fontSize: 14.dp,),
-                  ),
-                  trailing: const Image(
-                    image: AssetImage('assets/images/close-circle.png'),),
-                ),
-                ListTile(
-                  leading: const Image(image: AssetImage('assets/images/clock.png'),),
-                  title: Text('Junior UI Designer',
-                    style: TextStyle(
-                      fontSize: 14.dp,),
-                  ),
-                  trailing: const Image(
-                    image: AssetImage('assets/images/close-circle.png'),),
-                ),
-                /// recent searches
-                Container(
-                  height: 5.h,
-                  width: 360.w,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFF4F4F5),
-                      border: Border.all(color: const Color(0xFFE5E7EB))),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 5.w,
+                /// jobs list
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      leading: const Image(
+                        image: AssetImage('assets/images/twiter.png'),),
+                      title: Text('Senior UI Designer',
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.bold),),
+                      subtitle: Text('Twitter • Jakarta, Indonesia ',
+                        style: TextStyle(fontSize: 10.sp,),
+                        textAlign: TextAlign.start,),
+                      trailing: const Image(
+                        image: AssetImage('assets/images/save1.png'),),
+                    ),
+                    SizedBox(height: 18,),
+                    Padding(
+                      padding: EdgeInsets.only(left: 16,top: 0,right: 16,bottom: 10),
+                      child: Row(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                  child: Text('Fulltime',
+                                    style: TextStyle(fontSize: 10.sp,),),
+                                ),
+                              ),
+
+                              SizedBox(width: 6.5,),
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                  child: Text('Remote',
+                                    style: TextStyle(fontSize: 10.sp,),
+                                    textAlign: TextAlign.start,),
+                                ),),
+
+                              SizedBox(width: 6.5,),
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                  child: Text('Design',
+                                    style: TextStyle(fontSize: 10.sp,),),
+                                ),),
+
+                            ],
+                          ),
+                          Spacer(),
+                          Text('15K/Month'),
+                        ],
                       ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Popular searches',
-                          style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF6B7280)),
-                        ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: defaultSeparatorContainer(),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      leading: const Image(
+                        image: AssetImage('assets/images/twiter.png'),),
+                      title: Text('Senior UI Designer',
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.bold),),
+                      subtitle: Text('Twitter • Jakarta, Indonesia ',
+                        style: TextStyle(fontSize: 10.sp,),
+                        textAlign: TextAlign.start,),
+                      trailing: const Image(
+                        image: AssetImage('assets/images/save1.png'),),
+                    ),
+                    SizedBox(height: 18,),
+                    Padding(
+                      padding: EdgeInsets.only(left: 16,top: 0,right: 16,bottom: 10),
+                      child: Row(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                  child: Text('Fulltime',
+                                    style: TextStyle(fontSize: 10.sp,),),
+                                ),
+                              ),
+
+                              SizedBox(width: 6.5,),
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                  child: Text('Remote',
+                                    style: TextStyle(fontSize: 10.sp,),
+                                    textAlign: TextAlign.start,),
+                                ),),
+
+                              SizedBox(width: 6.5,),
+                              Container(
+                                width: 80,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey,),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                  child: Text('Design',
+                                    style: TextStyle(fontSize: 10.sp,),),
+                                ),),
+
+                            ],
+                          ),
+                          Spacer(),
+                          Text('15K/Month'),
+
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+
+
+
+                  ],
                 ),
-                ListTile(
-                  leading: const Image(image: AssetImage('assets/images/search-status.png'),),
-                  title: Text('Junior UI Designer',
-                    style: TextStyle(
-                      fontSize: 14.dp,),
-                  ),
-                  trailing: const Image(
-                    image: AssetImage('assets/images/ar.png'),),
-                ),
-                ListTile(
-                  leading: const Image(image: AssetImage('assets/images/search-status.png'),),
-                  title: Text('Junior UI Designer',
-                    style: TextStyle(
-                      fontSize: 14.dp,),
-                  ),
-                  trailing:  Image(
-                    image: AssetImage('assets/images/ar.png'),
-                  ),
-                ),
+
                 // Image.asset('assets/images/blackdash.png')
               ],
             ),
@@ -161,3 +343,29 @@ class SearchViewFilter extends StatelessWidget {
     );
   }
 }
+/*
+ SizedBox(width: 3.w,),
+                              ActionChip(
+                                  label: const Text('Remote'),
+                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
+                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
+                                  backgroundColor: cardPrimaryColor,
+                                  onPressed: () {  }
+                              ),
+                              SizedBox(width: 3.w,),
+                              ActionChip(
+                                  label: const Text('Remote'),
+                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
+                                  avatar: const Icon(Icons.arrow_drop_down_outlined, color: Colors.white),
+                                  backgroundColor: cardPrimaryColor,
+                                  onPressed: () {  }
+                              ),
+                              SizedBox(width: 3.w,),
+                              ActionChip(
+                                  label: const Text('Remote'),
+                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
+                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
+                                  backgroundColor: cardPrimaryColor,
+                                  onPressed: () {  }
+                              ),
+*/

@@ -9,6 +9,7 @@ import 'package:wazefa/view/Home/Home_Screen.dart';
 import 'package:wazefa/view/Search_Screen/search_Screen.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 import 'package:wazefa/view/Splash/splash_view.dart';
+import 'package:wazefa/view/Splash/ss.dart';
 import 'package:wazefa/view/login%20and%20register/login_screen.dart';
 import 'package:wazefa/view/onboarding/onboard_screen.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return FlutterSizer(
+   return Sizer(
        builder: (context, orientation, deviceType) {
          return MaterialApp(
            useInheritedMediaQuery: true,
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
            builder: DevicePreview.appBuilder,
              theme: ThemeData().copyWith(),
              debugShowCheckedModeBanner: false,
-             home: SearchViewFilter(),
+             home: HomeScreen(),
          );
        }
    );

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+
 
 import 'package:sizer/sizer.dart';
 
@@ -36,12 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             Text('Hi, Mohamed Shibl 👋',
-                              style: TextStyle(fontSize: 24.dp,),
+                              style: TextStyle(fontSize: 19.sp,),
                               textAlign: TextAlign.start,),
                             SizedBox(height: 8,),
                             Text('Create a better future for yourself here',
                               style: TextStyle(
-                                  fontSize: 14.dp, color: Colors.grey),),
+                                  fontSize: 11.sp, color: Colors.grey),),
                             SizedBox(height: 30,),
                           ],
                         ),
@@ -89,11 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 /// Suggested Job
                 Row(
                   children: [
-                    Text('Suggested Job', style: TextStyle(fontSize: 18.dp,),),
+                    Text('Suggested Job', style: TextStyle(fontSize: 14.sp,),),
                     Spacer(),
-                    TextButton(onPressed: () {},
+                    TextButton(onPressed: () {   },
                       child: Text('View all',
-                        style: TextStyle(fontSize: 14.dp,),
+                        style: TextStyle(fontSize: 11.sp,),
                       ),
                     ),
                   ],
@@ -117,11 +117,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               image: AssetImage('assets/images/zoom.png'),),
                             title: Text('Product Designer',
                               style: TextStyle(
-                                  fontSize: 18.dp, color: Colors.white),
+                                  fontSize: 13.sp, color: Colors.white),
                               textAlign: TextAlign.start,),
                             subtitle: Text('Zoom • United States',
                               style: TextStyle(
-                                  fontSize: 12.dp, color: Colors.grey),
+                                  fontSize: 9.sp, color: Colors.grey),
                               textAlign: TextAlign.start,),
                             trailing: const Image(
                               image: AssetImage('assets/images/save.png'),),
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     child: Center(
                                       child: Text('Fulltime',
-                                        style: TextStyle(fontSize: 12.dp,color: const Color(0xFFFFFFFF)),),
+                                        style: TextStyle(fontSize: 9.sp,color: const Color(0xFFFFFFFF)),),
                                     ),
                                   ),
                                 ),
@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     child: Center(
                                       child: Text('Remote',
-                                        style: TextStyle(fontSize: 12.dp,color: Color(0xFFFFFFFF)),
+                                        style: TextStyle(fontSize: 9.sp,color: Color(0xFFFFFFFF)),
                                         textAlign: TextAlign.start,),
                                     ),),
                                 ),
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     child: Center(
                                       child: Text('Design',
-                                        style: TextStyle(fontSize: 12.dp,color: Color(0xFFFFFFFF)),),
+                                        style: TextStyle(fontSize: 9.sp,color: Color(0xFFFFFFFF)),),
                                     ),),
                                 ),
                               ],
@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Text('12K-15K/Month',
                                   style: TextStyle(
-                                      fontSize: 20.dp, color: Colors.white),
+                                      fontSize: 15.sp, color: Colors.white),
                                   textAlign: TextAlign.start,
                                 ),
                                 Spacer(),
@@ -213,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: Center(
                                     child: Text('Apply now',
-                                      style: TextStyle(fontSize: 12.dp,
+                                      style: TextStyle(fontSize: 9.sp,
                                           color: Colors.white),),
                                   ),
                                 ),
@@ -231,11 +231,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 /// recent job
                 Row(
                   children: [
-                    Text('Recent Job', style: TextStyle(fontSize: 18.dp,),),
+                    Text('Recent Job', style: TextStyle(fontSize: 14.sp,),),
                     Spacer(),
                     TextButton(onPressed: () {},
                       child: Text('View all',
-                        style: TextStyle(fontSize: 14.dp,),
+                        style: TextStyle(fontSize: 11.sp,),
                       ),
                     ),
                   ],
@@ -252,9 +252,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         image: AssetImage('assets/images/twiter.png'),),
                       title: Text('Senior UI Designer',
                         style: TextStyle(
-                            fontSize: 18.dp, fontWeight: FontWeight.bold),),
+                            fontSize: 14.sp, fontWeight: FontWeight.bold),),
                       subtitle: Text('Twitter • Jakarta, Indonesia ',
-                        style: TextStyle(fontSize: 12.dp,),
+                        style: TextStyle(fontSize: 9.sp,),
                         textAlign: TextAlign.start,),
                       trailing: Image(
                         image: AssetImage('assets/images/save1.png'),),
@@ -276,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: Center(
                                   child: Text('Fulltime',
-                                    style: TextStyle(fontSize: 12.dp,),),
+                                    style: TextStyle(fontSize: 9.sp,),),
                                 ),
                               ),
 
@@ -291,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: Center(
                                   child: Text('Remote',
-                                    style: TextStyle(fontSize: 12.dp,),
+                                    style: TextStyle(fontSize: 9.sp,),
                                     textAlign: TextAlign.start,),
                                 ),),
 
@@ -306,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: Center(
                                   child: Text('Design',
-                                    style: TextStyle(fontSize: 12.dp,),),
+                                    style: TextStyle(fontSize: 9.sp,),),
                                 ),),
 
                             ],
@@ -329,9 +329,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         image: AssetImage('assets/images/twiter.png'),),
                       title: Text('Senior UI Designer',
                         style: TextStyle(
-                            fontSize: 18.dp, fontWeight: FontWeight.bold),),
+                            fontSize: 14.sp, fontWeight: FontWeight.bold),),
                       subtitle: Text('Twitter • Jakarta, Indonesia ',
-                        style: TextStyle(fontSize: 12.dp,),
+                        style: TextStyle(fontSize: 9.sp,),
                         textAlign: TextAlign.start,),
                       trailing: Image(
                         image: AssetImage('assets/images/save1.png'),),
@@ -353,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: Center(
                                   child: Text('Fulltime',
-                                    style: TextStyle(fontSize: 12.dp,),),
+                                    style: TextStyle(fontSize: 9.sp,),),
                                 ),
                               ),
 
@@ -368,7 +368,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: Center(
                                   child: Text('Remote',
-                                    style: TextStyle(fontSize: 12.dp,),
+                                    style: TextStyle(fontSize: 9.sp,),
                                     textAlign: TextAlign.start,),
                                 ),),
 
@@ -383,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: Center(
                                   child: Text('Design',
-                                    style: TextStyle(fontSize: 12.dp,),),
+                                    style: TextStyle(fontSize: 9.sp,),),
                                 ),),
 
                             ],
