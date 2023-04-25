@@ -44,7 +44,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     return Builder(builder: (context){
         return Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Container(
+          child: SizedBox(
             height: 700,
 
             child: Column(
@@ -123,15 +123,15 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                           listOfChipNames: _dogeNames,
                           activeBgColorList: const [Color(0xFFD6E4FF),
                             Color(0xFFD6E4FF), Color(0xFFD6E4FF),Color(0xFFD6E4FF)],
-                          inactiveBgColorList: [Colors.white],
+                          inactiveBgColorList: const [Colors.white],
                           activeTextColorList: [Colors.blue.shade900],
-                          inactiveTextColorList: [Colors.black],
-                          inactiveBorderColorList: [Colors.black],
-                          activeBorderColorList:[Color(0xFF3366FF)],
-                          borderRadiiList:[100],
+                          inactiveTextColorList: const [Colors.black],
+                          inactiveBorderColorList: const [Colors.black],
+                          activeBorderColorList:const [Color(0xFF3366FF)],
+                          borderRadiiList:const [100],
                           style: TextStyle(fontSize: 11.sp),
                           supportsMultiSelect:true,
-                          listOfChipIndicesCurrentlySeclected: [0],
+                          listOfChipIndicesCurrentlySeclected: const [0],
                         ),
                       ],
                     ),
@@ -156,7 +156,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 class chipsBottomSheet extends StatelessWidget{
   chipsBottomSheet({Key? key}) :super(key:key);
 
-  List<String> _dogeNames = [
+  final List<String> _dogeNames = [
     'Remote',
     'Onsite',
     'Hybird',
@@ -169,7 +169,7 @@ class chipsBottomSheet extends StatelessWidget{
     return Builder(builder: (context){
       return Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Container(
+        child: SizedBox(
           height: 250,
 
           child: Column(
@@ -194,16 +194,17 @@ class chipsBottomSheet extends StatelessWidget{
                     children: [
                       ChipList(
                         listOfChipNames: _dogeNames,
-                        activeBgColorList: [Colors.blueAccent, Colors.blue.shade100, Colors.blueAccent,Colors.blueAccent],
-                        inactiveBgColorList: [Colors.white],
-                        activeTextColorList: [Colors.white],
-                        inactiveTextColorList: [Colors.black],
-                        inactiveBorderColorList: [Colors.black],
-                        activeBorderColorList:[Color(0xFFD6E4FF)],
-                        borderRadiiList:[100],
-                        style: TextStyle(fontSize: 12.sp),
+                        activeBgColorList: const [Color(0xFFD6E4FF),
+                          Color(0xFFD6E4FF), Color(0xFFD6E4FF),Color(0xFFD6E4FF)],
+                        inactiveBgColorList: const [Colors.white],
+                        activeTextColorList: [Colors.blue.shade900],
+                        inactiveTextColorList: const [Colors.black],
+                        inactiveBorderColorList: const [Colors.black],
+                        activeBorderColorList:const [Color(0xFF3366FF)],
+                        borderRadiiList:const [100],
+                        style: TextStyle(fontSize: 11.sp),
                         supportsMultiSelect:true,
-                        listOfChipIndicesCurrentlySeclected: [0],
+                        listOfChipIndicesCurrentlySeclected: const [0],
                         // borderColorList: [Colors.pink, Colors.yellow, Colors.green,Colors.green],
                       ),
                     ],
@@ -258,9 +259,9 @@ class CustomTextFormField extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.blue)),
+              borderSide: const BorderSide(color: Colors.blue)),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFD1D5DB)),
+              borderSide: const BorderSide(color: Color(0xFFD1D5DB)),
               borderRadius: BorderRadius.circular(10)),
           prefixIconColor: Colors.black,
           focusColor: Colors.blue,
@@ -268,7 +269,7 @@ class CustomTextFormField extends StatelessWidget {
           hintStyle: const TextStyle(
             color: Color(0xFF9CA3AF),
           )),
-      style: TextStyle(fontSize: 14),
+      style: const TextStyle(fontSize: 14),
     );
   }
 }
@@ -280,13 +281,13 @@ class CustomTextFormField extends StatelessWidget {
 Widget mainbuttom({
   required  String text,
   required VoidCallback onTap,
-  }) => Container(
+  }) => SizedBox(
   height:6.5.h,
   width: double.infinity,
   child: ElevatedButton(
     onPressed: onTap,
     style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFf3366FF),
+        backgroundColor: const Color(0xFf3366FF),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         )

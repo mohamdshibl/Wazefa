@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:wazefa/constants/custom_widgets.dart';
 import 'package:wazefa/view/login%20and%20register/login_screen.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:sizer/sizer.dart';
+
 import '../../constantts/constants.dart';
 
 class RegistrationScreen extends StatelessWidget {
@@ -11,7 +11,7 @@ class RegistrationScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
-  var _ischecked = false;
+  final _ischecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +32,11 @@ class RegistrationScreen extends StatelessWidget {
                     ],
                   ),
                   Text('Cereate Account',
-                    style: TextStyle(fontSize: 28.dp,),),
-                  SizedBox(height: 8,),
+                    style: TextStyle(fontSize: 20.sp,),),
+                  const SizedBox(height: 8,),
                   Text('Please create an account to find your dream job',
                     style:Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),),
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
                   defaultFormField(
                     controller: emailController,
                     type: TextInputType.emailAddress,
@@ -49,7 +49,7 @@ class RegistrationScreen extends StatelessWidget {
                     suffix: Icons.email,
                     // onChange: (){},
                   ),
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
                   defaultFormField(
                     controller: emailController,
                     type: TextInputType.emailAddress,
@@ -62,7 +62,7 @@ class RegistrationScreen extends StatelessWidget {
                     suffix: Icons.email,
                     // onChange: (){},
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   defaultFormField(
                     controller: passwordController,
                     type: TextInputType.visiblePassword,
@@ -75,7 +75,7 @@ class RegistrationScreen extends StatelessWidget {
                     suffix: Icons.visibility_outlined,
                     //onChange: (){},
                   ),
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -88,17 +88,18 @@ class RegistrationScreen extends StatelessWidget {
                         child: const Text('Login',),),
                     ],
                   ),
+                     mainbuttom(text: 'Create account', onTap: () {} ),
+                  // defaultButton(
+                  //     function: (){
+                  //
+                  //     },
+                  //     text: 'Create account'
+                  // ),
 
-                  defaultButton(
-                      function: (){
-
-                      },
-                      text: 'Create account'
-                  ),
-                  SizedBox(height: 30,),
+                   SizedBox(height: 30,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
+                    children:  const [
                       Text('--------------'),
                       SizedBox(width: 20,),
                       Text('Or Sign up With Account'),
@@ -106,15 +107,15 @@ class RegistrationScreen extends StatelessWidget {
                       Text('--------------'),
                     ],
                   ),
-                  SizedBox(height: 32,),
+                  const SizedBox(height: 32,),
                   Row(
                     children: [
                       Container(
-                        child: Image(image:AssetImage('assets/images/face.png') ,),
+                        child: const Image(image:AssetImage('assets/images/face.png') ,),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Container(
-                        child: Image(image:AssetImage('assets/images/go.png') ,),
+                        child: const Image(image:AssetImage('assets/images/go.png') ,),
                       ),
                     ],
 

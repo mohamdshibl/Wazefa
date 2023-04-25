@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wazefa/view/login%20and%20register/register.dart';
+import '../../constants/custom_widgets.dart';
 import '../../constantts/constants.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:sizer/sizer.dart';
+
 
 class LoginScreen extends StatelessWidget {
 //  const LoginScreen({Key? key}) : super(key: key);
@@ -24,16 +26,16 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                  children: const [
                     Image(image:AssetImage('assets/images/Logo.png') ,),
                   ],
                 ),
                 Text('Login',
-                  style: TextStyle(fontSize: 28.dp,),),
-                SizedBox(height: 8,),
+                  style: TextStyle(fontSize: 20.sp,),),
+                const SizedBox(height: 8,),
                 Text('Please login to find your dream job',
                   style:Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                 defaultFormField(
                   controller: emailController,
                   type: TextInputType.emailAddress,
@@ -46,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                   suffix: Icons.email,
                   // onChange: (){},
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 defaultFormField(
                   controller: passwordController,
                   type: TextInputType.visiblePassword,
@@ -59,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                   suffix: Icons.visibility_outlined,
                   //onChange: (){},
                 ),
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
                 /// check box
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -76,20 +78,20 @@ class LoginScreen extends StatelessWidget {
                           ),
                           //SizedBox(width: 5,),
                           Text('Remember me',
-                            style: TextStyle(fontSize: 14.dp,),
+                            style: TextStyle(fontSize: 11.sp,),
                           ),
                         ],
                       ),
                      ),
                      TextButton(
                        child: Text('Forgot Password?',
-                      style: TextStyle(fontSize: 14.dp,),),
+                      style: TextStyle(fontSize: 11.sp,),),
                        onPressed: () {  },
                     ),
 
                   ],
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -102,14 +104,14 @@ class LoginScreen extends StatelessWidget {
                         child: const Text('Register',),),
                   ],
                 ),
-
-                defaultButton(
-                    function: (){
-
-                    },
-                    text: 'Login'
-                ),
-                SizedBox(height: 30,),
+                mainbuttom(text: 'Login', onTap: () {} ),
+                // defaultButton(
+                //     function: (){
+                //
+                //     },
+                //     text: 'Login'
+                // ),
+                const SizedBox(height: 30,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -120,15 +122,15 @@ class LoginScreen extends StatelessWidget {
                     Text('--------------'),
                   ],
                 ),
-                SizedBox(height: 32,),
+                const SizedBox(height: 32,),
                 Row(
                   children: [
                     Container(
-                      child: Image(image:AssetImage('assets/images/face.png') ,),
+                      child: const Image(image:AssetImage('assets/images/face.png') ,),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Container(
-                        child: Image(image:AssetImage('assets/images/go.png') ,),
+                        child: const Image(image:AssetImage('assets/images/go.png') ,),
                     ),
                   ],
 

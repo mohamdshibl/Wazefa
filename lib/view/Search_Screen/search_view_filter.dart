@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/colors.dart';
 import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
 import '../../constantts/constants.dart';
-import '../Splash/ss.dart';
 
 class SearchViewFilter extends StatelessWidget {
    const SearchViewFilter({Key? key}) : super(key: key);
@@ -21,48 +19,55 @@ class SearchViewFilter extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
+                  /// back and search bar
                   child: Row(
                     children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            size: 25,
-                          )),
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              size: 25,
+                            )),
+                      ),
                       SizedBox(
                         width: 5.w,
                       ),
-                      /// search bar
-                      Container(
-                        margin:  EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        padding: EdgeInsets.fromLTRB(12, 14, 26, 10),
-                        width: 300,
-                        height: 52,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey,),
-                          borderRadius: BorderRadius.circular(90),
-                        ),
-                        child: Row(
-                          children: const[
-                            Image(image: AssetImage('assets/images/search.png'),),
-                            SizedBox(width: 10,),
-                            Expanded(
-                              child: TextField(
-                                decoration: InputDecoration.collapsed(
-                                  hintText: 'Search....',
+                      Expanded(
+                        flex: 7,
+                        child: Container(
+                          margin:  const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(12, 14, 26, 10),
+                          width: 300,
+                          height: 52,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey,),
+                            borderRadius: BorderRadius.circular(90),
+                          ),
+                          child: Row(
+                            children: const[
+                              Image(image: AssetImage('assets/images/search.png'),),
+                              SizedBox(width: 10,),
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration.collapsed(
+                                    hintText: 'Search....',
+                                  ),
                                 ),
                               ),
-                            ),
 
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height:10 ,),
+                const SizedBox(height:10 ,),
+                /// filters
                 Padding(
                   padding: const EdgeInsets.fromLTRB(12,0,12,0),
                   child: Row(
@@ -146,7 +151,7 @@ class SearchViewFilter extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height:20 ,),
+                const SizedBox(height:20 ,),
                 /// Featuring 120+ jobs
                 Container(
                     height: 5.h,
@@ -166,7 +171,7 @@ class SearchViewFilter extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFF6B7280)),
+                                color: const Color(0xFF6B7280)),
                           ),
                         ),
                       ],
@@ -189,9 +194,9 @@ class SearchViewFilter extends StatelessWidget {
                       trailing: const Image(
                         image: AssetImage('assets/images/save1.png'),),
                     ),
-                    SizedBox(height: 18,),
+                    const SizedBox(height: 18,),
                     Padding(
-                      padding: EdgeInsets.only(left: 16,top: 0,right: 16,bottom: 10),
+                      padding: const EdgeInsets.only(left: 16,top: 0,right: 16,bottom: 10),
                       child: Row(
                         children: [
                           Row(
@@ -211,7 +216,7 @@ class SearchViewFilter extends StatelessWidget {
                                 ),
                               ),
 
-                              SizedBox(width: 6.5,),
+                              const SizedBox(width: 6.5,),
                               Container(
                                 width: 80,
                                 height: 35,
@@ -226,7 +231,7 @@ class SearchViewFilter extends StatelessWidget {
                                     textAlign: TextAlign.start,),
                                 ),),
 
-                              SizedBox(width: 6.5,),
+                              const SizedBox(width: 6.5,),
                               Container(
                                 width: 80,
                                 height: 35,
@@ -242,17 +247,19 @@ class SearchViewFilter extends StatelessWidget {
 
                             ],
                           ),
-                          Spacer(),
-                          Text('15K/Month'),
+                          const Spacer(),
+                          const Text('15K/Month'),
                         ],
                       ),
                     ),
                   ],
                 ),
+                /// separate line
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: defaultSeparatorContainer(),
                 ),
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -269,9 +276,9 @@ class SearchViewFilter extends StatelessWidget {
                       trailing: const Image(
                         image: AssetImage('assets/images/save1.png'),),
                     ),
-                    SizedBox(height: 18,),
+                    const SizedBox(height: 18,),
                     Padding(
-                      padding: EdgeInsets.only(left: 16,top: 0,right: 16,bottom: 10),
+                      padding: const EdgeInsets.only(left: 16,top: 0,right: 16,bottom: 10),
                       child: Row(
                         children: [
                           Row(
@@ -291,7 +298,7 @@ class SearchViewFilter extends StatelessWidget {
                                 ),
                               ),
 
-                              SizedBox(width: 6.5,),
+                              const SizedBox(width: 6.5,),
                               Container(
                                 width: 80,
                                 height: 35,
@@ -306,7 +313,7 @@ class SearchViewFilter extends StatelessWidget {
                                     textAlign: TextAlign.start,),
                                 ),),
 
-                              SizedBox(width: 6.5,),
+                              const SizedBox(width: 6.5,),
                               Container(
                                 width: 80,
                                 height: 35,
@@ -322,8 +329,8 @@ class SearchViewFilter extends StatelessWidget {
 
                             ],
                           ),
-                          Spacer(),
-                          Text('15K/Month'),
+                          const Spacer(),
+                          const Text('15K/Month'),
 
                         ],
                       ),
@@ -333,8 +340,6 @@ class SearchViewFilter extends StatelessWidget {
 
                   ],
                 ),
-
-                // Image.asset('assets/images/blackdash.png')
               ],
             ),
           ),
@@ -343,29 +348,3 @@ class SearchViewFilter extends StatelessWidget {
     );
   }
 }
-/*
- SizedBox(width: 3.w,),
-                              ActionChip(
-                                  label: const Text('Remote'),
-                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
-                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
-                                  backgroundColor: cardPrimaryColor,
-                                  onPressed: () {  }
-                              ),
-                              SizedBox(width: 3.w,),
-                              ActionChip(
-                                  label: const Text('Remote'),
-                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
-                                  avatar: const Icon(Icons.arrow_drop_down_outlined, color: Colors.white),
-                                  backgroundColor: cardPrimaryColor,
-                                  onPressed: () {  }
-                              ),
-                              SizedBox(width: 3.w,),
-                              ActionChip(
-                                  label: const Text('Remote'),
-                                  labelStyle: const TextStyle(color: Colors.white,fontSize:16),
-                                  avatar: const Icon(Icons.arrow_drop_down, color: Colors.white),
-                                  backgroundColor: cardPrimaryColor,
-                                  onPressed: () {  }
-                              ),
-*/

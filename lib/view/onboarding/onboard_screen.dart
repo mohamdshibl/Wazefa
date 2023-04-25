@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:sizer/sizer.dart';
+
 import '../../constantts/constants.dart';
 import '../login and register/login_screen.dart';
 
@@ -47,12 +47,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
          //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding:  EdgeInsets.all(12),
+              padding:  const EdgeInsets.all(12),
               child: Row(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(image:AssetImage('assets/images/Logo.png') ,),
-                  Spacer(),
+                  const Image(image:AssetImage('assets/images/Logo.png') ,),
+                  const Spacer(),
                    TextButton(
                      onPressed: () {
                        navigateToAndStop(context,  LoginScreen());
@@ -60,14 +60,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                      child: Text('Skip',
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 16.dp,
+                      fontSize: 12.sp,
                     ),
                      ),
                    ),
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Expanded(
               child: PageView.builder(
                 controller: boardController,
@@ -87,7 +87,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 },
               ),
             ),
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             Row (
               children: [
                 SmoothPageIndicator(
@@ -98,14 +98,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     activeDotColor: Colors.blue,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 FloatingActionButton(onPressed: (){
                   if (isLast){
                     navigateToAndStop(context, LoginScreen());
                   }else{
                     boardController.nextPage
                       (
-                        duration: Duration(milliseconds: 1000),
+                        duration: const Duration(milliseconds: 1000),
                         curve: Curves.fastLinearToSlowEaseIn
                     );
                   }
@@ -126,12 +126,12 @@ Widget buildBoardingItem(BoardingModel board) => Column(
  // crossAxisAlignment: CrossAxisAlignment.start,
   children: [
     Expanded(child: Image(image:AssetImage(board.image), )),
-     SizedBox(height: 30,),
+     const SizedBox(height: 30,),
     Text(board.title,
-      style:  TextStyle(fontSize: 24.dp,fontWeight: FontWeight.bold),),
-    SizedBox(height: 20,),
+      style:  TextStyle(fontSize: 18.sp,fontWeight: FontWeight.bold),),
+    const SizedBox(height: 20,),
     Text(board.body,
-      style: TextStyle(fontSize: 14,),),
+      style: const TextStyle(fontSize: 14,),),
   ],
 );
 // appBar: AppBar(

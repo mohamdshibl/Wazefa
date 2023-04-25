@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
@@ -20,47 +19,54 @@ class SearchScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
+                  /// back and search bar
                   child: Row(
                     children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            size: 25,
-                          )),
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              size: 25,
+                            )),
+                      ),
                       SizedBox(
                         width: 5.w,
                       ),
-                      Container(
-                        margin:  EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        padding: EdgeInsets.fromLTRB(12, 14, 26, 10),
-                        width: 300,
-                        height: 52,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey,),
-                          borderRadius: BorderRadius.circular(90),
-                        ),
-                        child: Row(
-                          children: const[
-                            Image(image: AssetImage('assets/images/search.png'),),
-                            SizedBox(width: 10,),
-                            Expanded(
-                              child: TextField(
-                                decoration: InputDecoration.collapsed(
-                                  hintText: 'Search....',
+                      Expanded(
+                        flex: 7,
+                        child: Container(
+                          margin:  const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(12, 14, 26, 10),
+                          width: 300,
+                          height: 52,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey,),
+                            borderRadius: BorderRadius.circular(90),
+                          ),
+                          child: Row(
+                            children: const[
+                              Image(image: AssetImage('assets/images/search.png'),),
+                              SizedBox(width: 10,),
+                              Expanded(
+                                child: TextField(
+                                  decoration: InputDecoration.collapsed(
+                                    hintText: 'Search....',
+                                  ),
                                 ),
                               ),
-                            ),
 
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height:20 ,),
+                const SizedBox(height:20 ,),
                 /// popular searches
                 Container(
                     height: 5.h,
@@ -80,12 +86,13 @@ class SearchScreen extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFF6B7280)),
+                                color: const Color(0xFF6B7280)),
                           ),
                         ),
                       ],
                     )
                 ),
+                /// list of recent search jobs
                 InkWell(
                   onTap: (){
                     navigateTo(context, const SearchViewFilter());
@@ -128,7 +135,7 @@ class SearchScreen extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFF6B7280)),
+                                color: const Color(0xFF6B7280)),
                           ),
                         ),
                       ],
@@ -149,7 +156,7 @@ class SearchScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 11.sp,),
                   ),
-                  trailing:  Image(
+                  trailing:  const Image(
                     image: AssetImage('assets/images/ar.png'),
                 ),
                 ),

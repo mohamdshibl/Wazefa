@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget defaultSeparatorContainer() {
@@ -29,7 +28,7 @@ Widget defaultButton({
         },
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -55,7 +54,7 @@ Widget defaulttButton({
         },
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -89,7 +88,7 @@ Widget defaultFormField({
         labelText: label,
         suffixIcon: Icon(suffix),
         //prefixIcon: Icon(prifix),
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
 

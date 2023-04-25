@@ -4,11 +4,11 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 
 class LFilterChip extends StatefulWidget {
   @override
-  _LFilterChipState createState() => new _LFilterChipState();
+  _LFilterChipState createState() => _LFilterChipState();
 }
 
 class _LFilterChipState extends State<LFilterChip> {
-  var _dataList = [
+  final _dataList = [
     'Full Time',
     'Remote',
     'Contract',
@@ -40,7 +40,7 @@ Widget bItem() => Container(
   decoration: BoxDecoration(
     border: Border.all(color: Colors.grey,),
     borderRadius: BorderRadius.circular(20),
-    color: const Color(0xFFfffFF),
+    color: const Color(0x0fffffff),
   ),
   child: Center(
     child: Text('',

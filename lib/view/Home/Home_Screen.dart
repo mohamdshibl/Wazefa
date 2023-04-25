@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 import 'package:sizer/sizer.dart';
-
 import '../../constants/colors.dart';
 import '../../constantts/constants.dart';
 import '../Search_Screen/search_Screen.dart';
@@ -27,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                /// hi and notification
                 Row(
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -34,8 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.only(top: 2),
                       child: SingleChildScrollView(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Hi, Mohamed Shibl 👋',
+                            Text('Hi, Xman 👋',
                               style: TextStyle(fontSize: 19.sp,),
                               textAlign: TextAlign.start,),
                             SizedBox(height: 8,),
@@ -56,12 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(30),
                         //color: Colors.redAccent
                       ),
-                      child: const Image(
+                      child:  const Image(
                         image: AssetImage('assets/images/ring.png'),),
                     ),
                   ],
                 ),
-                /// search
+                /// search bar
                 InkWell(
                   onTap: (){
                     navigateTo(context, SearchScreen());
@@ -228,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 20,),
 
-                /// recent job
+                /// recent job & view all
                 Row(
                   children: [
                     Text('Recent Job', style: TextStyle(fontSize: 14.sp,),),
@@ -319,6 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: 20,),
+                ///  Separator line custom
                 defaultSeparatorContainer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -401,6 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      ///  Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: true,
           selectedItemColor: const Color(0xFF3366FF),
