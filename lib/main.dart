@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
+import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
+import 'package:wazefa/view/job_details/job_dedails_view.dart';
 import 'package:wazefa/view/onboarding/onboard_screen.dart';
 
 import 'constants/custom_widgets.dart';
@@ -33,9 +35,9 @@ class MyApp extends StatelessWidget {
            useInheritedMediaQuery: true,
            locale: DevicePreview.locale(context),
            builder: DevicePreview.appBuilder,
-             theme: ThemeData().copyWith(scaffoldBackgroundColor: Colors.white),
+             theme: ThemeData().copyWith(),
              debugShowCheckedModeBanner: false,
-             home: OnBoardingScreen(),
+             home: JobDetail(),
          );
        }
    );

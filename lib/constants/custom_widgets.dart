@@ -21,14 +21,15 @@ class SplashViewBody extends StatelessWidget{
 
 /// btn sheet 1
 class FilterBottomSheet extends StatefulWidget{
- //  FilterBottomSheet({Key? key}) :super(key:key);
+   FilterBottomSheet({Key? key}) :super(key:key);
 
   @override
   State<FilterBottomSheet> createState() => _FilterBottomSheetState();
 }
 
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
-   final List<String> _dogeNames = [
+
+   List<String> _dogeNames = [
     'Full Time',
     'Remote',
     'Contract',
@@ -36,6 +37,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
      // 'Onsite',
      // 'Internship',
   ];
+
 
   //int _currentIndex = 0;
 
@@ -70,7 +72,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       child: Text('Reset',style: TextStyle(
                         fontSize: 12.sp,
                       ),),
-                      onPressed: () {  },
+                      onPressed: () {
+
+                      },
                     ),
 
                   ],
@@ -110,8 +114,6 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 const SizedBox(
                   height: 15,
                 ),
-
-                //const Text('Using supportsMultiSelect'),
                 const SizedBox(
                   height: 10,
                 ),
@@ -121,17 +123,17 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       children: [
                         ChipList(
                           listOfChipNames: _dogeNames,
+                          supportsMultiSelect:true,
                           activeBgColorList: const [Color(0xFFD6E4FF),
                             Color(0xFFD6E4FF), Color(0xFFD6E4FF),Color(0xFFD6E4FF)],
-                          inactiveBgColorList: const [Colors.white],
+                          inactiveBgColorList:  const [Colors.white],
                           activeTextColorList: [Colors.blue.shade900],
                           inactiveTextColorList: const [Colors.black],
-                          inactiveBorderColorList: const [Colors.black],
-                          activeBorderColorList:const [Color(0xFF3366FF)],
-                          borderRadiiList:const [100],
+                          inactiveBorderColorList:  [Colors.black],
+                          activeBorderColorList: const [Color(0xFF3366FF)],
+                          borderRadiiList: const [100],
                           style: TextStyle(fontSize: 11.sp),
-                          supportsMultiSelect:true,
-                          listOfChipIndicesCurrentlySeclected: const [0],
+                          listOfChipIndicesCurrentlySeclected: [0],
                         ),
                       ],
                     ),
@@ -156,7 +158,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 class chipsBottomSheet extends StatelessWidget{
   chipsBottomSheet({Key? key}) :super(key:key);
 
-  final List<String> _dogeNames = [
+   List<String> _dogeNames = [
     'Remote',
     'Onsite',
     'Hybird',
@@ -204,8 +206,7 @@ class chipsBottomSheet extends StatelessWidget{
                         borderRadiiList:const [100],
                         style: TextStyle(fontSize: 11.sp),
                         supportsMultiSelect:true,
-                        listOfChipIndicesCurrentlySeclected: const [0],
-                        // borderColorList: [Colors.pink, Colors.yellow, Colors.green,Colors.green],
+                        listOfChipIndicesCurrentlySeclected: [0],
                       ),
                     ],
                   ),
