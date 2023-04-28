@@ -1,7 +1,10 @@
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/constants/utils.dart';
 import 'package:chip_list/chip_list.dart';
+
+import 'colors.dart';
 
 
 class SplashViewBody extends StatelessWidget{
@@ -279,12 +282,222 @@ class CustomTextFormField extends StatelessWidget {
 ///
 
 
+class ContainerWidget extends StatefulWidget {
+  int index;
+  static int? groupValue = 0;
+  final ValueChanged<int?>? function;
+  final GestureTapCallback? containerFunction;
+  ContainerWidget(
+      {Key? key,
+        required this.index,
+        required this.function,
+        required this.containerFunction});
+
+  @override
+  State<ContainerWidget> createState() => _ContainerWidgetState();
+}
+
+class _ContainerWidgetState extends State<ContainerWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.containerFunction,
+      child: Container(
+        height: 11.h,
+        decoration: BoxDecoration(
+            color: ContainerWidget.groupValue == widget.index
+                ? Color(0xFFD6E4FF)
+                : Colors.white,
+            border: Border.all(
+                color: ContainerWidget.groupValue == widget.index
+                    ? Color(0xFF3366FF)
+                    : Color(0xFFD1D5DB)),
+            borderRadius: BorderRadius.circular(10)),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Senior UX Designer - ${widget.index}',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 1.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'CV.pdf',
+                        style: TextStyle(
+                            fontSize: 11.sp, color: const Color(0xFF6B7280)),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Icon(
+                        Icons.circle,
+                        size: 2.w,
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      Text(
+                        'Portfolio.pdf',
+                        style: TextStyle(
+                            fontSize: 11.sp, color: const Color(0xFF6B7280)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            const Spacer(),
+            Radio(
+                toggleable: true,
+                value: widget.index,
+                groupValue: ContainerWidget.groupValue,
+                onChanged: widget.function)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomStepper extends StatefulWidget {
+  CustomStepper({
+    Key? key,
+  });
+
+  @override
+  State<CustomStepper> createState() => _CustomStepperState();
+}
+
+class _CustomStepperState extends State<CustomStepper> {
+
+  @override
+  Widget build(
+      BuildContext context,
+      ) {
+    return EasyStepper(
+        stepRadius: 6.w,
+        activeStep: currentStep,
+        showLoadingAnimation: false,
+        enableStepTapping: true,
+        steppingEnabled: true,
+        lineLength: 12.w,
+        activeLineColor: Colors.blue,
+        defaultLineColor: const Color(0xFFD1D5DB),
+        defaultStepBorderType: BorderType.dotted,
+        internalPadding: 10.w,
+        finishedStepBorderColor: Colors.transparent,
+        finishedLineColor: const Color(0xFF03366FF),
+        finishedStepBackgroundColor: const Color(0xFF03366FF),
+        finishedStepIconColor: Colors.white,
+        finishedStepTextColor: const Color(0xFF03366FF),
+        activeStepBorderColor: const Color(0xFF03366FF),
+        activeStepTextColor: const Color(0xFF03366FF),
+        activeStepBackgroundColor: Colors.transparent,
+        borderThickness: 3,
+        unreachedStepTextColor: const Color(0xFF9CA3AF),
+        steps: [
+          EasyStep(
+              customStep: currentStep > 0
+                  ? Icon(
+                Icons.done,
+                color: Colors.white,
+                size: 4.h,
+              )
+                  : Text(
+                '1',
+                style:
+                TextStyle(color: Color(0xFF03366FF), fontSize: 13.sp),
+              ),
+              customTitle: Text(
+                'Biodata',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 11.sp, color: Color(0xFF03366FF)),
+              )),
+          EasyStep(
+            customStep: currentStep == 1
+                ? Text(
+              '2',
+              style:
+              TextStyle(color: Color(0xFF03366FF), fontSize: 13.sp),
+            )
+                : currentStep > 1
+                ? Icon(
+              Icons.done,
+              color: Colors.white,
+              size: 4.h,
+            )
+                : Text(
+              '2',
+              style: TextStyle(
+                  color: Color(0xFF9CA3AF), fontSize: 13.sp),
+            ),
+            customTitle: Text(
+              'Type Of Work',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 11.sp,
+                  color: currentStep >= 1
+                      ? Color(0xFF03366FF)
+                      : Color(0xFF9CA3AF)),
+            ),
+          ),
+          EasyStep(
+            customStep: currentStep == 2
+                ? Text(
+              '3',
+              style:
+              TextStyle(color: Color(0xFF03366FF), fontSize: 13.sp),
+            )
+                : currentStep > 2
+                ? Icon(
+              Icons.done,
+              color: Colors.white,
+              size: 4.h,
+            )
+                : Text(
+              '3',
+              style: TextStyle(
+                  color: Color(0xFF9CA3AF), fontSize: 13.sp),
+            ),
+            customTitle: Text(
+              'Upload Portofolio',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 11.sp,
+                  color: currentStep >= 2
+                      ? Color(0xFF03366FF)
+                      : Color(0xFF9CA3AF)),
+            ),
+          ),
+        ],
+        onStepReached: (index) {
+          setState(() => currentStep = index);
+        });
+  }
+}
+
 Widget mainbuttom({
   required  String text,
   required VoidCallback onTap,
   }) => SizedBox(
   height:6.5.h,
-  width: double.infinity,
+  width: 90.w,
   child: ElevatedButton(
     onPressed: onTap,
     style: ElevatedButton.styleFrom(

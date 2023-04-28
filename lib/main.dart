@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
+import 'package:wazefa/view/apply_job/apply_job_view.dart';
 import 'package:wazefa/view/job_details/job_dedails_view.dart';
 import 'package:wazefa/view/onboarding/onboard_screen.dart';
 
@@ -21,6 +22,12 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.black)
   );
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.deepPurpleAccent
+        //color set to purple or set your own color
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,12 +39,13 @@ class MyApp extends StatelessWidget {
    return Sizer(
        builder: (context, orientation, deviceType) {
          return MaterialApp(
+
            useInheritedMediaQuery: true,
            locale: DevicePreview.locale(context),
            builder: DevicePreview.appBuilder,
              theme: ThemeData().copyWith(),
              debugShowCheckedModeBanner: false,
-             home: JobDetail(),
+             home: JobApplication(),
          );
        }
    );

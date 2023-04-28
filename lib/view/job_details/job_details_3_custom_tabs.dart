@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:jobsque/View/Widgets/profile-widget.dart';
 import 'package:sizer/sizer.dart';
 
 class DescriptionPage extends StatelessWidget {
@@ -16,7 +15,7 @@ class DescriptionPage extends StatelessWidget {
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 15.sp),
+                  fontSize: 13.sp),
             ),
             subtitle: Text(
               'Your role as the UI Designer is to use interactive components on various platforms (web, desktop and mobile). This will include producing high-fidelity mock-ups, iconography, UI illustrations/graphics, and other graphic elements. As the UI Designer, you will be supporting the wider design team with the internal Design System, tying together the visual language. You will with other UI and UX Designers, Product Managers, and Engineering teams in a highly customer-focused agile environment to help define the vision of the products.',
@@ -226,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: Icon(Icons.keyboard_arrow_down),
                     isExpanded: true,
                     underline: Container(),
-                    items: ['UI/UX Designer', 'Label2', 'Label3']
+                    items: ['UI/UX Designer', 'UI/UX', 'art']
                         .map(
                           (e) => DropdownMenuItem(
                         child: Text('$e'),

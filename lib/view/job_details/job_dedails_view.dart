@@ -1,8 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-//import 'package:jobsque/View/pages/job-detail/job-detail-content.dart';
 import 'package:sizer/sizer.dart';
-
+import '../../constants/custom_widgets.dart';
 import 'job_details_3_custom_tabs.dart';
 
 class JobDetail extends StatelessWidget {
@@ -15,6 +14,7 @@ class JobDetail extends StatelessWidget {
       appBar: AppBar(
         actions: [Image.asset('assets/images/save1.png')],
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         title: Text(
           'Job Detail',
@@ -22,13 +22,14 @@ class JobDetail extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      // Appbar --------------------------------------------------
+
       body: DefaultTabController(
         length: 3,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              /// job detail_logo_jobtitle_3c
               Center(
                 child: SizedBox(
                   height: 28.h,
@@ -51,60 +52,66 @@ class JobDetail extends StatelessWidget {
                       ),
                       SizedBox(height: 1.h),
                       Text(
-                        'Twitter • Jakarta, Indonesia ',
+                        'Twitter • Jakarta, Indonesia',
                         style: TextStyle(fontSize: 10.sp, color: Colors.black),
                       ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
+                      SizedBox(height: 2.h,),
                       Center(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              height: 5.h,
-                              width: 18.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color(0xFFD6E4FF),
+                            Expanded(
+                              child: Container(
+                                height: 4.h,
+                                width: 20.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      'Fulltime',
+                                      style: TextStyle(
+                                          fontSize: 10.sp,
+                                          color: const Color(0xFF3366FF)),
+                                    )),
                               ),
-                              child: Center(
-                                  child: Text(
-                                    'Fulltime',
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        color: const Color(0xFF3366FF)),
-                                  )),
                             ),
-                            Container(
-                              height: 5.h,
-                              width: 18.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color(0xFFD6E4FF),
+                            SizedBox(width: 1.w,),
+                            Expanded(
+                              child: Container(
+                                height: 4.h,
+                                width: 20.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      'Onsite',
+                                      style: TextStyle(
+                                          fontSize: 10.sp,
+                                          color: const Color(0xFF3366FF)),
+                                    )),
                               ),
-                              child: Center(
-                                  child: Text(
-                                    'Onsite',
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        color: const Color(0xFF3366FF)),
-                                  )),
                             ),
-                            Container(
-                              height: 5.h,
-                              width: 18.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color(0xFFD6E4FF),
+                            SizedBox(width: 1.w,),
+                            Expanded(
+                              child: Container(
+                                height: 4.h,
+                                width: 20.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: const Color(0xFFD6E4FF),
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      'Senior',
+                                      style: TextStyle(
+                                          fontSize: 10.sp,
+                                          color: const Color(0xFF3366FF)),
+                                    )),
                               ),
-                              child: Center(
-                                  child: Text(
-                                    'Senior',
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        color: const Color(0xFF3366FF)),
-                                  )),
                             ),
                           ],
                         ),
@@ -112,15 +119,16 @@ class JobDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                // El Continer elly feh el content beta3 el job -------------------------------------------------------------
+
               ),
+              /// tab bar
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8),
                 child: Container(
                   decoration: BoxDecoration(
                       color: Color(0xFFF4F4F5),
                       borderRadius: BorderRadius.circular(20)),
-                  height: 7.h,
+                  height: 5.h,
                   width: 90.w,
                   child: TabBar(
                     labelColor: Colors.white,
@@ -167,7 +175,7 @@ class JobDetail extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
-              // el Tab Bar -----------------------------------------------------
+             ///
               Expanded(
                   child: TabBarView(
                     children: [
@@ -175,25 +183,27 @@ class JobDetail extends StatelessWidget {
                       CompanyPage(),
                       ProfilePage(),
                     ],
-                  )),
+                  ),
+              ),
             ],
           ),
         ),
       ),
       floatingActionButton: Container(
         color: Colors.transparent,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              minimumSize: Size(80.w, 6.h),
-              backgroundColor: const Color(0xFF3366FF)),
-          onPressed: () {},
-          child: const Text('Apply Now'),
-        ),
+        child: mainbuttom(text: 'Apply Now', onTap: () {  })
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
+// ElevatedButton(
+// style: ElevatedButton.styleFrom(
+// shape: RoundedRectangleBorder(
+// borderRadius: BorderRadius.circular(25),
+// ),
+// minimumSize: Size(80.w, 6.h),
+// backgroundColor: const Color(0xFF3366FF)),
+// onPressed: () {},
+// child: const Text('Apply Now'),
+// ),
