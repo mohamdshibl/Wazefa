@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 import 'package:wazefa/constants/utils.dart';
 import 'package:chip_list/chip_list.dart';
 
+import '../view/messages/messages.dart';
 import 'colors.dart';
 
 
@@ -232,7 +233,6 @@ class chipsBottomSheet extends StatelessWidget{
 /// btn sheet 3
 class Bottomsheetbutton extends StatelessWidget {
   const Bottomsheetbutton({super.key,});
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -359,153 +359,149 @@ class Bottomsheetbutton extends StatelessWidget {
   }
 }
 
-// class messagesbottomsheet extends StatelessWidget {
-//   const messagesbottomsheet({
-//     super.key,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 35.h,
-//       width: 300.w,
-//       decoration: const BoxDecoration(
-//           borderRadius: BorderRadius.only(
-//               topLeft: Radius.circular(85), topRight: Radius.circular(82))),
-//       child: Column(
-//         children: [
-//           SizedBox(
-//             height: 1.h,
-//           ),
-//           Image.asset('assets/images/smalldash.png'),
-//           SizedBox(
-//             height: 3.h,
-//           ),
-//           Align(
-//             alignment: Alignment.topLeft,
-//             child: Padding(
-//               padding: const EdgeInsets.only(left: 20),
-//               child: Text(
-//                 'Message filters',
-//                 style: TextStyle(
-//                     fontSize: 14.sp,
-//                     fontWeight: FontWeight.w500,
-//                     color: Color(0xFF111827)),
-//               ),
-//             ),
-//           ),
-//           SizedBox(
-//             height: 2.h,
-//           ),
-//           SizedBox(
-//             height: 7.h,
-//             width: 90.w,
-//             child: ElevatedButton(
-//                 style: ElevatedButton.styleFrom(
-//                     elevation: 0,
-//                     side: const BorderSide(width: .5, color: Colors.grey),
-//                     shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(40)),
-//                     backgroundColor: const Color(0xFFFFFFFF)),
-//                 onPressed: () {
-//                   Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                           builder: (context) => Unreadmessages()));
-//                 },
-//                 child: Row(
-//                   children: [
-//                     SizedBox(
-//                       width: 1.w,
-//                     ),
-//                     Text(
-//                       'Unread',
-//                       style:
-//                       TextStyle(fontSize: 13.sp, color: Color(0xFF374151)),
-//                     ),
-//                     SizedBox(width: 58.w),
-//                     const Icon(
-//                       Icons.arrow_forward_ios,
-//                       size: 15,
-//                       color: Color(0xFF111827),
-//                     )
-//                   ],
-//                 )),
-//           ),
-//           SizedBox(
-//             height: 2.h,
-//           ),
-//           SizedBox(
-//             height: 6.h,
-//             width: 90.w,
-//             child: ElevatedButton(
-//                 style: ElevatedButton.styleFrom(
-//                     elevation: 0,
-//                     side: const BorderSide(width: .5, color: Colors.grey),
-//                     shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(40)),
-//                     backgroundColor: const Color(0xFFFFFFFF)),
-//                 onPressed: () {},
-//                 child: Row(
-//                   children: [
-//                     SizedBox(
-//                       width: 2.w,
-//                     ),
-//                     Text(
-//                       'Spam',
-//                       style:
-//                       TextStyle(fontSize: 13.sp, color: Color(0xFF374151)),
-//                     ),
-//                     SizedBox(width: 60.w),
-//                     const Icon(
-//                       Icons.arrow_forward_ios,
-//                       size: 15,
-//                       color: Color(0xFF111827),
-//                     )
-//                   ],
-//                 )),
-//           ),
-//           SizedBox(
-//             height: 2.h,
-//           ),
-//           SizedBox(
-//             height: 6.h,
-//             width: 90.w,
-//             child: ElevatedButton(
-//                 style: ElevatedButton.styleFrom(
-//                     elevation: 0,
-//                     side: const BorderSide(width: .5, color: Colors.grey),
-//                     shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(40)),
-//                     backgroundColor: const Color(0xFFFFFFFF)),
-//                 onPressed: () {
-//                   Navigator.push(context,
-//                       MaterialPageRoute(builder: (context) => Emptymessages()));
-//                 },
-//                 child: Row(
-//                   children: [
-//                     SizedBox(
-//                       width: 2.w,
-//                     ),
-//                     Text(
-//                       'Archived',
-//                       style:
-//                       TextStyle(fontSize: 13.sp, color: Color(0xFF374151)),
-//                     ),
-//                     SizedBox(width: 55.w),
-//                     const Icon(
-//                       Icons.arrow_forward_ios,
-//                       size: 15,
-//                       color: Color(0xFF111827),
-//                     )
-//                   ],
-//                 )),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+/// btn sheet 4
+class messagesbottomsheet extends StatelessWidget {
+  const messagesbottomsheet({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 35.h,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 1.h,
+          ),
+          Image.asset('assets/images/line.png'),
+          SizedBox(
+            height: 3.h,
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Text(
+                'Message filters',
+                style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF111827)),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          // Unread
+          SizedBox(
+            height: 7.h,
+            width: 90.w,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    side: const BorderSide(width: .5, color: Colors.grey),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    backgroundColor: const Color(0xFFFFFFFF)),
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => Unreadmessages()));
+                },
+                child: Row(
+
+                  children: [
+                    Text(
+                      'Unread',
+                      style:
+                      TextStyle(fontSize: 13.sp, color: Color(0xFF374151)),
+                    ),
+                    Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 15,
+                      color: Color(0xFF111827),
+                    )
+                  ],
+                )),
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          // spam
+          SizedBox(
+            height: 6.h,
+            width: 90.w,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    side: const BorderSide(width: .5, color: Colors.grey),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    backgroundColor: const Color(0xFFFFFFFF)),
+                onPressed: () {},
+                child: Row(
+                  children: [
+                    Text(
+                      'Spam',
+                      style:
+                      TextStyle(fontSize: 13.sp, color: Color(0xFF374151)),
+                    ),
+                    Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 15,
+                      color: Color(0xFF111827),
+                    )
+                  ],
+                )),
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          // Archived
+          SizedBox(
+            height: 6.h,
+            width: 90.w,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    side: const BorderSide(width: .5, color: Colors.grey),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    backgroundColor: const Color(0xFFFFFFFF)),
+                onPressed: () {
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => Emptymessages()));
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      'Archived',
+                      style:
+                      TextStyle(fontSize: 13.sp, color: Color(0xFF374151)),
+                    ),
+                    Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 15,
+                      color: Color(0xFF111827),
+                    )
+                  ],
+                )),
+          )
+        ],
+      ),
+    );
+  }
+}
 
 
 class CustomTextFormField extends StatelessWidget {
