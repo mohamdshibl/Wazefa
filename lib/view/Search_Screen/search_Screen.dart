@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 
-import '../../constantts/constants.dart';
+import '../../constants/constants.dart';
 
 
 class SearchScreen extends StatelessWidget {

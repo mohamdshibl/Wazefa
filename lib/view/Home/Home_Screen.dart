@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
 import '../../constants/colors.dart';
-import '../../constantts/constants.dart';
+import '../../constants/constants.dart';
 import '../Search_Screen/search_Screen.dart';
 
 class HomeScreen extends StatefulWidget {

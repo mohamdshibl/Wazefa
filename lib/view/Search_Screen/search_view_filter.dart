@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 import '../../constants/colors.dart';
 import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
-import '../../constantts/constants.dart';
+import '../../constants/constants.dart';
 
 class SearchViewFilter extends StatelessWidget {
    const SearchViewFilter({Key? key}) : super(key: key);

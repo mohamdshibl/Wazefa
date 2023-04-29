@@ -1,7 +1,9 @@
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/constants/constants.dart';
 import '../../constants/custom_widgets.dart';
+import '../apply_job/apply_job_view.dart';
 import 'job_details_3_custom_tabs.dart';
 
 class JobDetail extends StatelessWidget {
@@ -175,7 +177,7 @@ class JobDetail extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
-             ///
+             /// 3 tabs
               Expanded(
                   child: TabBarView(
                     children: [
@@ -191,7 +193,7 @@ class JobDetail extends StatelessWidget {
       ),
       floatingActionButton: Container(
         color: Colors.transparent,
-        child: mainbuttom(text: 'Apply Now', onTap: () {  })
+        child: mainbuttom(text: 'Apply Now', onTap: () { navigateTo(context,JobApplication() ); })
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

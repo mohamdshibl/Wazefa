@@ -3,7 +3,7 @@ import 'package:wazefa/constants/custom_widgets.dart';
 import 'package:wazefa/view/login%20and%20register/login_screen.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../constantts/constants.dart';
+import '../../constants/constants.dart';
 
 class RegistrationScreen extends StatelessWidget {
   // RegistrationScreen({Key? key}) : super(key: key);

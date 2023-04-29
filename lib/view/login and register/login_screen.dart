@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wazefa/view/login%20and%20register/register.dart';
 import '../../constants/custom_widgets.dart';
-import '../../constantts/constants.dart';
+import '../../constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
 

@@ -2,7 +2,7 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:wazefa/constantts/constants.dart';
+import 'package:wazefa/constants/constants.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
 
 import '../../constants/colors.dart';
@@ -18,7 +18,7 @@ class JobApplication extends StatefulWidget {
 }
 
 class _JobApplicationState extends State<JobApplication> {
-  //int currentStep = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +26,9 @@ class _JobApplicationState extends State<JobApplication> {
       appBar: AppBar(
           toolbarHeight: 5.h,
           backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,
-          title: Text(
-            'Apply Job',
+          title: Text('Apply Job',
             style: TextStyle(
                 fontSize: 16.sp,
                 color: const Color(0xFF111827),
@@ -59,10 +58,10 @@ class _JobApplicationState extends State<JobApplication> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(50),
               ),
-              minimumSize: Size(80.w, 6.h),
-              backgroundColor: const Color(0xFF3366FF)),
+              minimumSize: Size(90.w, 6.5.h),
+              backgroundColor: const Color(0xFf3366FF)),
           onPressed: () {
             setState(() {
               currentStep++;
@@ -71,24 +70,10 @@ class _JobApplicationState extends State<JobApplication> {
               }
             });
           },
-          child: currentStep == 0
-              ? Text(
-            'Next',
-            style: TextStyle(fontSize: 10.sp),
-          )
-              : currentStep == 1
-              ? Text(
-            'Next',
-            style: TextStyle(fontSize: 10.sp),
-          )
-              : currentStep == 2
-              ? Text(
-            'Submit',
-            style: TextStyle(fontSize: 10.sp),
-          )
-              : Text(
-            'Submit',
-            style: TextStyle(fontSize: 10.sp),
+          child: currentStep == 0 ? Text('Next', style: TextStyle(fontSize: 10.sp),)
+              : currentStep == 1 ? Text('Next', style: TextStyle(fontSize: 10.sp),)
+              : currentStep == 2 ? Text('Submit', style: TextStyle(fontSize: 10.sp),)
+              : Text('Submit', style: TextStyle(fontSize: 10.sp),
           ),
         ),
       ),
