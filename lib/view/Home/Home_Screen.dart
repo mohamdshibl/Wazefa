@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../Search_Screen/search_Screen.dart';
+import '../saved_view/saved_view.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -57,9 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(30),
                         //color: Colors.redAccent
                       ),
-                      child:  const Image(
-                        image: AssetImage('assets/images/ring.png'),),
+                      child:  IconButton(
+                        onPressed: () {  navigateTo(context, Savedjobs());},
+                          icon: Icon(Icons.notifications_none_outlined)
+                      ),
                     ),
+        //image: AssetImage('assets/images/ring.png')
                   ],
                 ),
                 /// search bar
