@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/constants/constants.dart';
+
+import '../../view/messages/chat.dart';
 class ContactsCard extends StatelessWidget {
   Contacts contacsmodel;
-  ContactsCard({
-    Key? key,
-    required this.contacsmodel,
-  }) : super(key: key);
+
+  ContactsCard({Key? key, required this.contacsmodel,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
         onTap: () {
-          // Navigator.push(
-          //     context, MaterialPageRoute(builder: (context) => Chatpage()));
+          navigateTo(context, ChatPage());
         },
         leading: Image.asset('${contacsmodel.image}'),
         title: Text(

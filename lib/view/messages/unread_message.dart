@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/custom_widgets.dart';
+import '../../model/messages_models/contacts_model.dart';
 import '../../model/messages_models/unread_messgae_model.dart';
 import 'messages.dart';
 
@@ -48,29 +48,32 @@ class UnreadMessages extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               // search bar
               SizedBox(
-                width: 70.w,
-                height: 7.h,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.search,
-                        size: 30,
-                        color: Color(0xFF292D32),
-                      ),
-                      hintText: 'Search messages....',
-                      hintStyle: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFF9CA3AF)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(85.0),
-                          borderSide: const BorderSide(color: Color(0xFFD1D5DB))),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(85.0),
-                          borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 180, 177, 177),
-                          ))),
-                ),
+                  width: 70.w,
+                  height: 5.5.h,
+                  child:Container(
+                    margin:  const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(12, 14, 26, 10),
+                    width: 300,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey,),
+                      borderRadius: BorderRadius.circular(90),
+                    ),
+                    child: Row(
+                      children: const[
+                        Image(image: AssetImage('assets/images/search.png'),),
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration.collapsed(
+                              hintText: 'Search....',
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  )
               ),
               InkWell(
                 onTap: () {
@@ -86,7 +89,7 @@ class UnreadMessages extends StatelessWidget {
               )
             ]),
             SizedBox(
-              height: 4.h,
+              height: 2.h,
             ),
             Container(
                 height: 5.h,

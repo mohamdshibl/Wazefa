@@ -543,7 +543,7 @@ class ChatBottomSheet extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/images/briefcase.png',
+                      'assets/images/briefcase2.png',
                     ),
                     SizedBox(
                       width: 2.w,
@@ -615,7 +615,7 @@ class ChatBottomSheet extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/images/sms2.png',
+                      'assets/images/sms.png',
                     ),
                     SizedBox(
                       width: 2.w,
@@ -687,7 +687,7 @@ class ChatBottomSheet extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/images/notification.png',
+                      'assets/images/import.png',
                     ),
                     SizedBox(
                       width: 2.w,
