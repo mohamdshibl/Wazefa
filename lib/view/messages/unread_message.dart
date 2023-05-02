@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/custom_widgets.dart';
+import '../../model/messages_models/unread_messgae_model.dart';
 import 'messages.dart';
 
 
@@ -45,6 +46,7 @@ class UnreadMessages extends StatelessWidget {
               height: 2.h,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              // search bar
               SizedBox(
                 width: 70.w,
                 height: 7.h,
@@ -150,40 +152,10 @@ class UnreadMessages extends StatelessWidget {
                       ),
                       trailing: Text('${unreadmessageslist[index].time}'))),
             )
-          ])),
-      bottomNavigationBar:
-      StatefulBuilder(builder: (context, StateSetter setstate) {
-        return BottomNavigationBar(
-            showUnselectedLabels: true,
-            selectedItemColor: const Color(0xFF3366FF),
-            unselectedItemColor: const Color(0xFF9CA3AF),
-            currentIndex: selectedIndex,
-            onTap: (index) {
-              setstate(() {
-                selectedIndex = index;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                  label: 'home',
-                  icon: Image.asset('assets/images/home.png'),
-                  activeIcon: Image.asset('assets/images/home2.png')),
-              BottomNavigationBarItem(
-                  label: 'messages',
-                  icon: Image.asset('assets/images/message.png'),
-                  activeIcon: Image.asset('assets/images/message2.png')),
-              BottomNavigationBarItem(
-                  label: 'Applied',
-                  icon: Image.asset('assets/images/briefcase2.png'),
-                  activeIcon: Image.asset('assets/images/briefcase.png')),
-              BottomNavigationBarItem(
-                  label: 'Saved',
-                  icon: Image.asset('assets/images/archive.png'),
-                  activeIcon: Image.asset('assets/images/archive2.png')),
-              const BottomNavigationBarItem(
-                  label: 'Profile', icon: Icon(Icons.person))
-            ]);
-      }),
+          ],
+    ),
+    ),
     );
+
   }
 }
