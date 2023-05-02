@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-
 import 'package:sizer/sizer.dart';
 
 import '../../constants/custom_widgets.dart';
 import 'messages.dart';
 
 
-class Unreadmessages extends StatelessWidget {
-  Unreadmessages({super.key});
-  int selectedindex = 0;
+
+class UnreadMessages extends StatelessWidget {
+   UnreadMessages({super.key});
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,10 +157,10 @@ class Unreadmessages extends StatelessWidget {
             showUnselectedLabels: true,
             selectedItemColor: const Color(0xFF3366FF),
             unselectedItemColor: const Color(0xFF9CA3AF),
-            currentIndex: selectedindex,
+            currentIndex: selectedIndex,
             onTap: (index) {
               setstate(() {
-                selectedindex = index;
+                selectedIndex = index;
               });
             },
             items: [
