@@ -116,20 +116,20 @@ class NotificationPage extends StatelessWidget{
                       indent: 30,
                       thickness: 1.5,
                     ),
-                    itemCount: oldnotificationList.length,
+                    itemCount: oldNotificationList.length,
                     itemBuilder: (context, index) => ListTile(
                         leading:
-                        Image.asset('${oldnotificationList[index].icon}'),
+                        Image.asset('${oldNotificationList[index].icon}'),
                         title: Text(
-                          '${oldnotificationList[index].title}',
+                          '${oldNotificationList[index].title}',
                           style: TextStyle(
                               fontSize: 12.sp,
                               color: Color(0xFF111827),
                               fontWeight: FontWeight.w500),
                         ),
                         subtitle:
-                        Text('${oldnotificationList[index].subtitle}'),
-                        trailing: Text('${oldnotificationList[index].time}'))),
+                        Text('${oldNotificationList[index].subtitle}'),
+                        trailing: Text('${oldNotificationList[index].time}'))),
               ),
               //Image.asset('assets/images/line.png')
             ],
@@ -140,9 +140,12 @@ class NotificationPage extends StatelessWidget{
   }
 }
 
-class notificationcard extends StatelessWidget {
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+
+class NotificationCard extends StatelessWidget {
   Notifications model;
-  notificationcard({
+  NotificationCard({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -162,9 +165,6 @@ class notificationcard extends StatelessWidget {
         trailing: Text('${model.time}'));
   }
 }
-
-
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Notifications {
   String? title;
   String? subtitle;
@@ -214,7 +214,7 @@ class OldNotification {
   });
 }
 
-List<OldNotification> oldnotificationList = [
+List<OldNotification> oldNotificationList = [
   OldNotification(
       title: 'Email setup successful',
       subtitle:

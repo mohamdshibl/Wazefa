@@ -8,6 +8,7 @@ import 'package:wazefa/view/Home/Home_Screen.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 import 'package:wazefa/view/apply_job/apply_job_view.dart';
 import 'package:wazefa/view/job_details/job_dedails_view.dart';
+import 'package:wazefa/view/messages/chat.dart';
 import 'package:wazefa/view/messages/messages.dart';
 import 'package:wazefa/view/notifications/notification.dart';
 import 'package:wazefa/view/onboarding/onboard_screen.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
            builder: DevicePreview.appBuilder,
              theme: ThemeData().copyWith(),
              debugShowCheckedModeBanner: false,
-             home: Contactspage(),
+             home: ContactsPage(),
          );
        }
    );
