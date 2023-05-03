@@ -1,6 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../Cubit/app_cubit.dart';
+import '../../Cubit/app_states.dart';
 
 
 class NotificationPage extends StatelessWidget{
@@ -8,6 +12,11 @@ class NotificationPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<JobsCubit,JobsStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -137,6 +146,8 @@ class NotificationPage extends StatelessWidget{
         ),
       ),
     );
+  },
+);
   }
 }
 

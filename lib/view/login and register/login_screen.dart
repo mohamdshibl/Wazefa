@@ -98,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                     const Text('Don\'t have an account?',  ),
 
                     TextButton(onPressed: (){
-                      navigateTo(context, RegistrationScreen());
+                      //navigateTo(context, RegistrationScreen());
 
                     },
                         child: const Text('Register',),),
