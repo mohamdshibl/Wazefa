@@ -1,10 +1,13 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:wazefa/constants/constants.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
 
+import '../../Cubit/app_cubit.dart';
+import '../../Cubit/app_states.dart';
 import '../../constants/colors.dart';
 import '../../constants/custom_widgets.dart';
 import 'apply_job_custom_steper.dart';
@@ -21,6 +24,11 @@ class _JobApplicationState extends State<JobApplication> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<JobsCubit,JobsStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -79,5 +87,7 @@ class _JobApplicationState extends State<JobApplication> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
     );
+  },
+);
   }
 }

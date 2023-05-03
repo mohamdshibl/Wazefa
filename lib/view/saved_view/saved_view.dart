@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import '../../Cubit/app_cubit.dart';
 
+import '../../Cubit/app_states.dart';
 import '../../constants/custom_widgets.dart';
 
 class Savedjobs extends StatelessWidget {
@@ -14,6 +17,11 @@ class Savedjobs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<JobsCubit,JobsStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -86,6 +94,8 @@ class Savedjobs extends StatelessWidget {
           ],),
     ),
     );
+  },
+);
   }
 }
 class Savedjobsmodel {

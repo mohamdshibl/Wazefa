@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../Cubit/app_cubit.dart';
+import '../../Cubit/app_states.dart';
 import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
 import '../../model/messages_models/contacts_model.dart';
@@ -10,6 +13,11 @@ class ContactsPage extends StatelessWidget {
   int selectedindex = 0;
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<JobsCubit,JobsStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -107,4 +115,6 @@ class ContactsPage extends StatelessWidget {
       ),
       ),
     );
+  },
+);
   }}
