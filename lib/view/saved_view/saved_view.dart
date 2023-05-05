@@ -23,37 +23,41 @@ class Savedjobs extends StatelessWidget {
   },
   builder: (context, state) {
     return Scaffold(
+      appBar:AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+        title: Text(
+          'Saved',
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
           child: Column(
             children: [
-              SizedBox(
-                height: 2.h,
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        size: 25,
-                      )),
-                  SizedBox(
-                    width: 30.w,
-                  ),
-                  Text(
-                    'Saved',
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
-                        color: const Color(0xFF111827)),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 1.h,
-              ),
+              // Row(
+              //   children: [
+              //     IconButton(
+              //         onPressed: () {
+              //           Navigator.pop(context);
+              //         },
+              //         icon: const Icon(
+              //           Icons.arrow_back_ios_new_outlined,
+              //           size: 25,
+              //         )),
+              //     SizedBox(
+              //       width: 30.w,
+              //     ),
+              //     Text(
+              //       'Saved',
+              //       style: TextStyle(
+              //           fontSize: 18.sp,
+              //           fontWeight: FontWeight.w500,
+              //           color: const Color(0xFF111827)),
+              //     )
+              //   ],
+              // ),
               /// job saved
               Container(
                 height: 5.h,
@@ -214,33 +218,4 @@ class SavedJobCard extends StatelessWidget {
   }
 }
 
-// contacs page card
-// class ContactsCard extends StatelessWidget {
-//   Contacts contacsmodel;
-//   ContactsCard({
-//     Key? key,
-//     required this.contacsmodel,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//         onTap: () {
-//           Navigator.push(
-//               context, MaterialPageRoute(builder: (context) => Chatpage()));
-//         },
-//         leading: Image.asset('${contacsmodel.image}'),
-//         title: Text(
-//           '${contacsmodel.name}',
-//           style: TextStyle(
-//               fontSize: 14.sp,
-//               color: const Color(0xFF111827),
-//               fontWeight: FontWeight.w500),
-//         ),
-//         subtitle: Text(
-//           '${contacsmodel.message}',
-//           style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400),
-//         ),
-//         trailing: Text('${contacsmodel.time}'));
-//   }
-// }
+

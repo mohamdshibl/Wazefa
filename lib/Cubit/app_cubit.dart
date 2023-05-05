@@ -9,6 +9,7 @@ import '../view/apply_job/apply_job_view.dart';
 import '../view/login and register/register.dart';
 import '../view/messages/messages.dart';
 import '../view/notifications/notification.dart';
+import '../view/profile/profile.dart';
 import '../view/saved_view/saved_view.dart';
 import 'app_states.dart';
 
@@ -26,7 +27,7 @@ class JobsCubit extends Cubit<JobsStates> {
     ContactsPage(),
     JobApplication(),
     Savedjobs(),
-    NotificationPage(),
+    Profile(),
   ];
 
   List<BottomNavigationBarItem> b = [
