@@ -14,36 +14,36 @@ class ContactsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit,JobsStates>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
+       listener: (context, state) {  },
+      builder: (context, state) {
     return Scaffold(
+      appBar:AppBar(
+        backgroundColor: Colors.white,
+        //iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+        title: Text(
+          'Messages',
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
           child: Column(
         children: [
-          Row(
-            children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 25,
-                  )),
-              SizedBox(
-                width: 25.w,
-              ),
-              Text(
-                'Messsages',
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xFF111827)),
-              )
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     SizedBox(
+          //       width: 25.w,
+          //     ),
+          //     Text(
+          //       'Messsages',
+          //       style: TextStyle(
+          //           fontSize: 18.sp,
+          //           fontWeight: FontWeight.w500,
+          //           color: const Color(0xFF111827)),
+          //     )
+          //   ],
+          // ),
           SizedBox(
             height: 2.h,
           ),

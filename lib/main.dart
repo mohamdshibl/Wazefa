@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/view/Home/Home.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 import 'package:wazefa/view/apply_job/apply_job_view.dart';
@@ -12,6 +13,7 @@ import 'package:wazefa/view/messages/chat.dart';
 import 'package:wazefa/view/messages/messages.dart';
 import 'package:wazefa/view/notifications/notification.dart';
 import 'package:wazefa/view/onboarding/onboard_screen.dart';
+import 'package:wazefa/view/profile/profile.dart';
 import 'package:wazefa/view/saved_view/saved_view.dart';
 
 import 'Cubit/app_cubit.dart';
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
     child:  Sizer(
               builder: (context, orientation, deviceType) {
                 return MaterialApp(
-
+                 // initialRoute: ,
                   useInheritedMediaQuery: true,
                   locale: DevicePreview.locale(context),
                   builder: DevicePreview.appBuilder,
