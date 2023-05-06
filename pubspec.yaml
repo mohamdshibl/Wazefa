@@ -50,6 +50,7 @@ dependencies:
   intl_phone_field: ^3.1.0
   easy_stepper: ^0.5.0
   dotted_border: ^2.0.0+3
+  flutter_switch: ^0.3.2
 
 
 dev_dependencies:

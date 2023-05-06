@@ -8,12 +8,12 @@ import '../../Cubit/app_states.dart';
 
 
 class NotificationPage extends StatelessWidget{
- // NotificationPage({super.key});
+  const NotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit,JobsStates>(
-  listener: (context, state) {  },
+  listener: (context, state) {},
   builder: (context, state) {
     return Scaffold(
       body: SafeArea(
