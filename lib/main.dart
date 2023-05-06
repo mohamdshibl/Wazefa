@@ -13,6 +13,7 @@ import 'package:wazefa/view/messages/chat.dart';
 import 'package:wazefa/view/messages/messages.dart';
 import 'package:wazefa/view/notifications/notification.dart';
 import 'package:wazefa/view/onboarding/onboard_screen.dart';
+import 'package:wazefa/view/profile/edit_profile.dart';
 import 'package:wazefa/view/profile/profile.dart';
 import 'package:wazefa/view/saved_view/saved_view.dart';
 
@@ -20,10 +21,12 @@ import 'Cubit/app_cubit.dart';
 import 'Cubit/app_states.dart';
 import 'constants/bloc_obswrver.dart';
 import 'constants/custom_widgets.dart';
+import 'package:dio/dio.dart';
 
 
 void main() {
   Bloc.observer = MyBlocObserver();
+  //getData();
   runApp(
       DevicePreview(
         enabled: true,
@@ -56,7 +59,7 @@ class MyApp extends StatelessWidget {
                   builder: DevicePreview.appBuilder,
                   theme: ThemeData().copyWith(),
                   debugShowCheckedModeBanner: false,
-                  home: HomeScreen(),
+                  home: Profile(),
                 );
               }
           ),

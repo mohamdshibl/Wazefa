@@ -2,8 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/view/profile/portfolio.dart';
 
 import '../../constants/utils.dart';
+import '../notifications/notification.dart';
+import 'edit_profile.dart';
+import 'language.dart';
+import 'nitifications.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -237,23 +242,22 @@ class _ProfileState extends State<Profile> {
                     return InkWell(
                         onTap: () {
 
-                          // if( index == 0){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Editeprofile(),));
-                          // } else if (index == 1){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Protfolio(),));
-                          // }else if (index == 2){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Language(),));
-                          // }else if (index == 3){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Notifications(),));
-                          // }else if (index == 4){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginAndSecurity(),));
-                          // }
+                          if( index == 0){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EditProfile(),));
+                          } else if (index == 1){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Portfolio(),));
+                          }else if (index == 2){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Language(),));
+                          }else if (index == 3){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationView(),));
+                          }else if (index == 4){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationPage(),));
+                          }
 
                         },
                         child: Shapegeneral(generalModel: GeneralModel.data[index]));
 
                   } ,
-
                   separatorBuilder: (context, index) =>const Divider(),
                   itemCount:GeneralModel.data.length),
             ) ,
