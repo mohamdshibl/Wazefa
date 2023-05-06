@@ -7,11 +7,10 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
+        baseUrl: 'http://164.92.246.77/api/jobs',
         receiveDataWhenStatusError: true,
         headers: {
-          'Content-Type' : 'application/json',
-          'lang' : 'en',
+          'Authorization' : 'jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM'
         }
       ),
     );
@@ -32,6 +31,7 @@ class DioHelper {
       url,
       queryParameters: query);
   return response;
+
 
     // return await dio!.get(
     //     url,
@@ -55,3 +55,33 @@ class DioHelper {
         );
   }
 }
+
+// import 'dart:convert';
+// import 'dart:html';
+//
+// import 'package:dio/dio.dart';
+//
+// class DioHelper {
+//   static Dio? dio;
+//   static init (){
+//     dio = Dio(
+//       BaseOptions(
+//         baseUrl: 'https://reqres.in/api/users',
+//             receiveDataWhenStatusError: true,
+//       )
+//     );
+//   }
+//
+//   void getData(
+//       String url,
+//       Map query,
+//       ) async {
+//     try {
+//       Response response = await dio!.get(url,queryParameters: query);
+//       print(response.data);
+//       print(response.statusCode);
+//     } catch (e){
+//       print('Failed to load ${e} ss');
+//     }
+//   }
+// }
