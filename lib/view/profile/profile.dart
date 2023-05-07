@@ -8,6 +8,7 @@ import '../../constants/utils.dart';
 import '../notifications/notification.dart';
 import 'edit_profile.dart';
 import 'language.dart';
+import 'login_security.dart';
 import 'nitifications.dart';
 
 class Profile extends StatefulWidget {
@@ -251,7 +252,7 @@ class _ProfileState extends State<Profile> {
                           }else if (index == 3){
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationView(),));
                           }else if (index == 4){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationPage(),));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginAndSecurity(),));
                           }
 
                         },

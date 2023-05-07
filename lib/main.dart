@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
                   builder: DevicePreview.appBuilder,
                   theme: ThemeData().copyWith(),
                   debugShowCheckedModeBanner: false,
-                  home: Profile(),
+                  home: OnBoardingScreen(),
                 );
               }
           ),
