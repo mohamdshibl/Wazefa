@@ -5,12 +5,20 @@ import '../../constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
 
-class LoginScreen extends StatelessWidget {
-//  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+ //const LoginScreen({Key? key}) : super(key: key);
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
+  bool obsecuretext = true;
+  bool? checkBox = false;
   var formKey = GlobalKey<FormState>();
+
   final _ischecked = false;
 
   @override
@@ -36,82 +44,76 @@ class LoginScreen extends StatelessWidget {
                 Text('Please login to find your dream job',
                   style:Theme.of(context).textTheme.headline6!.copyWith(color: Colors.grey),),
                 const SizedBox(height: 30,),
-                defaultFormField(
-                  controller: emailController,
-                  type: TextInputType.emailAddress,
-                  validate: (String v){
-                    if (v.isEmpty){
-                      return 'please write your email' ;
-                    }
+
+                CustomTextFormField(
+                  onChanged: (value) {
+                    emailController = value as TextEditingController ;
+                    setState(() {});
                   },
-                  label: 'Email Here' ,
-                  suffix: Icons.email,
-                  // onChange: (){},
+                  image: 'assets/images/profile.png',
+                  hintText: 'Username',
                 ),
-                const SizedBox(height: 20,),
-                defaultFormField(
-                  controller: passwordController,
-                  type: TextInputType.visiblePassword,
-                  validate: (String v){
-                    if (v.isEmpty){
-                      return 'please write your password' ;
-                    }
+                SizedBox(
+                  height: 2.h,
+                ),
+                CustomTextFormField(
+                  onChanged: (value) {
+                    passwordController = value as TextEditingController;
+                    setState(() {});
                   },
-                  label: 'Password Here' ,
-                  suffix: Icons.visibility_outlined,
-                  //onChange: (){},
+                  obsecuretext: obsecuretext,
+                  suffixIcon: IconButton(
+                    icon: obsecuretext
+                        ? Icon(Icons.visibility_off_outlined)
+                        : Icon(Icons.visibility),
+                    onPressed: () {
+                      obsecuretext = !obsecuretext;
+                      setState(() {});
+                    },
+                  ),
+                  image: 'assets/images/lock.png',
+                  hintText: 'Password',
                 ),
                 const SizedBox(height: 15,),
                 /// check box
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  //crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Expanded(
-                      child:Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
                           Checkbox(
                             value: _ischecked,
                             onChanged: (bool? value) {   },
                           ),
-                          //SizedBox(width: 5,),
                           Text('Remember me',
                             style: TextStyle(fontSize: 11.sp,),
                           ),
-                        ],
-                      ),
-                     ),
-                     TextButton(
+                   const Spacer(),
+                    TextButton(
                        child: Text('Forgot Password?',
                       style: TextStyle(fontSize: 11.sp,),),
                        onPressed: () {  },
                     ),
-
                   ],
                 ),
-                const SizedBox(height: 30,),
+                SizedBox(height: 4.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Don\'t have an account?',  ),
 
                     TextButton(onPressed: (){
-                      //navigateTo(context, RegistrationScreen());
+                      navigateTo(context, RegistrationScreen());
 
                     },
                         child: const Text('Register',),),
                   ],
                 ),
-                mainbuttom(text: 'Login', onTap: () {} ),
-                // defaultButton(
-                //     function: (){
-                //
-                //     },
-                //     text: 'Login'
-                // ),
-                const SizedBox(height: 30,),
+                mainbuttom(text: 'Login', onTap: () {
+                  // passwordController.length >= 8 &&
+                  //     emailController.isNotEmpty
+                  //     ? () {}
+                  //     : null,
+                } ),
+               SizedBox(height: 4.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -124,20 +126,19 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32,),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      child: const Image(image:AssetImage('assets/images/face.png') ,),
+                    GestureDetector(
+                      child: Image.asset('assets/images/go.png'),
+                      onTap: () {},
                     ),
-                    const Spacer(),
-                    Container(
-                        child: const Image(image:AssetImage('assets/images/go.png') ,),
+                    GestureDetector(
+                      child: Image.asset('assets/images/face.png'),
+                      onTap: () {},
                     ),
                   ],
-
                 ),
-
-
-
+                Spacer(),
               ],
             ),
           ),
