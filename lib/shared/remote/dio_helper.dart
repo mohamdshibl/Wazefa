@@ -7,10 +7,11 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://164.92.246.77/api/jobs',
+        baseUrl: 'http://164.92.246.77/api/',
         receiveDataWhenStatusError: true,
         headers: {
-          'Authorization' : 'jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM'
+          'Authorization' : 'jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM',
+          'Content-Type' : 'multipart/form-data; boundary=<calculated when request is sent>'
         }
       ),
     );

@@ -42,7 +42,7 @@ class RegistrationScreen extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          'Cereate Account',
+                          'Create Account',
                           style: TextStyle(
                             fontSize: 20.sp,
                           ),
@@ -57,8 +57,8 @@ class RegistrationScreen extends StatelessWidget {
                               .headline6!
                               .copyWith(color: Colors.grey),
                         ),
-                        const SizedBox(
-                          height: 30,
+                         SizedBox(
+                          height: 3.h,
                         ),
                         defaultFormField(
                           controller: emailController,
@@ -70,7 +70,6 @@ class RegistrationScreen extends StatelessWidget {
                           },
                           label: 'Username',
                           suffix: Icons.email,
-// onChange: (){},
                         ),
                         const SizedBox(
                           height: 30,
@@ -85,7 +84,6 @@ class RegistrationScreen extends StatelessWidget {
                           },
                           label: 'Email',
                           suffix: Icons.email,
-// onChange: (){},
                         ),
                         const SizedBox(
                           height: 20,
@@ -100,7 +98,6 @@ class RegistrationScreen extends StatelessWidget {
                           },
                           label: 'Password',
                           suffix: Icons.visibility_outlined,
-//onChange: (){},
                         ),
                         const SizedBox(
                           height: 30,
@@ -121,16 +118,11 @@ class RegistrationScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        mainbuttom(text: 'Create account', onTap: () {}),
-// defaultButton(
-//     function: (){
-//
-//     },
-//     text: 'Create account'
-// ),
+                        mainbuttom(text: 'Create account', onTap: () {
 
-                        SizedBox(
-                          height: 30,
+                        }),
+                      SizedBox(
+                          height: 3.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -146,25 +138,25 @@ class RegistrationScreen extends StatelessWidget {
                             Text('--------------'),
                           ],
                         ),
-                        const SizedBox(
-                          height: 32,
+                         SizedBox(
+                          height: 3.h,
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
-                              child: const Image(
-                                image: AssetImage('assets/images/face.png'),
-                              ),
+                            GestureDetector(
+                              child: Image.asset('assets/go.png'),
+                              onTap: () {},
                             ),
-                            const Spacer(),
-                            Container(
-                              child: const Image(
-                                image: AssetImage('assets/images/go.png'),
-                              ),
+                            GestureDetector(
+                              child: Image.asset('assets/face.png'),
+                              onTap: () {},
                             ),
                           ],
                         ),
+                        Spacer(),
                       ],
+
                     ),
                   ),
                 ),
