@@ -1,5 +1,10 @@
 
-class Data {
+
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+class JobsModel {
   int? id;
   String? name;
   String? image;
@@ -19,27 +24,15 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data(
-      {this.id,
-        this.name,
-        this.image,
-        this.jobTimeType,
-        this.jobType,
-        this.jobLevel,
-        this.jobDescription,
-        this.jobSkill,
-        this.compName,
-        this.compEmail,
-        this.compWebsite,
-        this.aboutComp,
-        this.location,
-        this.salary,
-        this.favorites,
-        this.expired,
-        this.createdAt,
-        this.updatedAt});
+  JobsModel(
+      { required this.id,required this.name,required this.image, this.jobTimeType, this.jobType,
+        this.jobLevel, this.jobDescription, this.jobSkill, this.compName,
+        this.compEmail, this.compWebsite, this.aboutComp, this.location,
+        this.salary, this.favorites, this.expired, this.createdAt,
+        this.updatedAt }
+      );
 
-  Data.fromJson(Map<String, dynamic> json) {
+  JobsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     image = json['image'];
@@ -83,3 +76,35 @@ class Data {
     return data;
   }
 }
+
+class AllJobs {
+  static Future<List<JobsModel>> getAllJobs() async {
+    String url = 'http://164.92.246.77/api/jobs';
+    String token = '30|jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM';
+    http.Response response =
+    await http.get(Uri.parse(url),
+    headers:{
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+
+
+    if (response.statusCode == 200) {
+     Map<String,dynamic> data = jsonDecode(response.body);
+      List<JobsModel> jobsList = [];
+      print('shiblllllllllllllllllll');
+      for (int i = 0; i < data.length; i++) {
+        jobsList.add(JobsModel.fromJson(data[i])
+        );
+      }
+      return jobsList;
+    }
+    else{
+      throw
+      Exception('status code is wrong ${response.statusCode} ');
+    }
+
+    }
+}
+// 30|jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM

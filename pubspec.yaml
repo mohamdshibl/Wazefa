@@ -51,6 +51,7 @@ dependencies:
   easy_stepper: ^0.5.0
   dotted_border: ^2.0.0+3
   flutter_switch: ^0.3.2
+  http:
 
 
 dev_dependencies:
