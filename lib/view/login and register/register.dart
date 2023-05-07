@@ -110,7 +110,7 @@ class RegistrationScreen extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                navigateTo(context, LoginScreen());
+                                Navigator.pop(context);
                               },
                               child: const Text(
                                 'Login',

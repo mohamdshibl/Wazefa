@@ -23,10 +23,12 @@ import 'constants/bloc_obswrver.dart';
 import 'constants/custom_widgets.dart';
 import 'package:dio/dio.dart';
 
+import 'model/jobs_model/jobs_model.dart';
+
 
 void main() {
   Bloc.observer = MyBlocObserver();
-  //getData();
+  AllJobs.getAllJobs();
   runApp(
       DevicePreview(
         enabled: true,
