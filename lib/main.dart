@@ -22,17 +22,17 @@ import 'Cubit/app_states.dart';
 import 'constants/bloc_obswrver.dart';
 import 'constants/custom_widgets.dart';
 import 'package:dio/dio.dart';
-
 import 'model/jobs_model/jobs_model.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  AllJobs.getAllJobs();
   runApp(
       DevicePreview(
         enabled: true,
-        builder: (context) => MyApp(),)
+        builder: (context) => MyApp(),
+      ),
   );
   // SystemChrome.setSystemUIOverlayStyle(
   //     const SystemUiOverlayStyle(statusBarColor: Colors.black)
@@ -50,9 +50,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => JobsCubit(),
+        create: (_) => JobsCubit()..getAllJobs(),
 
-    child:  Sizer(
+    child: Sizer(
               builder: (context, orientation, deviceType) {
                 return MaterialApp(
                  // initialRoute: ,
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                   builder: DevicePreview.appBuilder,
                   theme: ThemeData().copyWith(),
                   debugShowCheckedModeBanner: false,
-                  home: OnBoardingScreen(),
+                  home: HomeScreen(),
                 );
               }
           ),

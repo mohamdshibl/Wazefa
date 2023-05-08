@@ -3,6 +3,8 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 
+import '../model/jobs_model/jobs_model.dart';
+import '../shared/remote/http_helper.dart';
 import '../view/Home/Home.dart';
 import '../view/Home/Home_Screen.dart';
 import '../view/apply_job/apply_job_view.dart';
@@ -47,7 +49,7 @@ class JobsCubit extends Cubit<JobsStates> {
         label: 'Saved',
         icon: Image.asset('assets/images/archive.png'),
         activeIcon: Image.asset('assets/images/archive2.png')),
-     BottomNavigationBarItem(
+     const BottomNavigationBarItem(
         label: 'Profile',
         icon: Icon(Icons.person)
     ),
@@ -57,6 +59,30 @@ class JobsCubit extends Cubit<JobsStates> {
     currentIndexs = index;
     emit(NewsNtmNavState());
   }
+  List<JobsModel> jobsList = [];
+  Future<List> getAllJobs() async {
+
+  List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/jobs');
+
+  List<JobsModel> jobs = data.map((job) =>
+      JobsModel.fromJson(job)).toList();
+
+  jobsList = jobs;
+  emit(GetJobsSuccessState());
+  print(jobsList[1].name);
+  // List<JobsModel> jobs = [];
+  // for(int i=0;i<data.length;i++){
+  // jobs.add(JobsModel.fromJson(data[i]));
+  // }
+
+  // for (JobsModel job in jobs) {
+  // print('${job.name}');
+  // }
+  // //print(jobs[data[1].]);
+  return data;
+  }
+
+
 
 
 }

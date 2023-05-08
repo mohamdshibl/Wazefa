@@ -1,64 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-class DescriptionPage extends StatelessWidget {
-  const DescriptionPage({Key? key}) : super(key: key);
+import '../../Cubit/app_cubit.dart';
+import '../../Cubit/app_states.dart';
 
+class DescriptionPage extends StatelessWidget {
+   final int jobsindex;
+  DescriptionPage({ required this.jobsindex,Key? key}) : super(key: key);
+
+
+  var list =[];
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              'Job Description',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13.sp),
+    return BlocConsumer<JobsCubit, JobsStates>(
+        listener: (context, state) {},
+    builder: (context, state) {
+      var cubit = JobsCubit.get(context);
+
+      list = cubit.jobsList;
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            ListTile(
+              title: Text(
+                'Job Description',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13.sp),
+              ),
+              subtitle: Text('${list[jobsindex].jobDescription}',
+                style: TextStyle(
+                    fontSize: 9.sp, color: Color(0xFF4B5563), height: 1.5),
+              ),
             ),
-            subtitle: Text(
-              'Your role as the UI Designer is to use interactive components on various platforms (web, desktop and mobile). This will include producing high-fidelity mock-ups, iconography, UI illustrations/graphics, and other graphic elements. As the UI Designer, you will be supporting the wider design team with the internal Design System, tying together the visual language. You will with other UI and UX Designers, Product Managers, and Engineering teams in a highly customer-focused agile environment to help define the vision of the products.',
-              style: TextStyle(
-                  fontSize: 9.sp, color: Color(0xFF4B5563), height: 1.5),
+            SizedBox(
+              height: 1.h,
             ),
-          ),
-          SizedBox(
-            height: 1.h,
-          ),
-          ListTile(
-            title: Text(
-              'Skill Required',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.sp),
+            ListTile(
+              title: Text(
+                'Skill Required',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.sp),
+              ),
+              subtitle: Text(
+                '${list[jobsindex].jobSkill}',
+                style: TextStyle(
+                    fontSize: 9.sp, color: Color(0xFF4B5563), height: 1.5),
+              ),
             ),
-            subtitle: Text(
-              '''* A strong visual portfolio with clear understanding of UI methodologies
-* Ability to create hi-fidelity mock-ups in Figma
-* Ability to create various graphics for the web e.g. illustrations and icons
-* Able to facilitate workshops and liaise with stakeholders
-* Proficiency in the Adobe Creative Suite
-* Confident communicator with an analytical mindset
-* Design library/Design system experience
-* 4+ years of commercial experience in UI/Visual Design
-                ''',
-              style: TextStyle(
-                  fontSize: 9.sp, color: Color(0xFF4B5563), height: 1.5),
-            ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+      });
   }
 }
 
 class CompanyPage extends StatelessWidget {
-  const CompanyPage({Key? key}) : super(key: key);
-
+  final int jobsindex;
+    CompanyPage({Key? key, required this.jobsindex}) : super(key: key);
+  var list =[];
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<JobsCubit, JobsStates>(
+        listener: (context, state) {},
+    builder: (context, state) {
+    var cubit = JobsCubit.get(context);
+
+    list = cubit.jobsList;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -104,7 +116,7 @@ class CompanyPage extends StatelessWidget {
                       height: 1.h,
                     ),
                     Text(
-                      'twitter@mail.com',
+                      '${list[jobsindex].compEmail}',
                       style:
                       TextStyle(fontSize: 10.sp, color: Color(0xFF111827)),
                     ),
@@ -131,7 +143,8 @@ class CompanyPage extends StatelessWidget {
                       height: 1.h,
                     ),
                     Text(
-                      'https://twitter.com',
+
+                      '${list[jobsindex].compWebsite}',
                       style:
                       TextStyle(fontSize: 10.sp, color: Color(0xFF111827)),
                     ),
@@ -153,8 +166,7 @@ class CompanyPage extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              '''Understanding Recruitment is an award-winning technology, software and digital recruitment consultancy with headquarters in St. Albans, Hertfordshire.We also have a US office in Boston, Massachusetts specialising in working closely with highly skilled individuals seeking their next career move within Next Gen Tech, Backend Engineering, and Artificial Intelligence.We recently celebrated our first decade in business and over the years have been recognised with several industry awards including 'Best Staffing Firm to Work For 2018'​ at the SIA Awards for the third consecutive year and ‘Business of the Year 2017’ at the SME Hertfordshire Business Awards.Our teams of specialists operate across all areas of Technology and Digital, including Java, JavaScript, Python, .Net, DevOps & SRE, SDET, Artificial Intelligence, Machine Learning, AI, Digital, Quantum Computing, Hardware Acceleration, Digital, Charity, Fintech, and the Public Sector.
-              ''',
+              '${list[jobsindex].aboutComp}',
               style: TextStyle(
                 height: 1.5,
                 fontSize: 9.sp,
@@ -166,6 +178,7 @@ class CompanyPage extends StatelessWidget {
         ],
       ),
     );
+    });
   }
 }
 

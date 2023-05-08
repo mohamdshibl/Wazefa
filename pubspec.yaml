@@ -37,7 +37,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   bloc:
-  conditional_builder:
   flutter_bloc:
   dio:
   shared_preferences:
@@ -52,6 +51,9 @@ dependencies:
   dotted_border: ^2.0.0+3
   flutter_switch: ^0.3.2
   http:
+  conditional_builder_null_safety:
+  auto_size_text:
+
 
 
 dev_dependencies:
