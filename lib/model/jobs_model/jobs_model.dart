@@ -1,8 +1,8 @@
 
 
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import '../../shared/remote/http_helper.dart';
 
 class JobsModel {
   int? id;
@@ -54,7 +54,7 @@ class JobsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
     data['image'] = this.image;
@@ -77,34 +77,5 @@ class JobsModel {
   }
 }
 
-class AllJobs {
-  static Future<List<JobsModel>> getAllJobs() async {
-    String url = 'http://164.92.246.77/api/jobs';
-    String token = '30|jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM';
-    http.Response response =
-    await http.get(Uri.parse(url),
-    headers:{
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    });
 
-
-    if (response.statusCode == 200) {
-     Map<String,dynamic> data = jsonDecode(response.body);
-      List<JobsModel> jobsList = [];
-      print('shiblllllllllllllllllll');
-      for (int i = 0; i < data.length; i++) {
-        jobsList.add(JobsModel.fromJson(data[i])
-        );
-      }
-      return jobsList;
-    }
-    else{
-      throw
-      Exception('status code is wrong ${response.statusCode} ');
-    }
-
-    }
-}
 // 30|jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM

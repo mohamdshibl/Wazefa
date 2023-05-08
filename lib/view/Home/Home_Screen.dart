@@ -14,13 +14,13 @@ import '../saved_view/saved_view.dart';
 
 class HomeScreen extends StatelessWidget {
   // HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit,JobsStates>(
          listener: (context, state) {},
           builder:(context, state) {
         var cubit = JobsCubit.get(context);
-
         return Scaffold(
           body: cubit.Screans[cubit.currentIndexs],
 
@@ -31,8 +31,7 @@ class HomeScreen extends StatelessWidget {
             unselectedItemColor: const Color(0xFF9CA3AF),
             currentIndex: cubit.currentIndexs,
             onTap: (index) {
-
-                cubit.changeIndexBtmNav(index);
+              cubit.changeIndexBtmNav(index);
             },
             items: cubit.b,
           ),

@@ -1,19 +1,25 @@
+//import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
-
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/Cubit/app_states.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
+import '../../model/jobs_model/jobs_model.dart';
 import '../Search_Screen/search_Screen.dart';
+import '../job_details/job_dedails_view.dart';
 import '../notifications/notification.dart';
 import '../saved_view/saved_view.dart';
 
 class HomeView extends StatelessWidget {
   // HomeScreen({Key? key}) : super(key: key);
+
+  var list = [];
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit, JobsStates>(
@@ -21,6 +27,7 @@ class HomeView extends StatelessWidget {
         builder: (context, state) {
           var cubit = JobsCubit.get(context);
 
+          list = cubit.jobsList;
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -136,173 +143,41 @@ class HomeView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
 
                       /// card
-                      Container(
-                        height: 183,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          color: cardPrimaryColor,
-                        ),
-                        child: Column(
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: ListTile(
-                                leading: const Image(
-                                  image: AssetImage('assets/images/zoom.png'),
-                                ),
-                                title: Text(
-                                  'Product Designer',
-                                  style: TextStyle(
-                                      fontSize: 13.sp, color: Colors.white),
-                                  textAlign: TextAlign.start,
-                                ),
-                                subtitle: Text(
-                                  'Zoom • United States',
-                                  style: TextStyle(
-                                      fontSize: 9.sp, color: Colors.grey),
-                                  textAlign: TextAlign.start,
-                                ),
-                                trailing: const Image(
-                                  image: AssetImage('assets/images/save.png'),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      width: 87,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white.withOpacity(0.15),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Fulltime',
-                                          style: TextStyle(
-                                              fontSize: 9.sp,
-                                              color: const Color(0xFFFFFFFF)),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 6.5,
-                                    ),
-                                    Container(
-                                      width: 87,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white.withOpacity(0.15),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Remote',
-                                          style: TextStyle(
-                                              fontSize: 9.sp,
-                                              color: Color(0xFFFFFFFF)),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 6.5,
-                                    ),
-                                    Container(
-                                      width: 87,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white.withOpacity(0.15),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Design',
-                                          style: TextStyle(
-                                              fontSize: 9.sp,
-                                              color: Color(0xFFFFFFFF)),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        '\$12K-15K/Month',
-                                        style: TextStyle(
-                                            fontSize: 15.sp,
-                                            color: Colors.white),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                      Spacer(),
-                                      // apply job
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                          width: 96,
-                                          height: 32,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: Colors.grey,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: const Color(0xFF3366FF),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              'Apply now',
-                                              style: TextStyle(
-                                                  fontSize: 9.sp,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                      SizedBox(
+                        width: double.infinity,
+                        height: 200,
+                        child: ConditionalBuilder(
+                            condition: list.isNotEmpty,
+                            builder: (context) => ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  // padding: EdgeInsets.only(left: 16,right: 6),
+                                  physics: BouncingScrollPhysics(),
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(
+                                    width: 16,
                                   ),
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) =>  customSuggestedJobsList(
+                                          list[index], context)
+
+                                  //list[index]
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
+                            fallback: (context) => const Center(
+                                child: CircularProgressIndicator())),
                       ),
+
                       SizedBox(
                         height: 20,
                       ),
 
                       /// recent job & view all
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Recent Job',
@@ -310,7 +185,6 @@ class HomeView extends StatelessWidget {
                               fontSize: 14.sp,
                             ),
                           ),
-                          Spacer(),
                           TextButton(
                             onPressed: () {},
                             child: Text(
@@ -327,223 +201,136 @@ class HomeView extends StatelessWidget {
                       ),
 
                       /// jobs List
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            leading: const Image(
-                              image: AssetImage('assets/images/twiter.png'),
-                            ),
-                            title: Text(
-                              'Senior UI Designer',
-                              style: TextStyle(
-                                  fontSize: 14.sp, fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              'Twitter • Jakarta, Indonesia ',
-                              style: TextStyle(
-                                fontSize: 9.sp,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
-                            trailing: Image(
-                              image: AssetImage('assets/images/save1.png'),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 70,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xFFD6E4FF),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Fulltime',
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 6.5,
-                                    ),
-                                    Container(
-                                      width: 70,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xFFD6E4FF),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Remote',
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 6.5,
-                                    ),
-                                    Container(
-                                      width: 70,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xFFD6E4FF),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Design',
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Spacer(),
-                              Text('\$15K/Month'),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      // Column(
+                      //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   children: [
+                      //     ListTile(
+                      //       leading: const Image(
+                      //         image: AssetImage('assets/images/twiter.png'),
+                      //       ),
+                      //       title: Text(
+                      //         'Senior UI Designer',
+                      //         style: TextStyle(
+                      //             fontSize: 14.sp, fontWeight: FontWeight.bold),
+                      //       ),
+                      //       subtitle: Text(
+                      //         'Twitter • Jakarta, Indonesia ',
+                      //         style: TextStyle(
+                      //           fontSize: 9.sp,
+                      //         ),
+                      //         textAlign: TextAlign.start,
+                      //       ),
+                      //       trailing: Image(
+                      //         image: AssetImage('assets/images/save1.png'),
+                      //       ),
+                      //     ),
+                      //     SizedBox(
+                      //       height: 18,
+                      //     ),
+                      //     Row(
+                      //       children: [
+                      //         Container(
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.center,
+                      //             children: [
+                      //               Container(
+                      //                 width: 70,
+                      //                 height: 30,
+                      //                 decoration: BoxDecoration(
+                      //                   border: Border.all(
+                      //                     color: Colors.grey,
+                      //                   ),
+                      //                   borderRadius: BorderRadius.circular(20),
+                      //                   color: const Color(0xFFD6E4FF),
+                      //                 ),
+                      //                 child: Center(
+                      //                   child: Text(
+                      //                     'Fulltime',
+                      //                     style: TextStyle(
+                      //                       fontSize: 9.sp,
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //               SizedBox(
+                      //                 width: 6.5,
+                      //               ),
+                      //               Container(
+                      //                 width: 70,
+                      //                 height: 30,
+                      //                 decoration: BoxDecoration(
+                      //                   border: Border.all(
+                      //                     color: Colors.grey,
+                      //                   ),
+                      //                   borderRadius: BorderRadius.circular(20),
+                      //                   color: const Color(0xFFD6E4FF),
+                      //                 ),
+                      //                 child: Center(
+                      //                   child: Text(
+                      //                     'Remote',
+                      //                     style: TextStyle(
+                      //                       fontSize: 9.sp,
+                      //                     ),
+                      //                     textAlign: TextAlign.start,
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //               SizedBox(
+                      //                 width: 6.5,
+                      //               ),
+                      //               Container(
+                      //                 width: 70,
+                      //                 height: 30,
+                      //                 decoration: BoxDecoration(
+                      //                   border: Border.all(
+                      //                     color: Colors.grey,
+                      //                   ),
+                      //                   borderRadius: BorderRadius.circular(20),
+                      //                   color: const Color(0xFFD6E4FF),
+                      //                 ),
+                      //                 child: Center(
+                      //                   child: Text(
+                      //                     'Design',
+                      //                     style: TextStyle(
+                      //                       fontSize: 9.sp,
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //         Spacer(),
+                      //         Text('\$15K/Month'),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
 
-                      ///  Separator line custom
-                      defaultSeparatorContainer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            leading: const Image(
-                              image: AssetImage('assets/images/twiter.png'),
-                            ),
-                            title: Text(
-                              'Senior UI Designer',
-                              style: TextStyle(
-                                  fontSize: 14.sp, fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              'Twitter • Jakarta, Indonesia ',
-                              style: TextStyle(
-                                fontSize: 9.sp,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
-                            trailing: Image(
-                              image: AssetImage('assets/images/save1.png'),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 70,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xFFD6E4FF),
+                      SizedBox(
+                        height: 300,
+                        child: ConditionalBuilder(
+                            condition: list.isNotEmpty,
+                            builder: (context) => ListView.separated(
+                                  physics: BouncingScrollPhysics(),
+                                  separatorBuilder: (context, index) =>
+                                      defaultSeparatorContainer(),
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) =>
+                                      InkWell(
+                                        onTap: () {
+                                          navigateTo(context, JobDetail(jobsindex:index));
+                                        },
+                                        child:
+                                      customJobsList(list[index], context),
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                          'Fulltime',
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 6.5,
-                                    ),
-                                    Container(
-                                      width: 70,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xFFD6E4FF),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Remote',
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 6.5,
-                                    ),
-                                    Container(
-                                      width: 70,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xFFD6E4FF),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Design',
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
                                 ),
-                              ),
-                              Spacer(),
-                              Text('15K/Month'),
-                            ],
-                          ),
-                        ],
+                            fallback: (context) => const Center(
+                                child: CircularProgressIndicator())),
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                     ],
                   ),
@@ -553,4 +340,282 @@ class HomeView extends StatelessWidget {
           );
         });
   }
+}
+
+Widget customSuggestedJobsList(list, BuildContext context) {
+  return InkWell(
+    onTap: () {
+      //navigateTo(context, WebViewScrean("${articles['url']}"));
+    },
+    child: Container(
+      height: 183,
+      width: 300,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey,
+        ),
+        borderRadius: BorderRadius.circular(15),
+        color: cardPrimaryColor,
+      ),
+      child: Column(
+        children: [
+          Flexible(
+            flex: 1,
+            child: ListTile(
+              leading: const Image(
+                image: AssetImage('assets/images/logo_amit.png'),
+              ),
+              title: Text(
+                '${list.name}',
+                style: TextStyle(fontSize: 13.sp, color: Colors.white),
+                textAlign: TextAlign.start,
+              ),
+              subtitle: Text(
+                '${list.compName}',
+                style: TextStyle(fontSize: 9.sp, color: Colors.grey),
+                textAlign: TextAlign.start,
+              ),
+              trailing: const Image(
+                image: AssetImage('assets/images/save.png'),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8, left: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${list.jobTimeType}',
+                          style: TextStyle(
+                              fontSize: 9.sp, color: const Color(0xFFFFFFFF)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Onsite',
+                          style: TextStyle(
+                              fontSize: 9.sp, color: Color(0xFFFFFFFF)),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${list.jobLevel}',
+                          style: TextStyle(
+                              fontSize: 9.sp, color: Color(0xFFFFFFFF)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    Text(
+                      '\$${list.salary}/Month',
+                      style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                      textAlign: TextAlign.start,
+                    ),
+                    Spacer(),
+                    // apply job
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 96,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF3366FF),
+                        ),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Text(
+                              'Apply now',
+                              style: TextStyle(
+                                  fontSize: 9.sp, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget customJobsList(list, BuildContext context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      ListTile(
+        leading: const Image(
+          image: AssetImage('assets/images/logo_amit.png'),
+        ),
+        title: Text(
+          '${list.name}',
+          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          '${list.compName}',
+          style: TextStyle(
+            fontSize: 9.sp,
+          ),
+          textAlign: TextAlign.start,
+        ),
+        trailing: GestureDetector(
+          onTap: () {},
+          child: const Image(
+            image: AssetImage('assets/images/save3.png'),
+          ),
+        ),
+      ),
+      SizedBox(
+        height: 12,
+      ),
+      Row(
+        children: [
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 70,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color(0xFFD6E4FF),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${list.jobTimeType}',
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 6.5,
+                ),
+                Container(
+                  width: 70,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color(0xFFD6E4FF),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Remote',
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 6.5,
+                ),
+                Container(
+                  width: 70,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color(0xFFD6E4FF),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${list.jobLevel}',
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Spacer(),
+          Text(
+            '\$${list.salary}/Month',
+            style: TextStyle(fontSize: 10.sp),
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 2.h,
+      )
+    ],
+  );
 }

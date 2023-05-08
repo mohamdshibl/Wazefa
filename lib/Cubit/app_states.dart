@@ -4,7 +4,7 @@ class NewsInitialState extends JobsStates{}
 
 class NewsNtmNavState extends JobsStates{}
 
-//class NewsGetBusinessSuccessState extends JobsStates{}
+class GetJobsSuccessState extends JobsStates{}
 
 // class NewsGetLoadingsState extends JobsStates{}
 //
