@@ -1,7 +1,11 @@
 
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:wazefa/shared/remote/dio_helper.dart';
 
 import '../model/jobs_model/jobs_model.dart';
 import '../shared/remote/http_helper.dart';
@@ -22,8 +26,6 @@ class JobsCubit extends Cubit<JobsStates> {
   static JobsCubit get(context) => BlocProvider.of(context);
 
   int currentIndexs = 0;
-
-
   List<Widget> Screans = [
     HomeView(),
     ContactsPage(),
@@ -31,7 +33,6 @@ class JobsCubit extends Cubit<JobsStates> {
     Savedjobs(),
     Profile(),
   ];
-
   List<BottomNavigationBarItem> b = [
     BottomNavigationBarItem(
         label: 'home',
@@ -59,6 +60,7 @@ class JobsCubit extends Cubit<JobsStates> {
     currentIndexs = index;
     emit(NewsNtmNavState());
   }
+
   List<JobsModel> jobsList = [];
   Future<List> getAllJobs() async {
 
@@ -69,7 +71,6 @@ class JobsCubit extends Cubit<JobsStates> {
 
   jobsList = jobs;
   emit(GetJobsSuccessState());
-  print(jobsList[1].name);
   // List<JobsModel> jobs = [];
   // for(int i=0;i<data.length;i++){
   // jobs.add(JobsModel.fromJson(data[i]));
@@ -81,8 +82,57 @@ class JobsCubit extends Cubit<JobsStates> {
   // //print(jobs[data[1].]);
   return data;
   }
+  String n = 'x';
+  Future<void> login() async {
+    String url = "http://164.92.246.77/api/auth/login";
+    Response response;
+    var dio = Dio();
+     response = await dio.post(url,
+        data: {
+       "password": "123456",
+          "email": "ahmedshibl@gmail.com",
+        });
+        print(response.data);
 
+        n =response.data['user']['name'];
+        }
 
+  Future<void> register() async {
+    String url = "http://164.92.246.77/api/auth/register";
+    Response response;
+    var dio = Dio();
+    response = await dio.post(url,
+        data: {
+        'name':'saad',
+        'email':'saad@gmail.com',
+        'password':'123456'
+        });
+    print(response.data);
+  }
+
+  // Future<void> userLogin(){
+  //   DioHelper.postData(url: 'ttp://164.92.246.77/api/auth/login',
+  //       data: {
+  //       'password' : '123456',
+  //     'email': 'ahmedshibl@gmail.com',
+  //       }
+  //       ).then((value) =>
+  //   {
+  //         print(value.data),
+  //     emit(LoginSuccessState())
+  //   }).catchError((e){
+  //     print(e.toString());
+  //   });
+  //   return Future.value();
+  // }
+
+// Future<List> loginPost() async {
+//     emit(LoginSuccessState());
+//     List<dynamic> data =
+//     await ApiPost().post(url:'http://164.92.246.77/auth/login?pass=ahmedshibl@gmail.com&=123456');
+//
+//         return data ;
+// }
 
 
 }

@@ -50,6 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     emailController = value as TextEditingController ;
                     setState(() {});
                   },
+                  validator: (var value) {
+                    if (value.isEmpty){
+                      return 'email format is wrong';
+                    }
+                  },
                   image: 'assets/images/profile.png',
                   hintText: 'Username',
                 ),
@@ -60,6 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   onChanged: (value) {
                     passwordController = value as TextEditingController;
                     setState(() {});
+                  },
+                  validator: (var value) {
+                    if (value.isEmpty){
+                      return 'password is to short';
+                    }
                   },
                   obsecuretext: obsecuretext,
                   suffixIcon: IconButton(
@@ -108,6 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 mainbuttom(text: 'Login', onTap: () {
+                  if (formKey.currentState!.validate()){
+                    // cubit.userLogin
+                  //   email: emailController.text,
+                  // password: passwordController.text
+
+                  }
                   // passwordController.length >= 8 &&
                   //     emailController.isNotEmpty
                   //     ? () {}
