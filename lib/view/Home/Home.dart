@@ -6,6 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/Cubit/app_states.dart';
+import 'package:wazefa/shared/remote/http_helper.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
@@ -48,7 +49,7 @@ class HomeView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Hi, Xman 👋',
+                                    'Hi, ${cubit.n} 👋',
                                     style: TextStyle(
                                       fontSize: 19.sp,
                                     ),
@@ -133,7 +134,11 @@ class HomeView extends StatelessWidget {
                           ),
                           const Spacer(),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+
+                              cubit.login();
+
+                            },
                             child: Text(
                               'View all',
                               style: TextStyle(
@@ -162,9 +167,13 @@ class HomeView extends StatelessWidget {
                                     width: 16,
                                   ),
                                   itemCount: list.length,
-                                  itemBuilder: (context, index) =>  customSuggestedJobsList(
-                                          list[index], context)
-
+                                  itemBuilder: (context, index) => InkWell(
+                                    onTap: () {
+                                      navigateTo(context, JobDetail(jobsindex:index));
+                                    },
+                                    child:
+                                    customSuggestedJobsList(list[index], context),
+                                  ),
                                   //list[index]
                                 ),
                             fallback: (context) => const Center(
@@ -343,11 +352,7 @@ class HomeView extends StatelessWidget {
 }
 
 Widget customSuggestedJobsList(list, BuildContext context) {
-  return InkWell(
-    onTap: () {
-      //navigateTo(context, WebViewScrean("${articles['url']}"));
-    },
-    child: Container(
+  return Container(
       height: 183,
       width: 300,
       decoration: BoxDecoration(
@@ -445,7 +450,7 @@ Widget customSuggestedJobsList(list, BuildContext context) {
                         child: Text(
                           '${list.jobLevel}',
                           style: TextStyle(
-                              fontSize: 9.sp, color: Color(0xFFFFFFFF)),
+                              fontSize: 9.sp, color: const Color(0xFFFFFFFF)),
                         ),
                       ),
                     ),
@@ -499,8 +504,8 @@ Widget customSuggestedJobsList(list, BuildContext context) {
           ),
         ],
       ),
-    ),
-  );
+    );
+
 }
 
 Widget customJobsList(list, BuildContext context) {

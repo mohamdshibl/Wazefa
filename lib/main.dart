@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/shared/remote/dio_helper.dart';
 import 'package:wazefa/view/Home/Home.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
 import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 import 'package:wazefa/view/apply_job/apply_job_view.dart';
 import 'package:wazefa/view/job_details/job_dedails_view.dart';
+import 'package:wazefa/view/login%20and%20register/login_screen.dart';
 import 'package:wazefa/view/messages/chat.dart';
 import 'package:wazefa/view/messages/messages.dart';
 import 'package:wazefa/view/notifications/notification.dart';
@@ -28,6 +30,7 @@ import 'model/jobs_model/jobs_model.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
   runApp(
       DevicePreview(
         enabled: true,
