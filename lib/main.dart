@@ -3,7 +3,9 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/shared/local/shared_pref.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
 import 'package:wazefa/view/Home/Home.dart';
 import 'package:wazefa/view/Home/Home_Screen.dart';
@@ -27,10 +29,13 @@ import 'package:dio/dio.dart';
 import 'model/jobs_model/jobs_model.dart';
 
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
+  await MyCache.init();
+ // bool onBoarding = MyCache.getData(key: 'onBoarding');
+  //print(onBoarding);
   runApp(
       DevicePreview(
         enabled: true,
@@ -48,6 +53,7 @@ void main() {
   // );
 }
 
+
 class MyApp extends StatelessWidget {
 
   @override
@@ -64,7 +70,7 @@ class MyApp extends StatelessWidget {
                   builder: DevicePreview.appBuilder,
                   theme: ThemeData().copyWith(),
                   debugShowCheckedModeBanner: false,
-                  home: HomeScreen(),
+                  home: OnBoardingScreen(),
                 );
               }
           ),

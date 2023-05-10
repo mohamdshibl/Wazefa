@@ -6,6 +6,8 @@ class NewsNtmNavState extends JobsStates{}
 
 class GetJobsSuccessState extends JobsStates{}
 
+class loginLoadingsState extends JobsStates{}
+
 class LoginSuccessState extends JobsStates{}
 
 // class NewsGetLoadingsState extends JobsStates{}

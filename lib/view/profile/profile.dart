@@ -409,86 +409,44 @@ class GeneralModel {
   String image ;
   String name ;
 
-
   GeneralModel({required this.image ,required this.name}) ;
 
   static List<GeneralModel> data = [
     GeneralModel(
       image: (AssetsImages.profile),
       name: "Edit Profile",
-
     ),
     GeneralModel(
       image: (AssetsImages.portfolio),
       name: "Portfolio",
-
     ),
     GeneralModel(
       image: (AssetsImages.global),
       name: "Langauge",
-
     ),
     GeneralModel(
       image: (AssetsImages.notification),
       name: "Notification",
-
     ),
     GeneralModel(
       image: (AssetsImages.lock),
       name: "Login and security",
-
     ),
   ];
 
 }
-enum MyCacheKeys{
-  BOARDING ,
-
-}
-enum Radioenum {
-  English ,
-  Indonesia ,
-  Arabic ,
-  Chinese,
-  Dutch,
-  French,
-  German,
-  Japanese,
-  Korean,
-  Portuguese,
-
-}
-
 
 class OthersModel {
 
   String name ;
 
-
   OthersModel({required this.name}) ;
 
   static List<OthersModel> data = [
-    OthersModel(
-
-      name: "Accesibility",
-
-    ),
-    OthersModel(
-
-      name: "Help Center",
-
-    ),
-    OthersModel(
-
-      name: "Terms & Conditions",
-
-    ),
-    OthersModel(
-
-      name: "Privacy Policy",
-
-    ),
-
+    OthersModel(name: "Accesibility",),
+    OthersModel(name: "Help Center",),
+    OthersModel(name: "Terms & Conditions",),
+    OthersModel(name: "Privacy Policy",),
   ];
 
 }
