@@ -22,25 +22,24 @@ class NotificationPage extends StatelessWidget{
           child: Column(
             children: [
               Row(
+               // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
                       icon: const Icon(
-                        Icons.arrow_back,
+                        Icons.arrow_back_ios_new_outlined,
                         size: 25,
                       )),
-                  SizedBox(
-                    width: 25.w,
-                  ),
+                  SizedBox(width: 25.w,),
                   Text(
                     'Notification',
                     style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                         color: const Color(0xFF111827)),
-                  )
+                  ),
                 ],
               ),
               Container(
@@ -138,7 +137,6 @@ class NotificationPage extends StatelessWidget{
                         Text('${oldNotificationList[index].subtitle}'),
                         trailing: Text('${oldNotificationList[index].time}'))),
               ),
-              //Image.asset('assets/images/line.png')
             ],
           ),
         ),
@@ -148,8 +146,6 @@ class NotificationPage extends StatelessWidget{
 );
   }
 }
-
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 
 class NotificationCard extends StatelessWidget {

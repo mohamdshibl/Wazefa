@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
 
 import '../model/jobs_model/jobs_model.dart';
@@ -71,19 +72,11 @@ class JobsCubit extends Cubit<JobsStates> {
 
   jobsList = jobs;
   emit(GetJobsSuccessState());
-  // List<JobsModel> jobs = [];
-  // for(int i=0;i<data.length;i++){
-  // jobs.add(JobsModel.fromJson(data[i]));
-  // }
-
-  // for (JobsModel job in jobs) {
-  // print('${job.name}');
-  // }
-  // //print(jobs[data[1].]);
   return data;
   }
-  String n = 'x';
+  String? name = 'x';
   Future<void> login() async {
+    final prefs = await SharedPreferences.getInstance();
     String url = "http://164.92.246.77/api/auth/login";
     Response response;
     var dio = Dio();
@@ -93,8 +86,10 @@ class JobsCubit extends Cubit<JobsStates> {
           "email": "ahmedshibl@gmail.com",
         });
         print(response.data);
-
-        n =response.data['user']['name'];
+    prefs.setString('token', response.data['token']);
+    prefs.setInt('id', response.data['user']['id']);
+    prefs.setString('name', response.data['user']['name']);
+        name =prefs.getString('name')!;
         }
 
   Future<void> register() async {

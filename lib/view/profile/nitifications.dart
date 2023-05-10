@@ -26,7 +26,7 @@ class NotificationView extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                       navigateTo(context, Profile(),);
+                        Navigator.pop(context);
                       },
                       icon: const Icon(Icons.arrow_back_rounded,),
                   ),

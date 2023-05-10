@@ -20,7 +20,7 @@ class EditProfile extends StatelessWidget {
             children: [
               Row(children: [
                 IconButton(onPressed: () {
-                 navigateTo(context, Profile());
+                 Navigator.pop(context);
                 },
                     icon: const Icon(Icons.arrow_back)) ,
                 SizedBox(width: 25.w,) ,

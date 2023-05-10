@@ -39,38 +39,35 @@ class HomeView extends StatelessWidget {
                     children: [
                       /// hi and notification
                       Row(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 2),
+                            padding: const EdgeInsets.only(top: 2),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Hi, ${cubit.n} 👋',
+                                    'Hi, ${cubit.name} 👋',
                                     style: TextStyle(
                                       fontSize: 19.sp,
                                     ),
                                     textAlign: TextAlign.start,
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
+                                  SizedBox(height: 3.h,),
                                   Text(
                                     'Create a better future for yourself here',
                                     style: TextStyle(
                                         fontSize: 11.sp, color: Colors.grey),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 30,
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          Spacer(),
                           Container(
                             width: 60,
                             height: 60,
@@ -83,9 +80,9 @@ class HomeView extends StatelessWidget {
                             ),
                             child: IconButton(
                                 onPressed: () {
-                                  navigateTo(context, NotificationPage());
+                                  navigateTo(context, const NotificationPage());
                                 },
-                                icon: Icon(Icons.notifications_none_outlined)),
+                                icon: const Icon(Icons.notifications_none_outlined)),
                           ),
                           //image: AssetImage('assets/images/ring.png')
                         ],
@@ -97,7 +94,6 @@ class HomeView extends StatelessWidget {
                           navigateTo(context, SearchScreen());
                         },
                         child: Container(
-                          // margin:  EdgeInsets.fromLTRB(0, 0, 0, 0),
                           padding: EdgeInsets.fromLTRB(12, 14, 26, 10),
                           width: double.infinity,
                           height: 52,
@@ -108,15 +104,15 @@ class HomeView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: Row(
-                            children: const [
-                              Image(
+                            children:[
+                              const Image(
                                 image: AssetImage('assets/images/search.png'),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 3.w,
                               ),
-                              Expanded(
-                                child: Text('Search...'),
+                              const Expanded(
+                                child: Text('Search....'),
                               ),
                             ],
                           ),
@@ -128,9 +124,7 @@ class HomeView extends StatelessWidget {
                         children: [
                           Text(
                             'Suggested Job',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                            ),
+                            style: TextStyle(fontSize: 14.sp,),
                           ),
                           const Spacer(),
                           TextButton(
@@ -148,14 +142,11 @@ class HomeView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-
+                      SizedBox(height: 1.h,),
                       /// card
                       SizedBox(
                         width: double.infinity,
-                        height: 200,
+                        height: 21.h,
                         child: ConditionalBuilder(
                             condition: list.isNotEmpty,
                             builder: (context) => ListView.separated(
@@ -163,9 +154,7 @@ class HomeView extends StatelessWidget {
                                   // padding: EdgeInsets.only(left: 16,right: 6),
                                   physics: BouncingScrollPhysics(),
                                   separatorBuilder: (context, index) =>
-                                      SizedBox(
-                                    width: 16,
-                                  ),
+                                      SizedBox(width: 8.w,),
                                   itemCount: list.length,
                                   itemBuilder: (context, index) => InkWell(
                                     onTap: () {
@@ -179,10 +168,7 @@ class HomeView extends StatelessWidget {
                             fallback: (context) => const Center(
                                 child: CircularProgressIndicator())),
                       ),
-
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 2.h,),
 
                       /// recent job & view all
                       Row(
@@ -198,127 +184,14 @@ class HomeView extends StatelessWidget {
                             onPressed: () {},
                             child: Text(
                               'View all',
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                              ),
+                              style: TextStyle(fontSize: 11.sp,),
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: 1.h,),
                       SizedBox(
-                        height: 20,
-                      ),
-
-                      /// jobs List
-                      // Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                      //   mainAxisAlignment: MainAxisAlignment.start,
-                      //   children: [
-                      //     ListTile(
-                      //       leading: const Image(
-                      //         image: AssetImage('assets/images/twiter.png'),
-                      //       ),
-                      //       title: Text(
-                      //         'Senior UI Designer',
-                      //         style: TextStyle(
-                      //             fontSize: 14.sp, fontWeight: FontWeight.bold),
-                      //       ),
-                      //       subtitle: Text(
-                      //         'Twitter • Jakarta, Indonesia ',
-                      //         style: TextStyle(
-                      //           fontSize: 9.sp,
-                      //         ),
-                      //         textAlign: TextAlign.start,
-                      //       ),
-                      //       trailing: Image(
-                      //         image: AssetImage('assets/images/save1.png'),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       height: 18,
-                      //     ),
-                      //     Row(
-                      //       children: [
-                      //         Container(
-                      //           child: Row(
-                      //             mainAxisAlignment: MainAxisAlignment.center,
-                      //             children: [
-                      //               Container(
-                      //                 width: 70,
-                      //                 height: 30,
-                      //                 decoration: BoxDecoration(
-                      //                   border: Border.all(
-                      //                     color: Colors.grey,
-                      //                   ),
-                      //                   borderRadius: BorderRadius.circular(20),
-                      //                   color: const Color(0xFFD6E4FF),
-                      //                 ),
-                      //                 child: Center(
-                      //                   child: Text(
-                      //                     'Fulltime',
-                      //                     style: TextStyle(
-                      //                       fontSize: 9.sp,
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //               SizedBox(
-                      //                 width: 6.5,
-                      //               ),
-                      //               Container(
-                      //                 width: 70,
-                      //                 height: 30,
-                      //                 decoration: BoxDecoration(
-                      //                   border: Border.all(
-                      //                     color: Colors.grey,
-                      //                   ),
-                      //                   borderRadius: BorderRadius.circular(20),
-                      //                   color: const Color(0xFFD6E4FF),
-                      //                 ),
-                      //                 child: Center(
-                      //                   child: Text(
-                      //                     'Remote',
-                      //                     style: TextStyle(
-                      //                       fontSize: 9.sp,
-                      //                     ),
-                      //                     textAlign: TextAlign.start,
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //               SizedBox(
-                      //                 width: 6.5,
-                      //               ),
-                      //               Container(
-                      //                 width: 70,
-                      //                 height: 30,
-                      //                 decoration: BoxDecoration(
-                      //                   border: Border.all(
-                      //                     color: Colors.grey,
-                      //                   ),
-                      //                   borderRadius: BorderRadius.circular(20),
-                      //                   color: const Color(0xFFD6E4FF),
-                      //                 ),
-                      //                 child: Center(
-                      //                   child: Text(
-                      //                     'Design',
-                      //                     style: TextStyle(
-                      //                       fontSize: 9.sp,
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ),
-                      //         Spacer(),
-                      //         Text('\$15K/Month'),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-
-                      SizedBox(
-                        height: 300,
+                        height: 30.h,
                         child: ConditionalBuilder(
                             condition: list.isNotEmpty,
                             builder: (context) => ListView.separated(
@@ -337,9 +210,6 @@ class HomeView extends StatelessWidget {
                                 ),
                             fallback: (context) => const Center(
                                 child: CircularProgressIndicator())),
-                      ),
-                      const SizedBox(
-                        height: 20,
                       ),
                     ],
                   ),
@@ -505,7 +375,6 @@ Widget customSuggestedJobsList(list, BuildContext context) {
         ],
       ),
     );
-
 }
 
 Widget customJobsList(list, BuildContext context) {

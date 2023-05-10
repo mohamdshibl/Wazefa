@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wazefa/constants/constants.dart';
 import 'package:wazefa/view/profile/portfolio.dart';
 
 import '../../constants/utils.dart';
@@ -26,10 +27,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded),
-          onPressed: () {  },
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back_rounded),
+        //   onPressed: () {  },
+        // ),
         actions: [
            IconButton(
             icon: Image.asset(AssetsImages.logout,),
@@ -79,7 +80,6 @@ class _ProfileState extends State<Profile> {
                 ),
                 child:Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //crossAxisAlignment: CrossAxisAlignment.,
                   children: [
                     SizedBox(
                       height: 10.h,
@@ -88,26 +88,23 @@ class _ProfileState extends State<Profile> {
                           padding: EdgeInsets.only(top: 2.h),
                           child: Column(
                             children: [
-                              const Text(
+                              Text(
                                 "Applied",
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff6B7280)),
+                                    color: const Color(0xff6B7280)),
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(
-                                height: 2.h,
-                              ),
-                              const Text(
+                              SizedBox(height: 2.h,),
+                              Text(
                                 "46",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Color(0xff111827)),
+                                    fontSize: 15.sp,
+                                    color: const Color(0xff111827)),
                                 textAlign: TextAlign.center,
                               ),
-
                             ],
                           )
                       ),
@@ -120,23 +117,21 @@ class _ProfileState extends State<Profile> {
                           padding: EdgeInsets.only(top: 2.h),
                           child: Column(
                             children: [
-                              const Text(
+                               Text(
                                 "Reviewed",
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff6B7280)),
+                                    color: const Color(0xff6B7280)),
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(
-                                height: 2.h,
-                              ),
-                              const Text(
+                              SizedBox(height: 2.h,),
+                               Text(
                                 "23",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Color(0xff111827)),
+                                    fontSize: 15.sp,
+                                    color: const Color(0xff111827)),
                                 textAlign: TextAlign.center,
                               ),
 
@@ -152,23 +147,21 @@ class _ProfileState extends State<Profile> {
                           padding: EdgeInsets.only(top: 2.h),
                           child: Column(
                             children: [
-                              const Text(
+                               Text(
                                 "Contacted",
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff6B7280)),
+                                    color: const Color(0xff6B7280)),
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(
-                                height: 2.h,
-                              ),
-                              const Text(
+                              SizedBox(height: 2.h,),
+                               Text(
                                 "46",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Color(0xff111827)),
+                                    fontSize: 15.sp,
+                                    color: const Color(0xff111827)),
                                 textAlign: TextAlign.center,
                               ),
 
@@ -184,6 +177,7 @@ class _ProfileState extends State<Profile> {
             Padding(
               padding: EdgeInsets.only(top: 10.sp ,bottom: 10.sp, left: 24 ,right: 24),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'About',
@@ -191,7 +185,6 @@ class _ProfileState extends State<Profile> {
                       fontSize: 14.sp,
                     ),
                   ),
-                  const Spacer(),
                   TextButton(
                     onPressed: () {   },
                     child: Text(
@@ -203,7 +196,6 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
-
             ),
             Padding(
               padding:  EdgeInsets.only(left: 25.sp ,right: 25.sp  ),
@@ -242,17 +234,16 @@ class _ProfileState extends State<Profile> {
                   itemBuilder: (context, index) {
                     return InkWell(
                         onTap: () {
-
                           if( index == 0){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EditProfile(),));
+                            navigateTo(context, EditProfile(),);
                           } else if (index == 1){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Portfolio(),));
+                            navigateTo(context, Portfolio(),);
                           }else if (index == 2){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Language(),));
+                            navigateTo(context, Language(),);
                           }else if (index == 3){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationView(),));
+                            navigateTo(context, NotificationView(),);
                           }else if (index == 4){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginAndSecurity(),));
+                            navigateTo(context, LoginAndSecurity(),);
                           }
 
                         },
@@ -285,24 +276,11 @@ class _ProfileState extends State<Profile> {
                   itemBuilder: (context, index) {
                     return InkWell(
                         onTap: () {
-                          // if( index == 0){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Editeprofile(),));
-                          // } else if (index == 1){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                          // }else if (index == 2){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                          // }else if (index == 3){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                          // }else if (index == 4){
-                          //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
-                          // }
+
                         },
                         child: Shapeothers(othersModel: OthersModel.data[index],));
-
-                  } ,
-
+                    } ,
                   separatorBuilder: (context, index) =>const Divider()
-
                   , itemCount:OthersModel.data.length),
             ) ,
           ],

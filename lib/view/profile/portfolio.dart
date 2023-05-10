@@ -21,7 +21,7 @@ class Portfolio extends StatelessWidget {
                 Padding(
                   padding:  EdgeInsets.only(left: 15.sp),
                   child: IconButton(onPressed: () {
-                   navigateTo(context, Profile());
+                    Navigator.pop(context);
                   },
                       icon: Icon(Icons.arrow_back)),
                 ) ,
