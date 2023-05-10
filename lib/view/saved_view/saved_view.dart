@@ -23,41 +23,32 @@ class Savedjobs extends StatelessWidget {
   },
   builder: (context, state) {
     return Scaffold(
-      appBar:AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
-        title: Text(
-          'Saved',
-          style: TextStyle(fontSize: 16.sp, color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
+      // appBar:AppBar(
+      //   backgroundColor: Colors.white,
+      //   iconTheme: IconThemeData(color: Colors.black),
+      //   elevation: 0,
+      //   title: Text(
+      //     'Saved',
+      //     style: TextStyle(fontSize: 16.sp, color: Colors.black),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: SafeArea(
           child: Column(
             children: [
-              // Row(
-              //   children: [
-              //     IconButton(
-              //         onPressed: () {
-              //           Navigator.pop(context);
-              //         },
-              //         icon: const Icon(
-              //           Icons.arrow_back_ios_new_outlined,
-              //           size: 25,
-              //         )),
-              //     SizedBox(
-              //       width: 30.w,
-              //     ),
-              //     Text(
-              //       'Saved',
-              //       style: TextStyle(
-              //           fontSize: 18.sp,
-              //           fontWeight: FontWeight.w500,
-              //           color: const Color(0xFF111827)),
-              //     )
-              //   ],
-              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Saved',
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFF111827)),
+                  ),
+                ],
+              ),
+              SizedBox(height: 3.h,),
               /// job saved
               Container(
                 height: 5.h,
@@ -75,9 +66,7 @@ class Savedjobs extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 1.h,
-              ),
+              SizedBox(height: 1.h,),
               /// list of jobs
               Expanded(
                 child: ListView.separated(

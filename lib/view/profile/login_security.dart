@@ -17,9 +17,10 @@ class LoginAndSecurity extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                    onPressed: () { navigateTo(context, Profile());
+                    onPressed: () {
+                      Navigator.pop(context);
                       },
-                    icon: const Icon(Icons.arrow_back_rounded,),
+                    icon: const Icon(Icons.arrow_back_ios_new_outlined,),
                 ),
                 SizedBox(width: 20.w,),
                 const Text(
@@ -76,32 +77,6 @@ class LoginAndSecurity extends StatelessWidget {
                       separatorBuilder: (context, index) => const Divider(),
                       itemCount: AccessModel.data.length),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(right: 55.sp, top: 22.sp),
-                //   child: const Align(
-                //     alignment: Alignment.topRight,
-                //     child: Text(
-                //       "rafifdian12@gmail.com",
-                //       style: TextStyle(
-                //           fontWeight: FontWeight.w400,
-                //           fontSize: 14,
-                //           color: Color(0xff6B7280)),
-                //     ),
-                //   ),
-                // ),
-                // Align(
-                //   alignment: Alignment.bottomRight,
-                //   child: Padding(
-                //     padding: EdgeInsets.only(right: 55.sp, top: 249.sp),
-                //     child: const Text(
-                //       "Non active",
-                //       style: TextStyle(
-                //           fontWeight: FontWeight.w400,
-                //           fontSize: 14,
-                //           color: Color(0xff6B7280)),
-                //     ),
-                //   ),
-                // ),
             ),
           ],
         ),

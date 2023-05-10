@@ -16,36 +16,36 @@ class ContactsPage extends StatelessWidget {
     return BlocConsumer<JobsCubit,JobsStates>(
        listener: (context, state) {  },
       builder: (context, state) {
-    return Scaffold(
-      appBar:AppBar(
-        backgroundColor: Colors.white,
-        //iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
-        title: Text(
-          'Messages',
-          style: TextStyle(fontSize: 16.sp, color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
+        var cubit = JobsCubit.get(context);
+
+        return Scaffold(
+      // appBar:AppBar(
+      //   backgroundColor: Colors.white,
+      //   //iconTheme: IconThemeData(color: Colors.black),
+      //   elevation: 0,
+      //   title: Text(
+      //     'Messages',
+      //     style: TextStyle(fontSize: 16.sp, color: Colors.black),
+      //   ),
+      //   centerTitle: true,
+      // ),
       body: SafeArea(
           child: Column(
         children: [
-          // Row(
-          //   children: [
-          //     SizedBox(
-          //       width: 25.w,
-          //     ),
-          //     Text(
-          //       'Messsages',
-          //       style: TextStyle(
-          //           fontSize: 18.sp,
-          //           fontWeight: FontWeight.w500,
-          //           color: const Color(0xFF111827)),
-          //     )
-          //   ],
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Messsages',
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xFF111827)),
+              ),
+            ],
+          ),
           SizedBox(
-            height: 2.h,
+            height: 4.h,
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             SizedBox(
@@ -95,9 +95,7 @@ class ContactsPage extends StatelessWidget {
               ),
             )
           ]),
-          SizedBox(
-            height: 2.h,
-          ),
+          SizedBox(height: 2.h,),
           Expanded(
             child: ListView.separated(
                 separatorBuilder: (context, index) => const Divider(
@@ -117,4 +115,5 @@ class ContactsPage extends StatelessWidget {
     );
   },
 );
+
   }}
