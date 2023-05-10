@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
 
 import '../model/jobs_model/jobs_model.dart';
+import '../shared/local/shared_pref.dart';
 import '../shared/remote/http_helper.dart';
 import '../view/Home/Home.dart';
 import '../view/Home/Home_Screen.dart';
@@ -66,7 +67,6 @@ class JobsCubit extends Cubit<JobsStates> {
   Future<List> getAllJobs() async {
 
   List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/jobs');
-
   List<JobsModel> jobs = data.map((job) =>
       JobsModel.fromJson(job)).toList();
 
@@ -74,22 +74,26 @@ class JobsCubit extends Cubit<JobsStates> {
   emit(GetJobsSuccessState());
   return data;
   }
-  String? name = 'x';
-  Future<void> login() async {
-    final prefs = await SharedPreferences.getInstance();
+
+  String? name ;
+  Future<void> login(email,password) async {
     String url = "http://164.92.246.77/api/auth/login";
+    emit(loginLoadingsState());
+
     Response response;
     var dio = Dio();
      response = await dio.post(url,
         data: {
-       "password": "123456",
-          "email": "ahmedshibl@gmail.com",
+          "password": password,
+          "email": email,
         });
-        print(response.data);
-    prefs.setString('token', response.data['token']);
-    prefs.setInt('id', response.data['user']['id']);
-    prefs.setString('name', response.data['user']['name']);
-        name =prefs.getString('name')!;
+        //print(response.data);
+     MyCache.saveData(key: 'token', value: response.data['token']);//('token', response.data['token']);
+     MyCache.saveData(key: 'id', value:  response.data['user']['id']); //response.data['user']['id']);
+     MyCache.saveData(key: 'name', value:  response.data['user']['name']);// response.data['user']['name']);
+        name = MyCache.getData(key: 'name')!;
+    emit(LoginSuccessState());
+    print (name);
         }
 
   Future<void> register() async {

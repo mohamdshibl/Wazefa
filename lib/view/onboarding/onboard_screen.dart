@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -5,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import 'package:wazefa/constants/custom_widgets.dart';
 
 import '../../constants/constants.dart';
+import '../../shared/local/shared_pref.dart';
 import '../login and register/login_screen.dart';
 
 
@@ -22,6 +25,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   bool isLast = false;
    String text= 'Next';
 
+
+  void _submit(){
+    MyCache.saveData(key: 'boarding', value: true).then((value) {
+      if (value == true){
+        navigateToAndStop(context,  LoginScreen());
+      }
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,12 +46,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: Padding(
                 padding:  const EdgeInsets.only(left: 24,right: 24),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Image(image:AssetImage('assets/images/Logo.png') ,),
-                    const Spacer(),
                      TextButton(
                        onPressed: () {
-                         navigateToAndStop(context,  LoginScreen());
+                         _submit();
                          },
                        child: Text('Skip',
                       style: TextStyle(
@@ -93,12 +106,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Expanded(
               flex: 1,
                 child:mainbuttom(text:text, onTap: (){
-
                   if (isLast){
                     setState(() {
                       text= 'Get Started';
                     });
-                    navigateToAndStop(context, LoginScreen());
+                    _submit();
                   }else{
                     text = 'Next';
                     boardController.nextPage
@@ -166,6 +178,7 @@ class BoardingModel {
   BoardingModel({required this.image,required this.title,required this.body,});
 
 }
+
 
 // appBar: AppBar(
 // backgroundColor: Colors.white,

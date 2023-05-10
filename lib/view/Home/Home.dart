@@ -20,15 +20,18 @@ class HomeView extends StatelessWidget {
   // HomeScreen({Key? key}) : super(key: key);
 
   var list = [];
+  var name ;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit, JobsStates>(
-        listener: (context, state) {},
+        listener: (context, state) {   },
         builder: (context, state) {
-          var cubit = JobsCubit.get(context);
 
+          var cubit = JobsCubit.get(context);
           list = cubit.jobsList;
+          name = cubit.name;
+
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -49,7 +52,7 @@ class HomeView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Hi, ${cubit.name} 👋',
+                                    'Hi, $name 👋',
                                     style: TextStyle(
                                       fontSize: 19.sp,
                                     ),
@@ -130,7 +133,7 @@ class HomeView extends StatelessWidget {
                           TextButton(
                             onPressed: () {
 
-                              cubit.login();
+                             print(cubit.name);
 
                             },
                             child: Text(

@@ -1,19 +1,20 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../local/shared_pref.dart';
+
 class Api {
 
-  String token = '30|jxLnsxOjadcD9vtxGSzZrQ4PT08ERFB6zUg1poGM';
-
+  String? token = MyCache.getData(key: 'token')!;
+  //String token = '315|a4SykAN1q560ZxqedtRRfKwGV3Qs4ljOSdMSLWZj';
   Future<dynamic> get({required String url}) async {
     http.Response response = await http.get(Uri.parse(url),headers:{
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
+     'Authorization': 'Bearer $token',
     });
 
     if (response.statusCode== 200){
-     // print('shiblllllllllllll');
 
       return jsonDecode(response.body)['data'];
     }
