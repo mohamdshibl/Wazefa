@@ -1,177 +1,191 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:sizer/sizer.dart';
-import 'package:wazefa/constants/constants.dart';
 import 'package:wazefa/constants/custom_widgets.dart';
-import 'package:wazefa/view/profile/profile.dart';
-
+import '../../Cubit/app_cubit.dart';
+import '../../Cubit/app_states.dart';
 import '../../constants/utils.dart';
 
 class EditProfile extends StatelessWidget {
+   EditProfile({Key? key}) : super(key: key);
 
-  const EditProfile({Key? key}) : super(key: key);
+  final _nameController = TextEditingController();
+  final _bioController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(children: [
-                IconButton(onPressed: () {
-                 Navigator.pop(context);
-                },
-                    icon: const Icon(Icons.arrow_back)) ,
-                SizedBox(width: 25.w,) ,
-                const Text("Edite Profile",
-                  style: TextStyle(fontSize: 20,fontWeight:FontWeight.w500 ,
-                      color: Color(0xff111827)),)
-              ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 12.sp),
-                child: Align(
-                  alignment: AlignmentDirectional.topCenter,
-                  child: Container(
-                    width: 30.0.w,
-                    height: 15.0.h,
-                    decoration: BoxDecoration(
-                      color: const Color(0xff7c94b6),
-                      image:  const DecorationImage(
-                        image: AssetImage(AssetsImages.profile),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(50)),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 1.0.w,
-                      ),
-                    ),
-                    child:IconButton(onPressed: () {
+    return BlocConsumer<JobsCubit, JobsStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = JobsCubit.get(context);
 
-                    },
-                        icon: const Icon(Icons.camera_alt_outlined,color: Colors.white,)) ,
+          return Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+                          SizedBox(
+                            width: 25.w,
+                          ),
+                           Text("Edit Profile",
+                            style: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xff111827)),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 12.sp),
+                        child: Align(
+                          alignment: AlignmentDirectional.topCenter,
+                          child: Container(
+                            width: 30.0.w,
+                            height: 15.0.h,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: const DecorationImage(
+                                image: AssetImage(AssetsImages.profile),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(50)),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1.0.w,
+                              ),
+                            ),
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {
+
+
+                          },
+                          child:  Text("Change Photo",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12.sp,
+                                color: Color(0xff3366FF)),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Name",
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff9CA3AF)),
+                            ),
+                            SizedBox(height: 1.h,),
+                            CustomTextFormField(
+                              controller: _nameController,
+                              validator: (var value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter your name';
+                                }
+                              },
+                              image: 'assets/images/profile.png',
+                              hintText: 'Name',
+                            ),
+                            SizedBox(height: 1.h,),
+                            Text(
+                              "Bio",
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff9CA3AF)),
+                            ),
+                            SizedBox(height: 1.h,),
+                            CustomTextFormField(
+                              controller: _bioController,
+                              validator: (var value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter your BIO';
+                                }
+                              },
+                              image: 'assets/images/profile.png',
+                              hintText: 'BIO',
+                            ),
+                            SizedBox(height: 1.h,),
+                            Text(
+                              "Address",
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff9CA3AF)),
+                            ),
+                            SizedBox(height: 1.h,),
+                            CustomTextFormField(
+                              controller: _addressController,
+                              validator: (var value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter your Address';
+                                }
+                              },
+                              image: 'assets/images/profile.png',
+                              hintText: 'Address',
+                            ),
+                            SizedBox(height: 1.h,),
+                            Text(
+                              "No.Handphone",
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff9CA3AF)),
+                            ),
+                            SizedBox(height: 1.h,),
+                            IntlPhoneField(
+                              controller: _phoneController,
+                              decoration: const InputDecoration(
+                                labelText: 'Phone Number',
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                              ),
+                              initialCountryCode: 'IN',
+                              onChanged: (phone) {
+                                print(phone.completeNumber);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      mainbuttom(text: 'Save', onTap: () {
+
+
+                      })
+                    ],
                   ),
                 ),
-              ) ,
-              TextButton(onPressed: () {
-
-              },
-                  child: const Text("Change Photo",
-                    style: TextStyle(fontWeight:FontWeight.w500 ,
-                        fontSize:16 ,color: Color(0xff3366FF)),)
               ),
-
-              SizedBox(
-                height: 55.h,
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.only(left: 7.w),
-                      child: const Text("Name",style: TextStyle(fontSize: 16,fontWeight:FontWeight.w500 ,color: Color(0xff9CA3AF)),),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.only(right: 15.sp , left: 15.sp ,top: 3.sp ,bottom: 3.sp),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "please enter Username";
-                          } else {
-                            return null;
-                          }
-                        },
-                        keyboardType: TextInputType.name,
-
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20))),
-                          hintText: "Username",
-
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.only(left: 7.w),
-                      child: Text("Bio",style: TextStyle(fontSize: 16,fontWeight:FontWeight.w500 ,color: Color(0xff9CA3AF)),),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 15.sp , left: 15.sp ,top: 3.sp ,bottom: 3.sp),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "please enter Bio";
-                          } else {
-                            return null;
-                          }
-                        },
-                        keyboardType: TextInputType.name,
-
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20))),
-                          hintText: "Bio",
-
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.only(left: 7.w),
-                      child: Text("Address",style: TextStyle(fontSize: 16,fontWeight:FontWeight.w500 ,color: Color(0xff9CA3AF)),),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 15.sp , left: 15.sp ,top: 3.sp ,bottom: 3.sp),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "please enter Username";
-                          } else {
-                            return null;
-                          }
-                        },
-                        keyboardType: TextInputType.name,
-                        decoration: const InputDecoration(
-                          border:  OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20))),
-                          hintText: "Address",
-
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.only(left: 7.w),
-                      child: const Text("No.Handphone",
-                        style: TextStyle(fontSize: 16,
-                            fontWeight:FontWeight.w500 ,color: Color(0xff9CA3AF)),),
-                    ),
-                    Padding(
-                      padding:  EdgeInsets.only(right: 15.sp , left: 15.sp ,top: 3.sp ,bottom: 3.sp),
-                      child: IntlPhoneField(
-                        decoration: const InputDecoration(
-                          labelText: 'Phone Number',
-                          border:  OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20))),
-                        ),
-                        initialCountryCode: 'IN',
-                        onChanged: (phone) {
-                          print(phone.completeNumber);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-
-              ),
-              mainbuttom(text: 'Save', onTap: (){})
-
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
 }

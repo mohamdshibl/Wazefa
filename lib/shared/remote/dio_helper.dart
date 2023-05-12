@@ -1,6 +1,3 @@
-
-
-
 import 'package:dio/dio.dart';
 
 class DioHelper {
@@ -34,14 +31,9 @@ class DioHelper {
   Response response = await dio!.get(url, queryParameters: query);
 
   return response;
-
-
-    // return await dio!.get(
-    //     url,
-    //     queryParameters: query);
   }
 /// post data
-  static Future<Response> postData({
+  static Future<Response> postDataa({
     required String url,
     Map<String,dynamic>? query,
     required Map<String,dynamic> data,
@@ -55,6 +47,26 @@ class DioHelper {
     };
     return  dio!.post(url, data: data );
   }
+
+Future<void>postData({
+  required  String urlEndPoint,
+  Map<String ,dynamic >? data,
+  Map<String, dynamic>? query,
+  String? token,
+})async{
+  try{
+    dio?.options.headers={
+      "Authorization": "Bearer ${token ?? ""}"
+    };
+    Response response=await dio!.post(urlEndPoint,
+      data: data,
+      queryParameters:query,
+    );
+    // return response;
+  }catch(e){
+    rethrow;
+  }
+}
 }
 
 // import 'dart:convert';

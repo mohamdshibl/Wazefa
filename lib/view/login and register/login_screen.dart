@@ -35,10 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
           var cubit = JobsCubit.get(context);
 
 
-          void _login(String email,password) {
+          void _login(String email,password,context) {
             if (_formKey.currentState!.validate()) {
-              cubit.login(email,password);
-              navigateTo(context,HomeScreen() );
+              cubit.login(email,password,context);
             } else {
               showDialog(
                 context: context,
@@ -177,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainbuttom(
                           text: 'Login',
                           onTap: () {
-                            _login(_emailController.text,_passwordController.text);
+                            _login(_emailController.text,_passwordController.text,context);
                             // cubit.userLogin
                             //   email: emailController.text,
                             // password: passwordController.text

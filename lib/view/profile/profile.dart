@@ -27,19 +27,15 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back_rounded),
-        //   onPressed: () {  },
-        // ),
+        backgroundColor: Color(0xffD6E4FF),
+        iconTheme: const IconThemeData(color: Color(0xffD6E4FF),),
+        elevation: 0,
         actions: [
-           IconButton(
+          IconButton(
             icon: Image.asset(AssetsImages.logout,),
             onPressed: () {  },
           ),
         ],
-        backgroundColor: Color(0xffD6E4FF),
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0,
         title: Text(
           'Profile',
           style: TextStyle(fontSize: 16.sp, color: Colors.black),

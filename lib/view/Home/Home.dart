@@ -33,6 +33,7 @@ class HomeView extends StatelessWidget {
           name = cubit.name;
 
           return Scaffold(
+            backgroundColor: Colors.white,
             body: SafeArea(
               child: Padding(
                 padding: EdgeInsets.all(24.0),
