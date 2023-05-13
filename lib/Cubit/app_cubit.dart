@@ -62,19 +62,21 @@ class JobsCubit extends Cubit<JobsStates> {
     emit(NewsNtmNavState());
   }
 
+  /// get all jobs
   List<JobsModel> jobsList = [];
   Future<List> getAllJobs() async {
-
-  List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/jobs');
-  List<JobsModel> jobs = data.map((job) =>
+    List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/jobs');
+    List<JobsModel> jobs = data.map((job) =>
       JobsModel.fromJson(job)).toList();
 
   jobsList = jobs;
   emit(GetJobsSuccessState());
   return data;
   }
-
+/// login
   String? name ;
+  int? id;
+  String? token;
   Future<void> login(email,password,context) async {
     String url = "http://164.92.246.77/api/auth/login";
     emit(loginLoadingsState());
@@ -95,6 +97,7 @@ class JobsCubit extends Cubit<JobsStates> {
     }
     print (name);
         }
+        /// showToast
   void showToast( context) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
@@ -105,32 +108,74 @@ class JobsCubit extends Cubit<JobsStates> {
       ),
     );
   }
-
-  Future<void> register() async {
+/// register
+  Future<void> register(name,email,password) async {
     String url = "http://164.92.246.77/api/auth/register";
     Response response;
     var dio = Dio();
     response = await dio.post(url,
         data: {
-        'name':'saad',
-        'email':'saad@gmail.com',
-        'password':'123456'
+        'name':name,
+        'email':email,
+        'password':password,
         });
     print(response.data);
   }
+  /// save jobs
+  var newJobId;
+  Future<void> saveJob(jobId, id, token) async {
+    String url = "http://164.92.246.77/api/favorites";
+    Response response;
+    var dio = Dio();
+
+    // Set the "Authorization" header with the token
+    dio.options.headers['Authorization'] = 'Bearer $token';
+
+    response = await dio.post(url, data: {'job_id': jobId,'user_id': id});
+    print(response.data);
+    MyCache.saveData(key: 'newJobId', value: response.data['data']['id'] );
+    newJobId = MyCache.getData(key: 'newJobId')!;
+    print('sahhhhhdhdlllllllllllllll');
+     print(newJobId);
+  }
+  /// get saved jobs list
+
+  List<JobsModel> savedJobsList = [];
+  Future<List> getSavedJobs(id) async {
+    List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/favorites/$id');
+    List<JobsModel> jobs = data.map((job) =>
+        JobsModel.fromJson(job)).toList();
+    savedJobsList = jobs;
+    emit(GetSavedJobsSuccessState());
+    // MyCache.saveData(key: 'newJobId', value: savedJobsList.last );
+    // print('sahhhhhdhdlllllllllllllll');
+    // print(savedJobsList['id']);
+    // newJobId = MyCache.getData(key: 'newJobId')!;
+    return data;
+  }
+
+  Future<void> deleteJob(jobId, token) async {
+    String url = "http://164.92.246.77/api/favorites/$jobId";
+    Response response;
+    var dio = Dio();
+
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    emit(deleteJobState());
+    response = await dio.delete(url,);
+    print(response.data);
+
+  }
+
   List<JobsModel> searchList = [];
   void searchJobs(String query) {
-    // if (query==0){
-    //   searchList=[];
-    // }else{
-    //   searchList =  jobsList.where((job) =>
-    //       job.name!.toLowerCase().contains(query.toLowerCase())).toList();
-    //   emit(searchState());
-    // }
-    searchList =  jobsList.where((job) =>
-        job.name!.toLowerCase().contains(query.toLowerCase())).toList();
+    if (query==""){
+      searchList=[];
+      emit(deleateSearchState());
+    }else{
+      searchList =  jobsList.where((job) =>
+          job.name!.toLowerCase().contains(query.toLowerCase())).toList();
       emit(searchState());
-
+    }
   }
 
 }

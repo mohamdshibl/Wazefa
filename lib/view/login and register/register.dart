@@ -8,27 +8,61 @@ import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/constants.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatefulWidget {
   // RegistrationScreen({Key? key}) : super(key: key);
+  RegistrationScreen({super.key});
 
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _nameController = TextEditingController();
+
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
   final _ischecked = false;
+
+  bool obsecuretext = true;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<JobsCubit,JobsStates>(
+    return BlocConsumer<JobsCubit, JobsStates>(
         listener: (context, state) {},
         builder: (context, state) {
-         // var cubit = JobsCubit.get(context);
+           var cubit = JobsCubit.get(context);
 
+          void _Register(name, email, password) {
+            if (_formKey.currentState!.validate()) {
+              cubit.register(name,email,password);
+            } else {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('Error'),
+                  content: Text('Invalid username or password'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            }
+          }
           return Scaffold(
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Form(
-                  key: formKey,
+                  key: _formKey,
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,14 +75,17 @@ class RegistrationScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
                         Text(
                           'Create Account',
                           style: TextStyle(
                             fontSize: 20.sp,
                           ),
                         ),
-                        const SizedBox(
-                          height: 8,
+                        SizedBox(
+                          height: 1.h,
                         ),
                         Text(
                           'Please create an account to find your dream job',
@@ -57,113 +94,126 @@ class RegistrationScreen extends StatelessWidget {
                               .headline6!
                               .copyWith(color: Colors.grey),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: 3.h,
                         ),
-                        defaultFormField(
-                          controller: emailController,
-                          type: TextInputType.emailAddress,
-                          validate: (String v) {
-                            if (v.isEmpty) {
-                              return 'please write your email';
+                        CustomTextFormField(
+                          controller: _nameController,
+                          validator: (var value) {
+                            if (value.isEmpty) {
+                              return 'Please enter your Name';
                             }
                           },
-                          label: 'Username',
-                          suffix: Icons.email,
+                          image: 'assets/images/profile.png',
+                          hintText: 'Name',
                         ),
-                        const SizedBox(
-                          height: 30,
+                        SizedBox(
+                          height: 2.h,
                         ),
-                        defaultFormField(
-                          controller: emailController,
-                          type: TextInputType.emailAddress,
-                          validate: (String v) {
-                            if (v.isEmpty) {
-                              return 'please write your email';
+                        CustomTextFormField(
+                          controller: _emailController,
+                          validator: (var value) {
+                            if (value.isEmpty) {
+                              return 'Please enter your Email';
                             }
                           },
-                          label: 'Email',
-                          suffix: Icons.email,
+                          image: 'assets/images/sms.png',
+                          hintText: 'Username',
                         ),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: 2.h,
                         ),
-                        defaultFormField(
-                          controller: passwordController,
-                          type: TextInputType.visiblePassword,
-                          validate: (String v) {
-                            if (v.isEmpty) {
-                              return 'please write your password';
+                        CustomTextFormField(
+                          controller: _passwordController,
+                          validator: (var value) {
+                            if (value.isEmpty) {
+                              return 'password is to short';
                             }
                           },
-                          label: 'Password',
-                          suffix: Icons.visibility_outlined,
+                          obsecuretext: obsecuretext,
+                          suffixIcon: IconButton(
+                            icon: obsecuretext
+                                ? Icon(Icons.visibility_off_outlined)
+                                : Icon(Icons.visibility),
+                            onPressed: () {
+                              obsecuretext = !obsecuretext;
+                            },
+                          ),
+                          image: 'assets/images/lock.png',
+                          hintText: 'Password',
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
+                        SizedBox(height: 18.h,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               'Don\'t have an account?',
+                              style: TextStyle(fontSize: 10.sp),
                             ),
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: const Text(
+                              child: Text(
                                 'Login',
+                                style: TextStyle(fontSize: 10.sp),
                               ),
                             ),
                           ],
                         ),
                         mainbuttom(text: 'Create account', onTap: () {
-
+                          _Register(_nameController.text,_emailController.text,
+                              _passwordController.text);
                         }),
-                      SizedBox(
+                        SizedBox(
                           height: 3.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text('--------------'),
-                            SizedBox(
-                              width: 20,
+                          children: [
+                            Text(
+                              '--------------',
+                              style: TextStyle(fontSize: 11.sp),
                             ),
-                            Text('Or Sign up With Account'),
                             SizedBox(
-                              width: 20,
+                              width: 5.w,
                             ),
-                            Text('--------------'),
+                            Text(
+                              'Or Sign up With Account',
+                              style: TextStyle(fontSize: 11.sp),
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              '--------------',
+                              style: TextStyle(fontSize: 11.sp),
+                            ),
                           ],
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: 3.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             GestureDetector(
-                              child: Image.asset('assets/go.png'),
+                              child: Image.asset('assets/images/go.png'),
                               onTap: () {},
                             ),
                             GestureDetector(
-                              child: Image.asset('assets/face.png'),
+                              child: Image.asset('assets/images/face.png'),
                               onTap: () {},
                             ),
                           ],
                         ),
-                        Spacer(),
                       ],
-
                     ),
                   ),
                 ),
               ),
             ),
           );
-        }
-        );
+        });
   }
 }

@@ -94,9 +94,7 @@ class SearchScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 20,),
 
                       /// Recent searches
                       Container(
@@ -133,7 +131,7 @@ class SearchScreen extends StatelessWidget {
                               ListView.separated(
                                 physics: BouncingScrollPhysics(),
                                 separatorBuilder: (context, index) =>
-                                    defaultSeparatorContainer(),
+                                   Divider(),
                                 itemCount: cubit.searchList.length,
                                 itemBuilder: (context, index) =>
                                     ListTile(
