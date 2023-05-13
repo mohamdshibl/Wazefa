@@ -74,7 +74,7 @@ class _JobApplicationState extends State<JobApplication> {
             setState(() {
               currentStep++;
               if(currentStep>3){
-                navigateTo(context, ApplyingSubmited());
+                navigateTo(context, const ApplyingSubmited());
               }
             });
           },

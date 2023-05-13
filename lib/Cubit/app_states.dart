@@ -9,6 +9,7 @@ class GetJobsSuccessState extends JobsStates{}
 class loginLoadingsState extends JobsStates{}
 
 class LoginSuccessState extends JobsStates{}
+class searchState extends JobsStates{}
 
 // class NewsGetLoadingsState extends JobsStates{}
 //

@@ -22,22 +22,20 @@ class NotificationView extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                //mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(Icons.arrow_back_rounded,),
+                      icon: const Icon(Icons.arrow_back_ios_new_outlined,),
                   ),
-                  SizedBox(
-                    width: 25.w,
-                  ),
-                  const Text(
+                  SizedBox(width: 25.w,),
+                   Text(
                     "Notification",
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 20,
+                        fontSize: 15.sp,
                         color: Color(0xff111827)),
                   ),
                 ],
@@ -54,7 +52,8 @@ class NotificationView extends StatelessWidget {
                     padding:  EdgeInsets.only(top: 8.sp , left: 20.sp),
                     child: const Text("Job notification",
                       style: TextStyle(fontSize:14 ,
-                          fontWeight:FontWeight.w500 ,color: Color(0xff6B7280)),),
+                          fontWeight:FontWeight.w500 ,
+                          color: Color(0xff6B7280)),),
                   ),
                 ),
               ) ,
@@ -101,6 +100,23 @@ class NotificationView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class ShapeNotification extends StatefulWidget {
   NotificationModel notificationModel ;
   ShapeNotification({super.key , required this.notificationModel,});

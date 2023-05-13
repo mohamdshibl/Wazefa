@@ -12,40 +12,39 @@ class Language extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
         body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding:  EdgeInsets.only(top: 10.sp),
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {
-                      Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back)) ,
-                  SizedBox(width: 25.w,) ,
-                  const Text("Edite Profile",
-                    style: TextStyle(fontSize: 20,fontWeight:FontWeight.w500 ,
-                        color: Color(0xff111827)
-                    ),
-                  )
-                ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding:  EdgeInsets.only(top: 10.sp),
+                  child: Row(
+                    children: [
+                      IconButton(onPressed: () {
+                        Navigator.pop(context);
+                        }, icon: const Icon(Icons.arrow_back_ios_new_outlined)
+                      ) ,
+                    SizedBox(width: 25.w,) ,
+                     Text("Edite Profile",
+                      style: TextStyle(fontSize: 15.sp,fontWeight:FontWeight.w500 ,
+                          color: Color(0xff111827)
+                      ),
+                    )
+                  ],),
                 ),
-              ),
-              Padding(
-                padding:  EdgeInsets.only(top: 20.sp),
-                child: SizedBox(
-                  height: 80.h,
-                  width: 80.w,
-                  child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return LanguageWidget( language: LanguageModel.lang[index],);
-                        } ,
-                      separatorBuilder: (context, index) =>const Divider(),
-                      itemCount:LanguageModel.lang.length),
-                ),
-              ) ,
-              //Image.asset(AssetsImages.lock),
-            ],
+                Padding(
+                  padding:  EdgeInsets.all(20),
+                  child: SizedBox(
+                    height: 90.h,
+                    child: ListView.separated(
+                        itemBuilder: (context, index) {
+                          return LanguageWidget( language: LanguageModel.lang[index],);
+                          } ,
+                        separatorBuilder: (context, index) =>const Divider(),
+                        itemCount:LanguageModel.lang.length),
+                  ),
+                ) ,
+              ],
+            ),
           ),
         )
     );
@@ -56,7 +55,6 @@ class Language extends StatelessWidget {
 class LanguageWidget extends StatefulWidget {
 
   LanguageModel? language ;
-
   LanguageWidget({super.key , required this.language });
 
   @override
@@ -69,30 +67,19 @@ class _LanguageWidgetState extends State<LanguageWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 8.h,
+      height: 7.h,
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-          color: Color(0xffFAFAFA)
-      ),
-      child: Row(
-        children: [
-          Image.asset(widget.language!.image) ,
-          SizedBox(width: 5.w,) ,
-          SizedBox(
-              width: 40.w,
-              child:Text(widget.language!.name,
-                style: const TextStyle(fontWeight: FontWeight.w500,
-                    fontSize: 16,color: Color(0xff111827)),)),
-
-          SizedBox(width: 13.w),
-          Radio ( value: LanguageModel.lang.length,
-            groupValue: radio,
-            onChanged: ( value) {
-              setState(() {
-                radio = value! ;
-              });
-            },)
-        ],
+      child: ListTile(
+        leading: Image.asset(widget.language!.image) ,
+        title: Text(widget.language!.name,),
+        trailing:Radio (
+          value: LanguageModel.lang.length,
+          groupValue: radio,
+          onChanged: ( value) {
+            setState(() {
+              radio = value! ;
+            });
+          },) ,
       ),
     );
   }

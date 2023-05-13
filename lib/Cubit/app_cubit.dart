@@ -1,6 +1,4 @@
 
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
 
+import '../constants/constants.dart';
 import '../model/jobs_model/jobs_model.dart';
 import '../shared/local/shared_pref.dart';
 import '../shared/remote/http_helper.dart';
@@ -76,25 +75,36 @@ class JobsCubit extends Cubit<JobsStates> {
   }
 
   String? name ;
-  Future<void> login(email,password) async {
+  Future<void> login(email,password,context) async {
     String url = "http://164.92.246.77/api/auth/login";
     emit(loginLoadingsState());
-
     Response response;
     var dio = Dio();
-     response = await dio.post(url,
-        data: {
-          "password": password,
-          "email": email,
-        });
-        //print(response.data);
-     MyCache.saveData(key: 'token', value: response.data['token']);//('token', response.data['token']);
-     MyCache.saveData(key: 'id', value:  response.data['user']['id']); //response.data['user']['id']);
-     MyCache.saveData(key: 'name', value:  response.data['user']['name']);// response.data['user']['name']);
+     response = await dio.post(url, data: {"password": password, "email": email,});
+
+     MyCache.saveData(key: 'token', value: response.data['token']);
+     MyCache.saveData(key: 'id', value:  response.data['user']['id']);
+     MyCache.saveData(key: 'name', value:  response.data['user']['name']);
         name = MyCache.getData(key: 'name')!;
     emit(LoginSuccessState());
+    if (response.statusCode==401){
+      showToast(context);
+
+    }else {
+      navigateTo(context, HomeScreen());
+    }
     print (name);
         }
+  void showToast( context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: const Text('Added to favorite'),
+        action: SnackBarAction(
+            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
+  }
 
   Future<void> register() async {
     String url = "http://164.92.246.77/api/auth/register";
@@ -108,30 +118,19 @@ class JobsCubit extends Cubit<JobsStates> {
         });
     print(response.data);
   }
+  List<JobsModel> searchList = [];
+  void searchJobs(String query) {
+    // if (query==0){
+    //   searchList=[];
+    // }else{
+    //   searchList =  jobsList.where((job) =>
+    //       job.name!.toLowerCase().contains(query.toLowerCase())).toList();
+    //   emit(searchState());
+    // }
+    searchList =  jobsList.where((job) =>
+        job.name!.toLowerCase().contains(query.toLowerCase())).toList();
+      emit(searchState());
 
-  // Future<void> userLogin(){
-  //   DioHelper.postData(url: 'ttp://164.92.246.77/api/auth/login',
-  //       data: {
-  //       'password' : '123456',
-  //     'email': 'ahmedshibl@gmail.com',
-  //       }
-  //       ).then((value) =>
-  //   {
-  //         print(value.data),
-  //     emit(LoginSuccessState())
-  //   }).catchError((e){
-  //     print(e.toString());
-  //   });
-  //   return Future.value();
-  // }
-
-// Future<List> loginPost() async {
-//     emit(LoginSuccessState());
-//     List<dynamic> data =
-//     await ApiPost().post(url:'http://164.92.246.77/auth/login?pass=ahmedshibl@gmail.com&=123456');
-//
-//         return data ;
-// }
-
+  }
 
 }
