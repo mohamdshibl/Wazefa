@@ -1,11 +1,9 @@
-
 import 'package:dio/dio.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
-
 import '../constants/constants.dart';
 import '../model/jobs_model/jobs_model.dart';
 import '../shared/local/shared_pref.dart';
@@ -158,12 +156,39 @@ class JobsCubit extends Cubit<JobsStates> {
     String url = "http://164.92.246.77/api/favorites/$jobId";
     Response response;
     var dio = Dio();
-
     dio.options.headers['Authorization'] = 'Bearer $token';
     emit(deleteJobState());
     response = await dio.delete(url,);
     print(response.data);
 
+  }
+  Future<Response?> editProfile(token,userID, String name,
+      String bio, String address, String mobile) async {
+    Dio dio = Dio();
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    Response response = await dio.put('http://164.92.246.77/api/user/profile/edit/${userID}',
+        data: {'bio': bio, 'address': address, 'mobile': mobile, 'name': name});
+
+    if (response.statusCode == 200) {
+      return response;
+      print('success');
+    } else {
+
+      return null;
+    }
+  }
+  Future<Response?> updateProfile(token,userID,interestedWork,onsitePlace,remotePlace) async {
+    Dio dio = Dio();
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    Response response = await dio.put('http://164.92.246.77/api/user/profile/${userID}',
+        data: {'interested_work': interestedWork, 'offline_place':onsitePlace, 'remote_place': remotePlace});
+    if (response.statusCode == 200) {
+      print('success');
+      return response;
+    } else {
+      print('error');
+      return null;
+    }
   }
 
   List<JobsModel> searchList = [];

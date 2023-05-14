@@ -7,6 +7,7 @@ import '../../constants/custom_widgets.dart';
 import '../../constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../shared/local/shared_pref.dart';
 import '../Home/Home_Screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -39,22 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
           void _login(String email,password,) {
             if (_formKey.currentState!.validate()) {
               cubit.login(email,password,context);
-            } else {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text('Invalid username or password'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('OK'),
-                    ),
-                  ],
-                ),
-              );
+              var id = MyCache.getData(key: 'id')!;
+              cubit.getSavedJobs(id);
             }
           }
 
@@ -98,9 +85,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomTextFormField(
                           controller: _emailController,
                           validator: (var value) {
-                            if (value.isEmpty) {
-                              return 'Please enter your Email';
+                            if(value!.isEmpty)
+                            {
+                              return "Email must not be empty";
+
                             }
+                            if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+.[a-z]").
+                            hasMatch(value))
+                            {
+                              return "please enter valid email";
+                            }
+                            else {return null;}
                           },
                           image: 'assets/images/sms.png',
                           hintText: 'Username',
@@ -230,22 +225,3 @@ class _LoginScreenState extends State<LoginScreen> {
         });
   }
 }
-// Row(
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-// Expanded(
-// child: ListTile(
-// title: Text('Remember me',
-// style: TextStyle(fontSize: Adaptive.sp (14),),),
-// leading: Checkbox(
-// value: _ischecked,
-// onChanged: (bool? value) {  },
-// ),
-// ),
-// ),
-// //Spacer(),
-// Text('Forgot Password?',
-// style: TextStyle(fontSize: Adaptive.sp (14),),
-// ),
-// ],
-// ),

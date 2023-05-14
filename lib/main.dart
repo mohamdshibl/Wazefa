@@ -21,7 +21,7 @@ import 'package:wazefa/view/onboarding/onboard_screen.dart';
 import 'package:wazefa/view/profile/edit_profile.dart';
 import 'package:wazefa/view/profile/profile.dart';
 import 'package:wazefa/view/saved_view/saved_view.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'Cubit/app_cubit.dart';
 import 'Cubit/app_states.dart';
 import 'constants/bloc_obswrver.dart';

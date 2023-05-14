@@ -7,6 +7,7 @@ import 'package:wazefa/constants/custom_widgets.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/utils.dart';
+import '../../shared/local/shared_pref.dart';
 
 class EditProfile extends StatelessWidget {
    EditProfile({Key? key}) : super(key: key);
@@ -24,6 +25,15 @@ class EditProfile extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = JobsCubit.get(context);
+
+          void _save(String name ,bio,address,String mobile,) {
+            if (_formKey.currentState!.validate()) {
+              var id = MyCache.getData(key: 'id')!;
+              var token = MyCache.getData(key: 'token')!;
+
+              cubit.editProfile(token,id,name, bio, address, mobile,);
+            }
+          }
 
           return Scaffold(
             body: SafeArea(
@@ -177,8 +187,9 @@ class EditProfile extends StatelessWidget {
                         ),
                       ),
                       mainbuttom(text: 'Save', onTap: () {
-
-
+                         _save(_nameController.text, _bioController.text,
+                             _addressController.text, _phoneController.text);
+                          Navigator.pop(context);
                       })
                     ],
                   ),

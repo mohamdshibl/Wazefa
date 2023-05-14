@@ -17,11 +17,16 @@ import '../job_details/job_dedails_view.dart';
 import '../notifications/notification.dart';
 import '../saved_view/saved_view.dart';
 
-class HomeView extends StatelessWidget {
-  // HomeScreen({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
 
+class _HomeViewState extends State<HomeView> {
+  // HomeScreen({Key? key}) : super(key: key);
   var list = [];
   var name;
+  bool _isSaved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -394,7 +399,6 @@ Widget customSuggestedJobsList(list, BuildContext context) {
     ),
   );
 }
-
 Widget customJobsList(list, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -434,64 +438,64 @@ Widget customJobsList(list, BuildContext context) {
         children: [
           Row(
             children: [
-                Container(
-                  width: 70,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFD6E4FF),
+              Container(
+                width: 70,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
                   ),
-                  child: Center(
-                    child: Text(
-                      '${list.jobTimeType}',
-                      style: TextStyle(
-                        fontSize: 9.sp,
-                      ),
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFD6E4FF),
                 ),
-                SizedBox(width: 2.w,),
-                Container(
-                  width: 70,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFD6E4FF),
-                  ),
-                  child: Center(
-                    child: Text('Remote',style: TextStyle(
+                child: Center(
+                  child: Text(
+                    '${list.jobTimeType}',
+                    style: TextStyle(
                       fontSize: 9.sp,
-                    ),),
-                  ),
-                ),
-                SizedBox(width: 2.w,),
-                Container(
-                  width: 70,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFD6E4FF),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '${list.jobLevel}',
-                      style: TextStyle(
-                        fontSize: 9.sp,
-                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(width: 2.w,),
+              Container(
+                width: 70,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFD6E4FF),
+                ),
+                child: Center(
+                  child: Text('Remote',style: TextStyle(
+                    fontSize: 9.sp,
+                  ),),
+                ),
+              ),
+              SizedBox(width: 2.w,),
+              Container(
+                width: 70,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFD6E4FF),
+                ),
+                child: Center(
+                  child: Text(
+                    '${list.jobLevel}',
+                    style: TextStyle(
+                      fontSize: 9.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
           Text(
             '\$${list.salary}/Month',
             style: TextStyle(fontSize: 10.sp),
@@ -504,3 +508,18 @@ Widget customJobsList(list, BuildContext context) {
     ],
   );
 }
+
+
+
+
+// IconButton(
+// icon: Icon(
+// _isSaved ? Icons.bookmark : Icons.bookmark_outline,size: 36,
+// color: _isSaved ? Colors.blue : Colors.grey, // Set color based on isSaved state
+// ),
+// onPressed: () {
+// setState(() {
+// _isSaved = !_isSaved; // Toggle isSaved state on button click
+// });
+// },
+// ),
