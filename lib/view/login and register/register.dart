@@ -18,16 +18,18 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _nameController = TextEditingController();
-
   final _emailController = TextEditingController();
-
   final _passwordController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
   final _ischecked = false;
-
   bool obsecuretext = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkConnectivity(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
           void _Register(name, email, password) {
             if (_formKey.currentState!.validate()) {
-              cubit.register(name,email,password);
+              cubit.register(name,email,password,context);
             } else {
               showDialog(
                 context: context,
@@ -216,4 +218,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           );
         });
   }
+}
+void showToastWhenRegister( context) {
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content:  Text('email or password is not valid',style: TextStyle(fontSize: 12.sp),),
+      action: SnackBarAction(
+          label: 'ok', onPressed: scaffold.hideCurrentSnackBar),
+    ),
+  );
 }

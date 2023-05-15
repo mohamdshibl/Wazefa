@@ -11,6 +11,7 @@ import '../shared/remote/http_helper.dart';
 import '../view/Home/Home.dart';
 import '../view/Home/Home_Screen.dart';
 import '../view/apply_job/apply_job_view.dart';
+import '../view/login and register/login_screen.dart';
 import '../view/login and register/register.dart';
 import '../view/messages/messages.dart';
 import '../view/notifications/notification.dart';
@@ -75,66 +76,57 @@ class JobsCubit extends Cubit<JobsStates> {
   String? name ;
   int? id;
   String? token;
-  Future<void> login(email,password,context) async {
+  final networkService = NetworkService();
+
+  Future<void> login(email, password, context) async {
+
     String url = "http://164.92.246.77/api/auth/login";
     emit(loginLoadingsState());
-    Response response;
-    var dio = Dio();
-     response = await dio.post(url, data: {"password": password, "email": email,});
+    try {
+      Response response = await networkService.postData(url,
+          {"password": password, "email": email});
 
-     MyCache.saveData(key: 'token', value: response.data['token']);
-     MyCache.saveData(key: 'id', value:  response.data['user']['id']);
-     MyCache.saveData(key: 'name', value:  response.data['user']['name']);
-        name = MyCache.getData(key: 'name')!;
-    emit(LoginSuccessState());
-    if (response.statusCode==401){
+      MyCache.saveData(key: 'token', value: response.data['token']);
+      MyCache.saveData(key: 'id', value: response.data['user']['id']);
+      MyCache.saveData(key: 'name', value: response.data['user']['name']);
+
+      name = MyCache.getData(key: 'name');
+
+      emit(LoginSuccessState());
+      navigateToAndStop(context, HomeScreen());
+        getAllJobs();
+    } catch (e) {
       showToast(context);
-
-    }else {
-      navigateTo(context, HomeScreen());
+      emit(LoginErrorState());
     }
-    print (name);
-        }
-        /// showToast
-  void showToast( context) {
-    final scaffold = ScaffoldMessenger.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: const Text('Added to favorite'),
-        action: SnackBarAction(
-            label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-      ),
-    );
   }
-/// register
-  Future<void> register(name,email,password) async {
+  /// register
+  Future<void> register(name,email,password,context) async {
     String url = "http://164.92.246.77/api/auth/register";
-    Response response;
-    var dio = Dio();
-    response = await dio.post(url,
-        data: {
-        'name':name,
-        'email':email,
-        'password':password,
-        });
-    print(response.data);
+    try {
+      Response response = await networkService.postData(url, {
+        'name': name,
+        'email': email,
+        'password': password,
+      });
+      emit(RegisterSuccessState());
+    } catch (e) {
+      showToastWhenRegister(context);
+      emit(RegisterErrorState());
+    }
+
   }
   /// save jobs
   var newJobId;
   Future<void> saveJob(jobId, id, token) async {
     String url = "http://164.92.246.77/api/favorites";
-    Response response;
     var dio = Dio();
-
-    // Set the "Authorization" header with the token
+    Response response = await dio.post(url, data: {'job_id': jobId,'user_id': id});
     dio.options.headers['Authorization'] = 'Bearer $token';
-
     response = await dio.post(url, data: {'job_id': jobId,'user_id': id});
-    print(response.data);
+
     MyCache.saveData(key: 'newJobId', value: response.data['data']['id'] );
     newJobId = MyCache.getData(key: 'newJobId')!;
-    print('sahhhhhdhdlllllllllllllll');
-     print(newJobId);
   }
   /// get saved jobs list
 
@@ -164,32 +156,30 @@ class JobsCubit extends Cubit<JobsStates> {
   }
   Future<Response?> editProfile(token,userID, String name,
       String bio, String address, String mobile) async {
-    Dio dio = Dio();
-    dio.options.headers['Authorization'] = 'Bearer $token';
-    Response response = await dio.put('http://164.92.246.77/api/user/profile/edit/${userID}',
-        data: {'bio': bio, 'address': address, 'mobile': mobile, 'name': name});
-
-    if (response.statusCode == 200) {
-      return response;
-      print('success');
-    } else {
-
-      return null;
-    }
+   try {
+     networkService.dio.options.headers['Authorization'] = 'Bearer $token';
+     Response response = await networkService.put(
+         'http://164.92.246.77/api/user/profile/edit/${userID}',
+         {'bio': bio, 'address': address, 'mobile': mobile, 'name': name});
+   }catch(e){
+     print(e.toString());
+   }
   }
   Future<Response?> updateProfile(token,userID,interestedWork,onsitePlace,remotePlace) async {
-    Dio dio = Dio();
-    dio.options.headers['Authorization'] = 'Bearer $token';
-    Response response = await dio.put('http://164.92.246.77/api/user/profile/${userID}',
-        data: {'interested_work': interestedWork, 'offline_place':onsitePlace, 'remote_place': remotePlace});
-    if (response.statusCode == 200) {
-      print('success');
-      return response;
-    } else {
-      print('error');
-      return null;
-    }
+   try {
+     networkService.dio.options.headers['Authorization'] = 'Bearer $token';
+     Response response = await networkService.put(
+         'http://164.92.246.77/api/user/profile/${userID}',
+         {
+           'interested_work': interestedWork,
+           'offline_place': onsitePlace,
+           'remote_place': remotePlace
+         });
+   }catch(e) {
+     print(e.toString());
+   }
   }
+
 
   List<JobsModel> searchList = [];
   void searchJobs(String query) {
@@ -202,5 +192,16 @@ class JobsCubit extends Cubit<JobsStates> {
       emit(searchState());
     }
   }
-
+  // Future<void> registerr(name,email,password) async {
+  //   String url = "http://164.92.246.77/api/auth/register";
+  //   Response response;
+  //   var dio = Dio();
+  //   response = await dio.post(url,
+  //       data: {
+  //         'name':name,
+  //         'email':email,
+  //         'password':password,
+  //       });
+  //   print(response.data);
+  // }
 }

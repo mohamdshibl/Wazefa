@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wazefa/view/login%20and%20register/register.dart';
@@ -27,6 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
   bool? checkBox = false;
   final _ischecked = false;
 
+@override
+void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkConnectivity(context);
+  }
+
 
 
   @override
@@ -34,9 +42,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<JobsCubit, JobsStates>(
         listener: (context, state) {},
         builder: (context, state) {
+
           var cubit = JobsCubit.get(context);
-
-
           void _login(String email,password,) {
             if (_formKey.currentState!.validate()) {
               cubit.login(email,password,context);
@@ -224,4 +231,33 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         });
   }
+}
+void showToast( context) {
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content:  Text('email or password is wrong',style: TextStyle(fontSize: 12.sp),),
+      action: SnackBarAction(
+          label: 'ok', onPressed: scaffold.hideCurrentSnackBar),
+    ),
+  );
+}
+checkConnectivity(BuildContext context) async {
+  var result =   await Connectivity().checkConnectivity();
+  print('conection Type =>  ${result.name}');
+  if (result.name != 'none'){
+
+  }else {
+    internetConnection(context);
+  }
+}
+void internetConnection( context) {
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content:  Text('No internet connection',style: TextStyle(fontSize: 12.sp),),
+      action: SnackBarAction(
+          label: 'ok', onPressed: scaffold.hideCurrentSnackBar,),
+    ),
+  );
 }

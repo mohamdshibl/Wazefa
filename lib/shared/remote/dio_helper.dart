@@ -3,6 +3,30 @@
 import '../../model/jobs_model/jobs_model.dart';
 import '../local/shared_pref.dart';
 
+ class NetworkService {
+   final Dio dio = Dio();
+
+   Future<Response> postData(String url, dynamic data) async {
+     try {
+       final response = await dio.post(url, data: data);
+       return response;
+     } catch (e) {
+       throw e;
+     }
+   }
+
+   Future<Response> put(String url, dynamic data) async {
+     try {
+       final response = await dio.put(url, data: data);
+       return response;
+     } catch (e) {
+       throw e;
+     }
+   }
+
+
+ }
+
 
 
  // class ApiProvider {

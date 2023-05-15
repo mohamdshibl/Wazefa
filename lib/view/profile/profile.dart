@@ -8,6 +8,7 @@ import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/utils.dart';
 import '../../shared/local/shared_pref.dart';
+import '../login and register/login_screen.dart';
 import '../notifications/notification.dart';
 import '../onboarding/onboard_screen.dart';
 import 'edit_profile.dart';
@@ -26,6 +27,13 @@ class _ProfileState extends State<Profile> {
   final double coverHeight = 160;
 
   final double profileHeight = 120;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkConnectivity(context);
+  }
 
   @override
   Widget build(BuildContext context) {

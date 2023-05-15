@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => JobsCubit()..getAllJobs(),
+        create: (_) => JobsCubit()..currentIndexs,
 
     child: Sizer(
               builder: (context, orientation, deviceType) {

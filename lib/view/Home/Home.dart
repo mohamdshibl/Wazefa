@@ -14,6 +14,7 @@ import '../../model/jobs_model/jobs_model.dart';
 import '../../shared/local/shared_pref.dart';
 import '../Search_Screen/search_Screen.dart';
 import '../job_details/job_dedails_view.dart';
+import '../login and register/login_screen.dart';
 import '../notifications/notification.dart';
 import '../saved_view/saved_view.dart';
 
@@ -27,6 +28,13 @@ class _HomeViewState extends State<HomeView> {
   var list = [];
   var name;
   bool _isSaved = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkConnectivity(context);
+  }
 
   @override
   Widget build(BuildContext context) {
