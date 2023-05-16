@@ -2,6 +2,7 @@ class AssetsImages{
 
   static const splashImage= 'assets/images/Splash.png';
   static const splashLogo= 'assets/images/splashlogo.png';
+  static const jobsqueLogo= 'assets/images/Logo.png';
   static const filter= 'assets/images/setting-4.png';
   static const filter_rounded= 'assets/images/Filter.png';
   static const briefcase= 'assets/images/briefcase2.png';
@@ -9,6 +10,12 @@ class AssetsImages{
   static const portfolio= 'assets/images/portfolio.png';
   static const profile= 'assets/images/profile.png';
   static const lock= 'assets/images/lock.png';
+  static const smsIcon= 'assets/images/sms.png';
+  static const moreIcon= 'assets/images/more.png';
+  static const atatchIcon= 'assets/images/attach.png';
+  static const miceIcon= 'assets/images/mice.png';
+  static const rightArrowIcon= 'assets/images/ar.png';
+  static const clockIcon= 'assets/images/clock.png';
   static const global= 'assets/images/global.png';
   static const notification= 'assets/images/notification.png';
   static const logout= 'assets/images/logout.png';
@@ -16,6 +23,16 @@ class AssetsImages{
   static const edit= 'assets/images/edit.png';
   static const close= 'assets/images/close.png';
   static const export= 'assets/images/export.png';
+  static const searchIcon= 'assets/images/search.png';
+  static const amitLogo= 'assets/images/logo_amit.png';
+  static const saveRounded= 'assets/images/save3.png';
+  static const googleBottom= 'assets/images/save3.png';
+  static const facebookBottom= 'assets/images/save3.png';
+  static const twitterLogo= 'assets/images/twiter.png';
+
+
+
+
 
 
 

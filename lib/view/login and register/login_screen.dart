@@ -8,6 +8,7 @@ import '../../constants/custom_widgets.dart';
 import '../../constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../constants/utils.dart';
 import '../../shared/local/shared_pref.dart';
 import '../Home/Home_Screen.dart';
 
@@ -66,7 +67,7 @@ void initState() {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: const [
                             Image(
-                              image: AssetImage('assets/images/Logo.png'),
+                              image: AssetImage(AssetsImages.jobsqueLogo,),
                             ),
                           ],
                         ),
@@ -213,11 +214,11 @@ void initState() {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             GestureDetector(
-                              child: Image.asset('assets/images/go.png'),
+                              child: Image.asset(AssetsImages.googleBottom,),
                               onTap: () {},
                             ),
                             GestureDetector(
-                              child: Image.asset('assets/images/face.png'),
+                              child: Image.asset(AssetsImages.facebookBottom,),
                               onTap: () {},
                             ),
                           ],

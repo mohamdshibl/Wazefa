@@ -20,29 +20,30 @@ class SplashViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      //mainAxisSize: MainAxisSize.min,
+    return Stack(
+
       children: [
-        Image.asset(
-          AssetsImages.splashLogo,
-        ),
+        Image.asset(AssetsImages.splashImage, height: MediaQuery
+            .of(context)
+            .size
+            .height,
+          fit: BoxFit.fitWidth,),
+        Align(alignment: Alignment.center,
+            child: Image.asset(AssetsImages.splashLogo,)),
       ],
     );
   }
 }
-
 /// btn sheet 1
 class FilterBottomSheet extends StatefulWidget {
-  FilterBottomSheet({Key? key}) : super(key: key);
+  const FilterBottomSheet({Key? key}) : super(key: key);
 
   @override
   State<FilterBottomSheet> createState() => _FilterBottomSheetState();
 }
 
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
-  List<String> _dogeNames = [
+  final List<String> jobTypeList = [
     'Full Time',
     'Remote',
     'Contract',
@@ -158,7 +159,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   //  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ChipList(
-                      listOfChipNames: _dogeNames,
+                      listOfChipNames: jobTypeList,
                       supportsMultiSelect: true,
                       activeBgColorList: const [
                         Color(0xFFD6E4FF),
@@ -191,10 +192,10 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 }
 
 /// btn sheet 2
-class chipsBottomSheet extends StatelessWidget {
-  chipsBottomSheet({Key? key}) : super(key: key);
+class ChipsBottomSheet extends StatelessWidget {
+  ChipsBottomSheet({Key? key}) : super(key: key);
 
-  List<String> _dogeNames = [
+  final List<String> jobTypeList = [
     'Remote',
     'Onsite',
     'Hybird',
@@ -234,7 +235,7 @@ class chipsBottomSheet extends StatelessWidget {
                   //  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ChipList(
-                      listOfChipNames: _dogeNames,
+                      listOfChipNames: jobTypeList,
                       activeBgColorList: const [
                         Color(0xFFD6E4FF),
                         Color(0xFFD6E4FF),
@@ -267,8 +268,8 @@ class chipsBottomSheet extends StatelessWidget {
 }
 
 /// btn sheet 3
-class SavedBottomsheet extends StatelessWidget {
-  const SavedBottomsheet({super.key,});
+class SavedBottomSheet extends StatelessWidget {
+  const SavedBottomSheet({super.key,});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit, JobsStates>(
@@ -410,8 +411,8 @@ class SavedBottomsheet extends StatelessWidget {
 }
 
 /// btn sheet 4
-class messagesbottomsheet extends StatelessWidget {
-  const messagesbottomsheet({super.key,});
+class MessagesBottomSheet extends StatelessWidget {
+  const MessagesBottomSheet({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -550,9 +551,7 @@ class messagesbottomsheet extends StatelessWidget {
 /// btn sheet 5
 
 class ChatBottomSheet extends StatelessWidget {
-  const ChatBottomSheet({
-    super.key,
-  });
+  const ChatBottomSheet({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -793,10 +792,7 @@ class ChatBottomSheet extends StatelessWidget {
 class MessageBubble extends StatelessWidget {
   final Chat chat;
 
-  const MessageBubble({
-    required this.chat,
-    super.key,
-  });
+  const MessageBubble({required this.chat, super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -1131,9 +1127,45 @@ Widget mainbuttom({
 Widget defaultText({
   required String text,
   var fontSize,
-  required color,
-}) =>
+  required color, }) =>
     Text(
       text,
       style: TextStyle(fontSize: fontSize, color: color),
     );
+
+Widget ss ({required String name}) => Container(
+    height: 5.h,
+    width: 360.w,
+    decoration: BoxDecoration(
+        color: const Color(0xFFF4F4F5),
+        border: Border.all(color: const Color(0xFFE5E7EB))),
+    child: Row(
+      children: [
+        SizedBox(
+          width: 5.w,
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Unread',
+            style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF6B7280)),
+          ),
+        ),
+        SizedBox(
+          width: 40.w,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            'Read all messages',
+            style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: Color(0xFF3366FF)),
+          ),
+        )
+      ],
+    ));

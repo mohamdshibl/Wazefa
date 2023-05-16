@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/constants.dart';
+import '../../constants/utils.dart';
 
 class RegistrationScreen extends StatefulWidget {
   // RegistrationScreen({Key? key}) : super(key: key);
@@ -71,11 +72,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Image(
-                              image: AssetImage('assets/images/Logo.png'),
-                            ),
-                          ],
+                          children:
+                          const [Image(
+                              image: AssetImage(AssetsImages.jobsqueLogo,),
+                            ),],
                         ),
                         SizedBox(
                           height: 5.h,
@@ -106,7 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               return 'Please enter your Name';
                             }
                           },
-                          image: 'assets/images/profile.png',
+                          image: AssetsImages.profile,
                           hintText: 'Name',
                         ),
                         SizedBox(
@@ -119,7 +119,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               return 'Please enter your Email';
                             }
                           },
-                          image: 'assets/images/sms.png',
+                          image: AssetsImages.smsIcon,
                           hintText: 'Username',
                         ),
                         SizedBox(
@@ -141,7 +141,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               obsecuretext = !obsecuretext;
                             },
                           ),
-                          image: 'assets/images/lock.png',
+                          image: AssetsImages.lock,
                           hintText: 'Password',
                         ),
                         SizedBox(height: 18.h,),
@@ -200,11 +200,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             GestureDetector(
-                              child: Image.asset('assets/images/go.png'),
+                              child: Image.asset(AssetsImages.googleBottom,),
                               onTap: () {},
                             ),
                             GestureDetector(
-                              child: Image.asset('assets/images/face.png'),
+                              child: Image.asset(AssetsImages.facebookBottom,),
                               onTap: () {},
                             ),
                           ],

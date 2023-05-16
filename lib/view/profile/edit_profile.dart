@@ -120,7 +120,7 @@ class EditProfile extends StatelessWidget {
                                   return 'Please enter your name';
                                 }
                               },
-                              image: 'assets/images/profile.png',
+                              image: AssetsImages.profile,
                               hintText: 'Name',
                             ),
                             SizedBox(height: 1.h,),
@@ -139,7 +139,7 @@ class EditProfile extends StatelessWidget {
                                   return 'Please enter your BIO';
                                 }
                               },
-                              image: 'assets/images/profile.png',
+                              image: AssetsImages.profile,
                               hintText: 'BIO',
                             ),
                             SizedBox(height: 1.h,),
@@ -158,7 +158,7 @@ class EditProfile extends StatelessWidget {
                                   return 'Please enter your Address';
                                 }
                               },
-                              image: 'assets/images/profile.png',
+                              image: AssetsImages.profile,
                               hintText: 'Address',
                             ),
                             SizedBox(height: 1.h,),

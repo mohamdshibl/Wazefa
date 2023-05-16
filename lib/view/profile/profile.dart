@@ -52,9 +52,7 @@ class _ProfileState extends State<Profile> {
               elevation: 0,
               actions: [
                 IconButton(
-                  icon: Image.asset(
-                    AssetsImages.logout,
-                  ),
+                  icon: Image.asset(AssetsImages.logout,),
                   onPressed: () {
                     // navigateTo(context, OnBoardingScreen());
                   },

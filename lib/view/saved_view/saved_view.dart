@@ -7,6 +7,7 @@ import '../../Cubit/app_cubit.dart';
 
 import '../../Cubit/app_states.dart';
 import '../../constants/custom_widgets.dart';
+import '../../constants/utils.dart';
 
 class Savedjobs extends StatelessWidget {
   //int selectedindex = 0;
@@ -143,7 +144,7 @@ Widget customSavedJobsList(list, BuildContext context) {
                   fontSize: 10.sp,
                   color: const Color(0xFF374151)),
             ),
-            leading: Image.asset('assets/images/logo_amit.png'),
+            leading: Image.asset(AssetsImages.amitLogo,),
             trailing: IconButton(
                 onPressed: () {
                   showModalBottomSheet(
@@ -152,7 +153,7 @@ Widget customSavedJobsList(list, BuildContext context) {
                               topLeft: Radius.circular(25),
                               topRight: Radius.circular(25))),
                       context: context,
-                      builder: (context) =>  SavedBottomsheet());
+                      builder: (context) =>  SavedBottomSheet());
                 },
                 icon: Image.asset('assets/images/more.png')),
           ),
@@ -170,7 +171,7 @@ Widget customSavedJobsList(list, BuildContext context) {
                 ),
                 Row(
                   children: [
-                    Image.asset('assets/images/clock.png'),
+                    Image.asset(AssetsImages.clockIcon,),
                     SizedBox(
                       width: 1.w,
                     ),

@@ -7,6 +7,7 @@ import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/constants.dart';
+import '../../constants/utils.dart';
 import '../../model/jobs_model/jobs_model.dart';
 import '../job_details/job_dedails_view.dart';
 
@@ -72,7 +73,7 @@ class SearchScreen extends StatelessWidget {
                                   children: [
                                     const Image(
                                       image: AssetImage(
-                                          'assets/images/search.png'),
+                                        AssetsImages.searchIcon,),
                                     ),
                                     SizedBox(width: 10,),
                                     Expanded(
@@ -137,9 +138,9 @@ class SearchScreen extends StatelessWidget {
                                     ListTile(
                                       leading: const Image(
                                         image: AssetImage(
-                                            'assets/images/search-status.png'),),
+                                          AssetsImages.searchIcon,),),
                                       trailing: Image.asset(
-                                          'assets/images/ar.png'),
+                                        AssetsImages.rightArrowIcon,),
                                       title: Text('${cubit.searchList[index].name}'),
                                       onTap: () {
                                         navigateTo(context, SearchViewFilter());
@@ -153,7 +154,7 @@ class SearchScreen extends StatelessWidget {
                                 },
                                 child: ListTile(
                                   leading: const Image(
-                                    image: AssetImage('assets/images/clock.png'),
+                                    image: AssetImage(AssetsImages.clockIcon,),
                                   ),
                                   title: Text(
                                     'Junior UI Designer',

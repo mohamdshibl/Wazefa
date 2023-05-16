@@ -68,7 +68,7 @@ class SearchViewFilter extends StatelessWidget {
                                   children: const [
                                     Image(
                                       image: AssetImage(
-                                          'assets/images/search.png'),
+                                        AssetsImages.searchIcon,),
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -147,7 +147,7 @@ class SearchViewFilter extends StatelessWidget {
                                               context: context,
                                               isScrollControlled: true,
                                               builder: (context) {
-                                                return chipsBottomSheet();
+                                                return ChipsBottomSheet();
                                               });
                                         }),
                                   ),

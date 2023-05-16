@@ -10,6 +10,7 @@ import 'package:wazefa/shared/remote/http_helper.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
+import '../../constants/utils.dart';
 import '../../model/jobs_model/jobs_model.dart';
 import '../../shared/local/shared_pref.dart';
 import '../Search_Screen/search_Screen.dart';
@@ -72,9 +73,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     textAlign: TextAlign.start,
                                   ),
-                                  SizedBox(
-                                    height: 3.h,
-                                  ),
+                                  SizedBox(height: 3.h),
                                   Text(
                                     'Create a better future for yourself here',
                                     style: TextStyle(
@@ -125,9 +124,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           child: Row(
                             children: [
-                              const Image(
-                                image: AssetImage('assets/images/search.png'),
-                              ),
+                              Image.asset(AssetsImages.searchIcon,),
                               SizedBox(
                                 width: 3.w,
                               ),
@@ -268,9 +265,7 @@ Widget customSuggestedJobsList(list, BuildContext context) {
         Flexible(
           flex: 1,
           child: ListTile(
-            leading: const Image(
-              image: AssetImage('assets/images/logo_amit.png'),
-            ),
+            leading: Image.asset(AssetsImages.amitLogo,),
             title: Text(
               '${list.name}',
               style: TextStyle(fontSize: 13.sp, color: Colors.white),
@@ -413,9 +408,7 @@ Widget customJobsList(list, BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       ListTile(
-        leading: const Image(
-          image: AssetImage('assets/images/logo_amit.png'),
-        ),
+        leading: Image.asset(AssetsImages.amitLogo,),
         title: Text(
           '${list.name}',
           style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
@@ -435,9 +428,7 @@ Widget customJobsList(list, BuildContext context) {
             JobsCubit.get(context).saveJob(list.id, id, token);
             JobsCubit.get(context).getSavedJobs(id);
           },
-          child: const Image(
-            image: AssetImage('assets/images/save3.png'),
-          ),
+          child: Image.asset(AssetsImages.saveRounded,),
         ),
       ),
       SizedBox(height: 2.h,),
@@ -510,9 +501,7 @@ Widget customJobsList(list, BuildContext context) {
           ),
         ],
       ),
-      SizedBox(
-        height: 2.h,
-      )
+      SizedBox(height: 2.h,)
     ],
   );
 }
