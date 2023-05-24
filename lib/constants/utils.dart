@@ -29,6 +29,11 @@ class AssetsImages{
   static const googleBottom= 'assets/images/go.png';
   static const facebookBottom= 'assets/images/face.png';
   static const twitterLogo= 'assets/images/twiter.png';
+  static const spectrumLogo= 'assets/images/spectrumlogo.png';
+  static const dataIlustration= 'assets/images/dataIlustration.png';
+
+
+
 
 
   static const String Portugal = 'assets/images/Portugal.png' ;
