@@ -26,14 +26,9 @@ class AssetsImages{
   static const searchIcon= 'assets/images/search.png';
   static const amitLogo= 'assets/images/logo_amit.png';
   static const saveRounded= 'assets/images/save3.png';
-  static const googleBottom= 'assets/images/save3.png';
-  static const facebookBottom= 'assets/images/save3.png';
+  static const googleBottom= 'assets/images/go.png';
+  static const facebookBottom= 'assets/images/face.png';
   static const twitterLogo= 'assets/images/twiter.png';
-
-
-
-
-
 
 
   static const String Portugal = 'assets/images/Portugal.png' ;

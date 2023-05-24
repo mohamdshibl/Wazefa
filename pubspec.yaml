@@ -54,6 +54,7 @@ dependencies:
   conditional_builder_null_safety:
   auto_size_text:
   connectivity_plus:
+  shimmer: ^2.0.0
 
 
 

@@ -1,6 +1,7 @@
 //import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -261,145 +262,145 @@ Widget customSuggestedJobsList(list, BuildContext context) {
       color: cardPrimaryColor,
     ),
     child: Column(
-      children: [
-        Flexible(
-          flex: 1,
-          child: ListTile(
-            leading: Image.asset(AssetsImages.amitLogo,),
-            title: Text(
-              '${list.name}',
-              style: TextStyle(fontSize: 13.sp, color: Colors.white),
-              textAlign: TextAlign.start,
-            ),
-            subtitle: Text(
-              '${list.compName}',
-              style: TextStyle(fontSize: 9.sp, color: Colors.grey),
-              textAlign: TextAlign.start,
-            ),
-            trailing: const Image(
-              image: AssetImage('assets/images/save.png'),
-            ),
-          ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8, left: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 87,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white.withOpacity(0.15),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${list.jobTimeType}',
-                        style: TextStyle(
-                            fontSize: 9.sp, color: const Color(0xFFFFFFFF)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 6.5,
-                  ),
-                  Container(
-                    width: 87,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white.withOpacity(0.15),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Onsite',
-                        style:
-                            TextStyle(fontSize: 9.sp, color: Color(0xFFFFFFFF)),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 6.5,
-                  ),
-                  Container(
-                    width: 87,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white.withOpacity(0.15),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${list.jobLevel}',
-                        style: TextStyle(
-                            fontSize: 9.sp, color: const Color(0xFFFFFFFF)),
-                      ),
-                    ),
-                  ),
-                ],
+        children: [
+          Flexible(
+            flex: 1,
+            child: ListTile(
+              leading: Image.asset(AssetsImages.amitLogo,),
+              title: Text(
+                '${list.name}',
+                style: TextStyle(fontSize: 13.sp, color: Colors.white),
+                textAlign: TextAlign.start,
+              ),
+              subtitle: Text(
+                '${list.compName}',
+                style: TextStyle(fontSize: 9.sp, color: Colors.grey),
+                textAlign: TextAlign.start,
+              ),
+              trailing: const Image(
+                image: AssetImage('assets/images/save.png'),
               ),
             ),
           ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                children: [
-                  Text(
-                    '\$${list.salary}/Month',
-                    style: TextStyle(fontSize: 14.sp, color: Colors.white),
-                    textAlign: TextAlign.start,
-                  ),
-                  Spacer(),
-                  // apply job
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: 96,
-                      height: 32,
+          Flexible(
+            flex: 1,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8, left: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 87,
+                      height: 30,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Colors.grey,
                         ),
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFF3366FF),
+                        color: Colors.white.withOpacity(0.15),
                       ),
                       child: Center(
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            'Apply now',
-                            style:
-                                TextStyle(fontSize: 9.sp, color: Colors.white),
+                        child: Text(
+                          '${list.jobTimeType}',
+                          style: TextStyle(
+                              fontSize: 9.sp, color: const Color(0xFFFFFFFF)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Onsite',
+                          style:
+                              TextStyle(fontSize: 9.sp, color: Color(0xFFFFFFFF)),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${list.jobLevel}',
+                          style: TextStyle(
+                              fontSize: 9.sp, color: const Color(0xFFFFFFFF)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    Text(
+                      '\$${list.salary}/Month',
+                      style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                      textAlign: TextAlign.start,
+                    ),
+                    Spacer(),
+                    // apply job
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 96,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF3366FF),
+                        ),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Text(
+                              'Apply now',
+                              style:
+                                  TextStyle(fontSize: 9.sp, color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
-    ),
+        ],
+      ),
   );
 }
 Widget customJobsList(list, BuildContext context) {
@@ -506,7 +507,129 @@ Widget customJobsList(list, BuildContext context) {
   );
 }
 
-
+Widget customSuggestedJobsListShimmer() {
+  return Shimmer.fromColors(
+    baseColor: Colors.red,
+    highlightColor: Colors.yellow,
+    child: Container(
+      height: 183,
+      width: 300,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey,
+        ),
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Flexible(
+            flex: 1,
+            child: ListTile(
+              leading: Container(color: Colors.white,),
+              title: Container(color: Colors.blue,),
+              subtitle: Container(color: Colors.white,),
+              trailing: Container(color: Colors.white,),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8, left: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Container(color: Colors.white,),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Container(color: Colors.white,),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Container(color: Colors.white,),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    Container(color: Colors.white,),
+                    Spacer(),
+                    // apply job
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 96,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF3366FF),
+                        ),
+                        child: Center(
+                          child: Container(color: Colors.white,),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
 
 
 // IconButton(
