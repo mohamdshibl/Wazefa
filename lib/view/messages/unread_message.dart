@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/custom_widgets.dart';
+import '../../constants/utils.dart';
 import '../../model/messages_models/contacts_model.dart';
 import '../../model/messages_models/unread_messgae_model.dart';
 import 'messages.dart';
@@ -61,7 +62,7 @@ class UnreadMessages extends StatelessWidget {
                     ),
                     child: Row(
                       children: const[
-                        Image(image: AssetImage('assets/images/search.png'),),
+                        Image(image: AssetImage(AssetsImages.searchIcon,),),
                         SizedBox(width: 10,),
                         Expanded(
                           child: TextField(
@@ -83,9 +84,9 @@ class UnreadMessages extends StatelessWidget {
                               topLeft: Radius.circular(25),
                               topRight: Radius.circular(25))),
                       context: context,
-                      builder: (context) => const messagesbottomsheet());
+                      builder: (context) => const MessagesBottomSheet());
                 },
-                child: Image.asset('assets/images/Filter.png'),
+                child: Image.asset(AssetsImages.filter_rounded,),
               )
             ]),
             SizedBox(

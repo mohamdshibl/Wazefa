@@ -1,6 +1,7 @@
 //import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -10,24 +11,38 @@ import 'package:wazefa/shared/remote/http_helper.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
+import '../../constants/utils.dart';
 import '../../model/jobs_model/jobs_model.dart';
+import '../../shared/local/shared_pref.dart';
 import '../Search_Screen/search_Screen.dart';
 import '../job_details/job_dedails_view.dart';
+import '../login and register/login_screen.dart';
 import '../notifications/notification.dart';
 import '../saved_view/saved_view.dart';
 
-class HomeView extends StatelessWidget {
-  // HomeScreen({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
 
+class _HomeViewState extends State<HomeView> {
+  // HomeScreen({Key? key}) : super(key: key);
   var list = [];
-  var name ;
+  var name;
+  bool _isSaved = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkConnectivity(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit, JobsStates>(
-        listener: (context, state) {   },
+        listener: (context, state) {},
         builder: (context, state) {
-
           var cubit = JobsCubit.get(context);
           list = cubit.jobsList;
           name = cubit.name;
@@ -59,7 +74,7 @@ class HomeView extends StatelessWidget {
                                     ),
                                     textAlign: TextAlign.start,
                                   ),
-                                  SizedBox(height: 3.h,),
+                                  SizedBox(height: 3.h),
                                   Text(
                                     'Create a better future for yourself here',
                                     style: TextStyle(
@@ -86,7 +101,8 @@ class HomeView extends StatelessWidget {
                                 onPressed: () {
                                   navigateTo(context, const NotificationPage());
                                 },
-                                icon: const Icon(Icons.notifications_none_outlined)),
+                                icon: const Icon(
+                                    Icons.notifications_none_outlined)),
                           ),
                           //image: AssetImage('assets/images/ring.png')
                         ],
@@ -108,10 +124,8 @@ class HomeView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: Row(
-                            children:[
-                              const Image(
-                                image: AssetImage('assets/images/search.png'),
-                              ),
+                            children: [
+                              Image.asset(AssetsImages.searchIcon,),
                               SizedBox(
                                 width: 3.w,
                               ),
@@ -128,14 +142,14 @@ class HomeView extends StatelessWidget {
                         children: [
                           Text(
                             'Suggested Job',
-                            style: TextStyle(fontSize: 14.sp,),
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                            ),
                           ),
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-
-                             print(cubit.name);
-
+                              print(cubit.name);
                             },
                             child: Text(
                               'View all',
@@ -146,7 +160,10 @@ class HomeView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 1.h,),
+                      SizedBox(
+                        height: 1.h,
+                      ),
+
                       /// card
                       SizedBox(
                         width: double.infinity,
@@ -158,21 +175,26 @@ class HomeView extends StatelessWidget {
                                   // padding: EdgeInsets.only(left: 16,right: 6),
                                   physics: BouncingScrollPhysics(),
                                   separatorBuilder: (context, index) =>
-                                      SizedBox(width: 8.w,),
+                                      SizedBox(
+                                    width: 8.w,
+                                  ),
                                   itemCount: list.length,
                                   itemBuilder: (context, index) => InkWell(
                                     onTap: () {
-                                      navigateTo(context, JobDetail(jobsindex:index));
+                                      navigateTo(
+                                          context, JobDetail(jobsindex: index));
                                     },
-                                    child:
-                                    customSuggestedJobsList(list[index], context),
+                                    child: customSuggestedJobsList(
+                                        list[index], context),
                                   ),
                                   //list[index]
                                 ),
                             fallback: (context) => const Center(
                                 child: CircularProgressIndicator())),
                       ),
-                      SizedBox(height: 2.h,),
+                      SizedBox(
+                        height: 2.h,
+                      ),
 
                       /// recent job & view all
                       Row(
@@ -188,12 +210,16 @@ class HomeView extends StatelessWidget {
                             onPressed: () {},
                             child: Text(
                               'View all',
-                              style: TextStyle(fontSize: 11.sp,),
+                              style: TextStyle(
+                                fontSize: 11.sp,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 1.h,),
+                      SizedBox(
+                        height: 1.h,
+                      ),
                       SizedBox(
                         height: 30.h,
                         child: ConditionalBuilder(
@@ -203,14 +229,13 @@ class HomeView extends StatelessWidget {
                                   separatorBuilder: (context, index) =>
                                       defaultSeparatorContainer(),
                                   itemCount: list.length,
-                                  itemBuilder: (context, index) =>
-                                      InkWell(
-                                        onTap: () {
-                                          navigateTo(context, JobDetail(jobsindex:index));
-                                        },
-                                        child:
-                                      customJobsList(list[index], context),
-                                      ),
+                                  itemBuilder: (context, index) => InkWell(
+                                    onTap: () {
+                                      navigateTo(
+                                          context, JobDetail(jobsindex: index));
+                                    },
+                                    child: customJobsList(list[index], context),
+                                  ),
                                 ),
                             fallback: (context) => const Center(
                                 child: CircularProgressIndicator())),
@@ -227,23 +252,21 @@ class HomeView extends StatelessWidget {
 
 Widget customSuggestedJobsList(list, BuildContext context) {
   return Container(
-      height: 183,
-      width: 300,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-        ),
-        borderRadius: BorderRadius.circular(15),
-        color: cardPrimaryColor,
+    height: 183,
+    width: 300,
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: Colors.grey,
       ),
-      child: Column(
+      borderRadius: BorderRadius.circular(15),
+      color: cardPrimaryColor,
+    ),
+    child: Column(
         children: [
           Flexible(
             flex: 1,
             child: ListTile(
-              leading: const Image(
-                image: AssetImage('assets/images/logo_amit.png'),
-              ),
+              leading: Image.asset(AssetsImages.amitLogo,),
               title: Text(
                 '${list.name}',
                 style: TextStyle(fontSize: 13.sp, color: Colors.white),
@@ -301,8 +324,8 @@ Widget customSuggestedJobsList(list, BuildContext context) {
                       child: Center(
                         child: Text(
                           'Onsite',
-                          style: TextStyle(
-                              fontSize: 9.sp, color: Color(0xFFFFFFFF)),
+                          style:
+                              TextStyle(fontSize: 9.sp, color: Color(0xFFFFFFFF)),
                           textAlign: TextAlign.start,
                         ),
                       ),
@@ -364,8 +387,8 @@ Widget customSuggestedJobsList(list, BuildContext context) {
                             onTap: () {},
                             child: Text(
                               'Apply now',
-                              style: TextStyle(
-                                  fontSize: 9.sp, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 9.sp, color: Colors.white),
                             ),
                           ),
                         ),
@@ -378,18 +401,15 @@ Widget customSuggestedJobsList(list, BuildContext context) {
           ),
         ],
       ),
-    );
+  );
 }
-
 Widget customJobsList(list, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       ListTile(
-        leading: const Image(
-          image: AssetImage('assets/images/logo_amit.png'),
-        ),
+        leading: Image.asset(AssetsImages.amitLogo,),
         title: Text(
           '${list.name}',
           style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
@@ -402,98 +422,224 @@ Widget customJobsList(list, BuildContext context) {
           textAlign: TextAlign.start,
         ),
         trailing: GestureDetector(
-          onTap: () {},
-          child: const Image(
-            image: AssetImage('assets/images/save3.png'),
-          ),
+          onTap: () {
+            var token = MyCache.getData(key: 'token')!;
+            var id = MyCache.getData(key: 'id')!;
+
+            JobsCubit.get(context).saveJob(list.id, id, token);
+            JobsCubit.get(context).getSavedJobs(id);
+          },
+          child: Image.asset(AssetsImages.saveRounded,),
         ),
       ),
-      SizedBox(
-        height: 12,
-      ),
+      SizedBox(height: 2.h,),
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 70,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFD6E4FF),
+          Row(
+            children: [
+              Container(
+                width: 70,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
                   ),
-                  child: Center(
-                    child: Text(
-                      '${list.jobTimeType}',
-                      style: TextStyle(
-                        fontSize: 9.sp,
-                      ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFD6E4FF),
+                ),
+                child: Center(
+                  child: Text(
+                    '${list.jobTimeType}',
+                    style: TextStyle(
+                      fontSize: 9.sp,
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 6.5,
-                ),
-                Container(
-                  width: 70,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFD6E4FF),
+              ),
+              SizedBox(width: 2.w,),
+              Container(
+                width: 70,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
                   ),
-                  child: Center(
-                    child: Text(
-                      'Remote',
-                      style: TextStyle(
-                        fontSize: 9.sp,
-                      ),
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFD6E4FF),
                 ),
-                SizedBox(
-                  width: 6.5,
+                child: Center(
+                  child: Text('Remote',style: TextStyle(
+                    fontSize: 9.sp,
+                  ),),
                 ),
-                Container(
-                  width: 70,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFD6E4FF),
+              ),
+              SizedBox(width: 2.w,),
+              Container(
+                width: 70,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
                   ),
-                  child: Center(
-                    child: Text(
-                      '${list.jobLevel}',
-                      style: TextStyle(
-                        fontSize: 9.sp,
-                      ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFD6E4FF),
+                ),
+                child: Center(
+                  child: Text(
+                    '${list.jobLevel}',
+                    style: TextStyle(
+                      fontSize: 9.sp,
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Spacer(),
           Text(
             '\$${list.salary}/Month',
             style: TextStyle(fontSize: 10.sp),
           ),
         ],
       ),
-      SizedBox(
-        height: 2.h,
-      )
+      SizedBox(height: 2.h,)
     ],
   );
 }
+
+Widget customSuggestedJobsListShimmer() {
+  return Shimmer.fromColors(
+    baseColor: Colors.red,
+    highlightColor: Colors.yellow,
+    child: Container(
+      height: 183,
+      width: 300,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey,
+        ),
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Flexible(
+            flex: 1,
+            child: ListTile(
+              leading: Container(color: Colors.white,),
+              title: Container(color: Colors.blue,),
+              subtitle: Container(color: Colors.white,),
+              trailing: Container(color: Colors.white,),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8, left: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Container(color: Colors.white,),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Container(color: Colors.white,),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6.5,
+                    ),
+                    Container(
+                      width: 87,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                      child: Center(
+                        child: Container(color: Colors.white,),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    Container(color: Colors.white,),
+                    Spacer(),
+                    // apply job
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 96,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF3366FF),
+                        ),
+                        child: Center(
+                          child: Container(color: Colors.white,),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+
+// IconButton(
+// icon: Icon(
+// _isSaved ? Icons.bookmark : Icons.bookmark_outline,size: 36,
+// color: _isSaved ? Colors.blue : Colors.grey, // Set color based on isSaved state
+// ),
+// onPressed: () {
+// setState(() {
+// _isSaved = !_isSaved; // Toggle isSaved state on button click
+// });
+// },
+// ),

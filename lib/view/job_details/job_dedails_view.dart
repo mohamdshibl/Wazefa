@@ -7,6 +7,7 @@ import 'package:wazefa/model/jobs_model/jobs_model.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/custom_widgets.dart';
+import '../../constants/utils.dart';
 import '../apply_job/apply_job_view.dart';
 import 'job_details_3_custom_tabs.dart';
 
@@ -26,7 +27,7 @@ class JobDetail extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              actions: [Image.asset('assets/images/save3.png')],
+              actions: [Image.asset(AssetsImages.saveRounded,),],
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Colors.black),
               elevation: 0,
@@ -51,7 +52,7 @@ class JobDetail extends StatelessWidget {
                         child: Column(
                           children: [
                             Image.asset(
-                              'assets/images/logo_amit.png',
+                              AssetsImages.amitLogo,
                               height: 8.h,
                               width: 20.w,
                               fit: BoxFit.contain,

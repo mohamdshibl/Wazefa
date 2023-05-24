@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/custom_widgets.dart';
+import '../../constants/utils.dart';
 import '../../model/messages_models/chat_model.dart';
 
 
@@ -30,7 +31,7 @@ class ChatPage extends StatelessWidget {
                             size: 25,
                           ),
                       ),
-                      Image.asset('assets/images/twiterc.png'),
+                      Image.asset(AssetsImages.twitterLogo,),
                       SizedBox(
                         width: 2.w,
                       ),
@@ -52,7 +53,8 @@ class ChatPage extends StatelessWidget {
                                 context: context,
                                 builder: (context) => const ChatBottomSheet());
                           },
-                          icon: Image.asset('assets/images/more.png'))
+                          icon: Image.asset(AssetsImages.moreIcon,)
+                      )
                     ],
                   ),
 
@@ -104,7 +106,7 @@ class ChatPage extends StatelessWidget {
                           flex: 1,
                           child: InkWell(
                               onTap: () {},
-                              child: Image.asset('assets/images/attach.png')),
+                              child: Image.asset(AssetsImages.atatchIcon,)),
                         ),
                         SizedBox(
                           width: 2.w,
@@ -140,7 +142,7 @@ class ChatPage extends StatelessWidget {
                           flex: 1,
                           child: InkWell(
                               onTap: () {},
-                              child: Image.asset('assets/images/mice.png')),
+                              child: Image.asset(AssetsImages.miceIcon,)),
                         )
                       ],
                     ),

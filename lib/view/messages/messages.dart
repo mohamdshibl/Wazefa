@@ -11,6 +11,8 @@ import '../../model/messages_models/contacts_model.dart';
 class ContactsPage extends StatelessWidget {
   ContactsPage({super.key});
   int selectedindex = 0;
+
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit,JobsStates>(
@@ -65,7 +67,7 @@ class ContactsPage extends StatelessWidget {
                   child: Row(
                     children: const [
                       Image(
-                        image: AssetImage('assets/images/search.png'),
+                        image: AssetImage(AssetsImages.searchIcon,),
                       ),
                       SizedBox(
                         width: 10,
@@ -88,7 +90,7 @@ class ContactsPage extends StatelessWidget {
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25))),
                     context: context,
-                    builder: (context) => const messagesbottomsheet());
+                    builder: (context) => const MessagesBottomSheet());
               },
               child: Image.asset(
                 AssetsImages.filter_rounded,

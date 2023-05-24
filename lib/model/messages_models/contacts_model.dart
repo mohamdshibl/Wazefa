@@ -50,27 +50,27 @@ List<Contacts> contactslist = [
   Contacts(
       name: 'Gojek Indonesia',
       message: 'Lets keep in touch.',
-      image: 'assets/images/twiter.png',
+      image: 'assets/images/gojeklogo.png',
       time: ' 12.39'),
   Contacts(
       name: 'Shoope',
       message: 'Thank You David!',
-      image: 'assets/images/zoom.png',
+      image: 'assets/images/Shopelogo.png',
       time: '09.45'),
   Contacts(
       name: 'Dana',
       message: 'Thank you for your attention!',
-      image: 'assets/images/zoom.png',
+      image: 'assets/images/Shopelogo.png',
       time: 'Yesterday'),
   Contacts(
       name: 'Slack',
       message: 'You: I look forward to hearing from you',
-      image: 'assets/images/zoom.png',
+      image: 'assets/images/slacklogo.png',
       time: '12/8'),
   Contacts(
       name: 'Facebook',
       message: 'You: What about the interview stage?',
-      image: 'assets/images/twiter.png',
+      image: 'assets/images/facelogo.png',
       time: '12/8')
 ];
 
