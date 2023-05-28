@@ -10,6 +10,7 @@ import '../shared/local/shared_pref.dart';
 import '../shared/remote/http_helper.dart';
 import '../view/Home/Home.dart';
 import '../view/Home/Home_Screen.dart';
+import '../view/applied/applied_jobs.dart';
 import '../view/apply_job/apply_job_view.dart';
 import '../view/login and register/login_screen.dart';
 import '../view/login and register/register.dart';
@@ -29,7 +30,7 @@ class JobsCubit extends Cubit<JobsStates> {
   List<Widget> Screans = [
     HomeView(),
     ContactsPage(),
-    JobApplication(),
+    AppliedJobs(),
     Savedjobs(),
     Profile(),
   ];

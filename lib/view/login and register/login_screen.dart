@@ -178,17 +178,7 @@ void initState() {
                         mainbuttom(
                             text: 'Login',
                             onTap: () {
-
-
                               _login(_emailController.text,_passwordController.text);
-
-                              //   email: emailController.text,
-                              // password: passwordController.text
-
-                              // passwordController.length >= 8 &&
-                              //     emailController.isNotEmpty
-                              //     ? () {}
-                              //     : null,
                             }),
                         SizedBox(
                           height: 3.h,
@@ -252,7 +242,7 @@ checkConnectivity(BuildContext context) async {
     internetConnection(context);
   }
 }
-void internetConnection( context) {
+void internetConnection(context) {
   final scaffold = ScaffoldMessenger.of(context);
   scaffold.showSnackBar(
     SnackBar(

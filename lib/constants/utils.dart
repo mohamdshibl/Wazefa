@@ -29,6 +29,13 @@ class AssetsImages{
   static const googleBottom= 'assets/images/go.png';
   static const facebookBottom= 'assets/images/face.png';
   static const twitterLogo= 'assets/images/twiter.png';
+  static const spectrumLogo= 'assets/images/spectrumlogo.png';
+  static const dataIlustration= 'assets/images/dataIlustration.png';
+  static const emailIcon= 'assets/images/Email.png';
+  static const searchIconBlue= 'assets/images/searchlogo.png';
+
+
+
 
 
   static const String Portugal = 'assets/images/Portugal.png' ;
@@ -41,5 +48,10 @@ class AssetsImages{
   static const String England = 'assets/images/England.png' ;
   static const String China = 'assets/images/China.png' ;
   static const String Netherlands = 'assets/images/Netherlands.png' ;
+  static const String singapore = 'assets/images/sing.png' ;
+  static const String brazel = 'assets/images/brazel.png' ;
+  static const String india = 'assets/images/india.png' ;
+  static const String indo = 'assets/images/indo.png' ;
+  static const String amrica = 'assets/images/uni.png' ;
 
 }
