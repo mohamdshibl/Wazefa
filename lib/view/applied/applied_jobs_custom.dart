@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../constants/constants.dart';
 import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
+import '../apply_job/apply_job_view.dart';
 
-class RejectedContent extends StatelessWidget {
-  const RejectedContent({Key? key}) : super(key: key);
+class RejectedTap extends StatelessWidget {
+  const RejectedTap({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,11 @@ class RejectedContent extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 1.h),
-          Padding(
-            padding: const EdgeInsets.only(left: 50.0, right: 30.0),
+          Center(
+            //padding: const EdgeInsets.only(left: 50.0, right: 30.0),
             child: Text(
-              'If there is an application that is rejected by the company it will appear here',
+              'If there is an application that '
+                  'is rejected by the company it will appear here',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 10.sp,
@@ -44,8 +47,8 @@ class RejectedContent extends StatelessWidget {
   }
 }
 
-class ActiveContent extends StatelessWidget {
-  const ActiveContent({Key? key}) : super(key: key);
+class ActiveTap extends StatelessWidget {
+  const ActiveTap({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +72,7 @@ class ActiveContent extends StatelessWidget {
             width: 100.w,
           ),
           SizedBox(
-            height: 3.h,
-          ),
+            height: 1.h,),
           Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(
@@ -78,9 +80,12 @@ class ActiveContent extends StatelessWidget {
                 thickness: 1.5,
                 color: Color(0xFFE5E7EB),
               ),
-              itemBuilder: (context, index) => ActiveItemList(
-                activeItem: ActiveItem.activeItem[index],
-                index: index,
+              itemBuilder: (context, index) => GestureDetector(
+                child: ActiveItemList(
+                  activeItem: ActiveItem.activeItem[index],
+                  index: index,
+                ),
+                onTap: (){navigateTo(context,const JobApplication());},
               ),
               itemCount: 3,
             ),
@@ -98,51 +103,28 @@ class ActiveItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return Column(
         children: [
-          SizedBox(
-            height: 2.h,
+          ListTile(
+            leading: Image.asset(activeItem.logo,),
+            title: Text(
+                activeItem.job,
+                style: TextStyle(
+                    color: Color(0xff111827),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.bold),
+              ),
+            subtitle:Text(
+                      activeItem.description,
+                      style: TextStyle(color: Color(0xff374151), fontSize: 9.sp),
+                    ) ,
+            trailing: Image.asset(
+              activeItem.image,
+              height: 5.h,
+              width: 10.w,
+            ) ,
           ),
-          Row(
-            children: [
-              Image.asset(
-                activeItem.logo,
-              ),
-              SizedBox(
-                width: 5.w,
-              ),
-              Column(
-                children: [
-                  Text(
-                    activeItem.job,
-                    style: TextStyle(
-                        color: Color(0xff111827),
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  Text(
-                    activeItem.description,
-                    style: TextStyle(color: Color(0xff374151), fontSize: 9.sp),
-                  )
-                ],
-              ),
-              SizedBox(
-                width: 25.w,
-              ),
-              Image.asset(
-                activeItem.image,
-                height: 5.h,
-                width: 10.w,
-              )
-            ],
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
+          SizedBox(height: 1.h,),
           Row(
             children: [
               Container(
@@ -184,11 +166,10 @@ class ActiveItemList extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 3.h,
+            height: 2.h,
           ),
           Container(
             height: 15.h,
-            width: 100.w,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(15)),
@@ -197,12 +178,8 @@ class ActiveItemList extends StatelessWidget {
               child: CustomStepper(),
             ),
           ),
-          SizedBox(
-            height: 1.h,
-          ),
         ],
-      ),
-    );
+      );
   }
 }
 

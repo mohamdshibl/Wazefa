@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
+import '../../constants/utils.dart';
 
 
 class NotificationPage extends StatelessWidget{
@@ -187,7 +188,7 @@ List<Notifications> notificationList = [
   Notifications(
       title: 'Dana',
       subtitle: 'Posted new design jobs',
-      icon: 'assets/images/zoom.png',
+      icon: AssetsImages.spectrumLogo,
       time: '10.00AM'),
   Notifications(
       title: 'Shoope',
@@ -202,7 +203,7 @@ List<Notifications> notificationList = [
   Notifications(
       title: 'Facebook',
       subtitle: 'Posted new design jobs',
-      icon: 'assets/images/zoom.png',
+      icon: AssetsImages.twitterLogo,
       time: '10.00AM')
 ];
 
@@ -224,12 +225,12 @@ List<OldNotification> oldNotificationList = [
       title: 'Email setup successful',
       subtitle:
       'Your email setup was successful with the following details: Your new email is rafifdianganz@gmail.com.',
-      icon: 'assets/images/Email.png',
+      icon: AssetsImages.emailIcon,
       time: '10.00AM'),
   OldNotification(
       title: 'Welcome to Jobsque',
       subtitle:
       'Hello Rafif Dian Axelingga, thank you for registering Jobsque. Enjoy the various features that....',
-      icon: 'assets/images/searchlogo.png',
+      icon: AssetsImages.searchIconBlue,
       time: '8.00AM'),
 ];

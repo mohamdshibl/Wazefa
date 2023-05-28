@@ -68,10 +68,9 @@ class AppliedJobs extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
-              // el Tab Bar -----------------------------------------------------
               Expanded(
                   child: TabBarView(
-                    children: [ActiveContent(), RejectedContent()],
+                    children: [ActiveTap(), RejectedTap()],
                   )),
             ],
           ),

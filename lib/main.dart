@@ -15,6 +15,8 @@ import 'package:wazefa/view/apply_job/apply_job_view.dart';
 import 'package:wazefa/view/job_details/job_dedails_view.dart';
 import 'package:wazefa/view/login%20and%20register/login_screen.dart';
 import 'package:wazefa/view/login%20and%20register/register.dart';
+import 'package:wazefa/view/login%20and%20register/workLocation.dart';
+import 'package:wazefa/view/login%20and%20register/work_Type.dart';
 import 'package:wazefa/view/messages/chat.dart';
 import 'package:wazefa/view/messages/messages.dart';
 import 'package:wazefa/view/notifications/notification.dart';
@@ -72,7 +74,7 @@ class MyApp extends StatelessWidget {
                   builder: DevicePreview.appBuilder,
                   theme: ThemeData().copyWith(),
                   debugShowCheckedModeBanner: false,
-                  home: SplashView(),
+                  home: PreferredLocation(),
                 );
               }
           ),
