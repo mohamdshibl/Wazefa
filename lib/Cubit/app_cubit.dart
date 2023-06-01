@@ -65,7 +65,7 @@ class JobsCubit extends Cubit<JobsStates> {
   /// get all jobs
   List<JobsModel> jobsList = [];
   Future<List> getAllJobs() async {
-    List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/jobs');
+    List<dynamic> data = await Api().get(url:'http://167.71.79.133/api/jobs');
     List<JobsModel> jobs = data.map((job) =>
       JobsModel.fromJson(job)).toList();
 
@@ -81,7 +81,7 @@ class JobsCubit extends Cubit<JobsStates> {
 
   Future<void> login(email, password, context) async {
 
-    String url = "http://164.92.246.77/api/auth/login";
+    String url = "http://167.71.79.133/api/auth/login";
     emit(loginLoadingsState());
     try {
       Response response = await networkService.postData(url,
@@ -103,7 +103,7 @@ class JobsCubit extends Cubit<JobsStates> {
   }
   /// register
   Future<void> register(name,email,password,context) async {
-    String url = "http://164.92.246.77/api/auth/register";
+    String url = "http://167.71.79.133/api/auth/register";
     try {
       Response response = await networkService.postData(url, {
         'name': name,
@@ -111,6 +111,7 @@ class JobsCubit extends Cubit<JobsStates> {
         'password': password,
       });
       emit(RegisterSuccessState());
+      navigateTo(context, LoginScreen());
     } catch (e) {
       showToastWhenRegister(context);
       emit(RegisterErrorState());
@@ -120,7 +121,7 @@ class JobsCubit extends Cubit<JobsStates> {
   /// save jobs
   var newJobId;
   Future<void> saveJob(jobId, id, token) async {
-    String url = "http://164.92.246.77/api/favorites";
+    String url = "http://167.71.79.133/api/favorites";
     var dio = Dio();
     Response response = await dio.post(url, data: {'job_id': jobId,'user_id': id});
     dio.options.headers['Authorization'] = 'Bearer $token';
@@ -133,7 +134,7 @@ class JobsCubit extends Cubit<JobsStates> {
 
   List<JobsModel> savedJobsList = [];
   Future<List> getSavedJobs(id) async {
-    List<dynamic> data = await Api().get(url:'http://164.92.246.77/api/favorites/$id');
+    List<dynamic> data = await Api().get(url:'http://167.71.79.133/api/favorites/$id');
     List<JobsModel> jobs = data.map((job) =>
         JobsModel.fromJson(job)).toList();
     savedJobsList = jobs;
@@ -160,7 +161,7 @@ class JobsCubit extends Cubit<JobsStates> {
    try {
      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
      Response response = await networkService.put(
-         'http://164.92.246.77/api/user/profile/edit/${userID}',
+         'http://167.71.79.133/api/user/profile/edit/${userID}',
          {'bio': bio, 'address': address, 'mobile': mobile, 'name': name});
    }catch(e){
      print(e.toString());
@@ -170,7 +171,7 @@ class JobsCubit extends Cubit<JobsStates> {
    try {
      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
      Response response = await networkService.put(
-         'http://164.92.246.77/api/user/profile/${userID}',
+         'http://167.71.79.133/api/user/profile/${userID}',
          {
            'interested_work': interestedWork,
            'offline_place': onsitePlace,
