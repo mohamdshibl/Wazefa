@@ -67,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
             //const SizedBox(height: 20,),
              Expanded(
-               flex: 7,
+               flex: 8,
                child: SizedBox(
                  child:
                    PageView.builder(
@@ -130,10 +130,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 }
 List<BoardingModel> boarding = [
-  BoardingModel(image: 'assets/images/onboard1.png',title: 'Find a job, and start '
+  BoardingModel(image: 'assets/images/back1.png',title: 'Find a job, and start '
       'building your career from now on',body:'Explore over 25,924 available '
       'job roles and upgrade your operator now.'),
-  BoardingModel(image: 'assets/images/2.png',title: 'Hundreds of jobs are '
+  BoardingModel(image: 'assets/images/back2.png',title: 'Hundreds of jobs are '
       'waiting for you to join together',body:'Immediately join us and start '
       'applying for the job you are interested in.'),
   BoardingModel(image: 'assets/images/onboard3.png',title: 'Get the best choice for the '
@@ -143,12 +143,12 @@ List<BoardingModel> boarding = [
 Widget buildBoardingItem(BoardingModel board) => Column(
   children: [
     Expanded(
-      flex: 5,
+      flex: 6,
         child: Image(image:AssetImage(board.image),
         fit: BoxFit.fill,)),
     // const SizedBox(height: 30,),
     Expanded(
-      flex: 1,
+      flex: 2,
       child: Padding(
         padding: const EdgeInsets.all(14.0),
         child: Text(board.title,

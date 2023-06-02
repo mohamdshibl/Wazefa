@@ -427,7 +427,7 @@ Widget customJobsList(list, BuildContext context) {
             var id = MyCache.getData(key: 'id')!;
 
             JobsCubit.get(context).saveJob(list.id, id, token);
-            JobsCubit.get(context).getSavedJobs(id);
+           // JobsCubit.get(context).getSavedJobs(id);
           },
           child: Image.asset(AssetsImages.saveRounded,),
         ),
@@ -507,129 +507,129 @@ Widget customJobsList(list, BuildContext context) {
   );
 }
 
-Widget customSuggestedJobsListShimmer() {
-  return Shimmer.fromColors(
-    baseColor: Colors.red,
-    highlightColor: Colors.yellow,
-    child: Container(
-      height: 183,
-      width: 300,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-        ),
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          Flexible(
-            flex: 1,
-            child: ListTile(
-              leading: Container(color: Colors.white,),
-              title: Container(color: Colors.blue,),
-              subtitle: Container(color: Colors.white,),
-              trailing: Container(color: Colors.white,),
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8, left: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 87,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white.withOpacity(0.15),
-                      ),
-                      child: Center(
-                        child: Container(color: Colors.white,),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 6.5,
-                    ),
-                    Container(
-                      width: 87,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white.withOpacity(0.15),
-                      ),
-                      child: Center(
-                        child: Container(color: Colors.white,),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 6.5,
-                    ),
-                    Container(
-                      width: 87,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white.withOpacity(0.15),
-                      ),
-                      child: Center(
-                        child: Container(color: Colors.white,),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  children: [
-                    Container(color: Colors.white,),
-                    Spacer(),
-                    // apply job
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        width: 96,
-                        height: 32,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color(0xFF3366FF),
-                        ),
-                        child: Center(
-                          child: Container(color: Colors.white,),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+// Widget customSuggestedJobsListShimmer() {
+//   return Shimmer.fromColors(
+//     baseColor: Colors.red,
+//     highlightColor: Colors.yellow,
+//     child: Container(
+//       height: 183,
+//       width: 300,
+//       decoration: BoxDecoration(
+//         border: Border.all(
+//           color: Colors.grey,
+//         ),
+//         borderRadius: BorderRadius.circular(15),
+//         color: Colors.white,
+//       ),
+//       child: Column(
+//         children: [
+//           Flexible(
+//             flex: 1,
+//             child: ListTile(
+//               leading: Container(color: Colors.white,),
+//               title: Container(color: Colors.blue,),
+//               subtitle: Container(color: Colors.white,),
+//               trailing: Container(color: Colors.white,),
+//             ),
+//           ),
+//           Flexible(
+//             flex: 1,
+//             child: Center(
+//               child: Padding(
+//                 padding: const EdgeInsets.only(right: 8, left: 8),
+//                 child: Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     Container(
+//                       width: 87,
+//                       height: 30,
+//                       decoration: BoxDecoration(
+//                         border: Border.all(
+//                           color: Colors.grey,
+//                         ),
+//                         borderRadius: BorderRadius.circular(20),
+//                         color: Colors.white.withOpacity(0.15),
+//                       ),
+//                       child: Center(
+//                         child: Container(color: Colors.white,),
+//                       ),
+//                     ),
+//                     SizedBox(
+//                       width: 6.5,
+//                     ),
+//                     Container(
+//                       width: 87,
+//                       height: 30,
+//                       decoration: BoxDecoration(
+//                         border: Border.all(
+//                           color: Colors.grey,
+//                         ),
+//                         borderRadius: BorderRadius.circular(20),
+//                         color: Colors.white.withOpacity(0.15),
+//                       ),
+//                       child: Center(
+//                         child: Container(color: Colors.white,),
+//                       ),
+//                     ),
+//                     SizedBox(
+//                       width: 6.5,
+//                     ),
+//                     Container(
+//                       width: 87,
+//                       height: 30,
+//                       decoration: BoxDecoration(
+//                         border: Border.all(
+//                           color: Colors.grey,
+//                         ),
+//                         borderRadius: BorderRadius.circular(20),
+//                         color: Colors.white.withOpacity(0.15),
+//                       ),
+//                       child: Center(
+//                         child: Container(color: Colors.white,),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ),
+//           Flexible(
+//             flex: 1,
+//             child: Container(
+//               child: Padding(
+//                 padding: const EdgeInsets.all(12.0),
+//                 child: Row(
+//                   children: [
+//                     Container(color: Colors.white,),
+//                     Spacer(),
+//                     // apply job
+//                     InkWell(
+//                       onTap: () {},
+//                       child: Container(
+//                         width: 96,
+//                         height: 32,
+//                         decoration: BoxDecoration(
+//                           border: Border.all(
+//                             color: Colors.grey,
+//                           ),
+//                           borderRadius: BorderRadius.circular(20),
+//                           color: const Color(0xFF3366FF),
+//                         ),
+//                         child: Center(
+//                           child: Container(color: Colors.white,),
+//                           ),
+//                         ),
+//                       ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 
 // IconButton(

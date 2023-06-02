@@ -13,6 +13,7 @@ import 'package:wazefa/view/Search_Screen/search_view_filter.dart';
 import 'package:wazefa/view/Splash/splash_view.dart';
 import 'package:wazefa/view/apply_job/apply_job_view.dart';
 import 'package:wazefa/view/job_details/job_dedails_view.dart';
+import 'package:wazefa/view/login%20and%20register/get_start.dart';
 import 'package:wazefa/view/login%20and%20register/login_screen.dart';
 import 'package:wazefa/view/login%20and%20register/register.dart';
 import 'package:wazefa/view/login%20and%20register/workLocation.dart';
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
                   builder: DevicePreview.appBuilder,
                   theme: ThemeData().copyWith(),
                   debugShowCheckedModeBanner: false,
-                  home: PreferredLocation(),
+                  home: SplashView(),
                 );
               }
           ),

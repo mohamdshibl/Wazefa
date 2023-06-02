@@ -31,3 +31,9 @@ class _SplashViewState extends State<SplashView> {
 }
 
 
+/*
+    flutter_icons:
+      android: true
+      ios: true
+      image_path: "assets/images/Wazzefa.png"
+    */

@@ -24,7 +24,7 @@ class _ShapeNotificationState extends State<ShapeNotification2> {
           children: [
             SizedBox(
                 width: 58.w,
-                child:Text(widget.notificationModel2!.name,
+                child:Text(widget.notificationModel2.name,
                   style: const TextStyle(fontWeight: FontWeight.w400,
                       fontSize: 16,color: Color(0xff111827)),)
             ),
