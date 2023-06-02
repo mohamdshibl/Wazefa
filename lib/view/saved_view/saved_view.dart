@@ -10,14 +10,18 @@ import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
 
 class Savedjobs extends StatelessWidget {
-  //int selectedindex = 0;
+
   Savedjobs({Key? key,}) : super(key: key);
   var list = [];
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit,JobsStates>(
-  listener: (context, state) {},
-  builder: (context, state) {
+  listener: (context, state) {
+    // if (state==GetSavedJobsSuccessState()){
+    //   var id = JobsCubit.get(context).id;
+    //   JobsCubit.get(context).getSavedJobs(id);}
+    },
+      builder: (context, state) {
 
     var cubit = JobsCubit.get(context);
     list = cubit.savedJobsList;
@@ -47,7 +51,7 @@ class Savedjobs extends StatelessWidget {
                     border: Border.all(color: const Color(0xFFE5E7EB))),
                 child: Center(
                   child: Text(
-                    '12 Job Saved',
+                    'Job Saved',
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
@@ -61,7 +65,7 @@ class Savedjobs extends StatelessWidget {
                 child: ConditionalBuilder(
                       condition: list.isNotEmpty,
                       builder: (context) => ListView.separated(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 2.h,),
                         itemCount: list.length,
@@ -69,10 +73,8 @@ class Savedjobs extends StatelessWidget {
                           onTap: () {
                            // navigateTo(context, JobDetail(jobsindex:index));
                           },
-                          child:
-                          customSavedJobsList(list[index], context),
+                          child: customSavedJobsList(list[index], context),
                         ),
-                        //list[index]
                       ),
                       fallback: (context) => const Center(
                           child: CircularProgressIndicator())),
@@ -86,46 +88,6 @@ class Savedjobs extends StatelessWidget {
 );
   }
 }
-// class Savedjobsmodel {
-//   String? title;
-//   String? subtitle;
-//   String? icon;
-//   String? posttime;
-//   Savedjobsmodel({
-//     this.title,
-//     this.subtitle,
-//     this.icon,
-//     this.posttime,
-//   });
-// }
-// List<Savedjobsmodel> savedlist = [
-//   Savedjobsmodel(
-//       title: 'Senior UI Designer',
-//       subtitle: 'Twitter • Jakarta, Indonesia ',
-//       icon: 'assets/images/twiter.png',
-//       posttime: 'Posted 2 days ago'),
-//   Savedjobsmodel(
-//       title: 'UI Designer',
-//       subtitle: 'Spectrum • Jakarta, Indonesia ',
-//       icon: 'assets/images/twiter.png',
-//       posttime: 'Posted 2 days ago'),
-//   Savedjobsmodel(
-//       title: 'Senior UI Designer',
-//       subtitle: 'VK • Yogyakarta, Indonesia ',
-//       icon: 'assets/images/twiter.png',
-//       posttime: 'Posted 2 days ago'),
-//   Savedjobsmodel(
-//       title: 'Senior UX Designer',
-//       subtitle: 'Discord • Jakarta, Indonesia ',
-//       icon: 'assets/images/zoom.png',
-//       posttime: 'Posted 2 days ago'),
-//   Savedjobsmodel(
-//       title: 'Junior UI Designer',
-//       subtitle: 'Invision • Jakarta, Indonesia ',
-//       icon: 'assets/images/zoom.png',
-//       posttime: 'Posted 2 days ago')
-// ];
-
 
 
 Widget customSavedJobsList(list, BuildContext context) {

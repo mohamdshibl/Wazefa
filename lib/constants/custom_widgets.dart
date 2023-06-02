@@ -377,9 +377,8 @@ class SavedBottomSheet extends StatelessWidget {
                           backgroundColor: const Color(0xFFFFFFFF)),
                       onPressed: () {
                         var token = MyCache.getData(key: 'token')!;
-                        var id = MyCache.getData(key: 'id')!;
                         cubit.deleteJob(newJobId,token);
-                        cubit.getSavedJobs(id);
+                        cubit.getSavedJobs(MyCache.getData(key: 'id'));
                         Navigator.pop(context);
                       },
                       child: Row(

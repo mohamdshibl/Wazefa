@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
+import 'package:wazefa/view/login%20and%20register/work_Type.dart';
 import '../constants/constants.dart';
 import '../model/jobs_model/jobs_model.dart';
 import '../shared/local/shared_pref.dart';
@@ -59,6 +60,9 @@ class JobsCubit extends Cubit<JobsStates> {
 
   void changeIndexBtmNav(int index) {
     currentIndexs = index;
+    if(index==3){
+      getSavedJobs(MyCache.getData(key: 'id'));
+    }
     emit(NewsNtmNavState());
   }
 
@@ -111,7 +115,7 @@ class JobsCubit extends Cubit<JobsStates> {
         'password': password,
       });
       emit(RegisterSuccessState());
-      navigateTo(context, LoginScreen());
+      navigateTo(context, const WorkType());
     } catch (e) {
       showToastWhenRegister(context);
       emit(RegisterErrorState());
@@ -122,13 +126,17 @@ class JobsCubit extends Cubit<JobsStates> {
   var newJobId;
   Future<void> saveJob(jobId, id, token) async {
     String url = "http://167.71.79.133/api/favorites";
-    var dio = Dio();
-    Response response = await dio.post(url, data: {'job_id': jobId,'user_id': id});
-    dio.options.headers['Authorization'] = 'Bearer $token';
-    response = await dio.post(url, data: {'job_id': jobId,'user_id': id});
+   // var dio = Dio();
+    try {
+      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
+      Response response = await networkService.postData(
+          url, {'job_id': jobId, 'user_id': id});
 
-    MyCache.saveData(key: 'newJobId', value: response.data['data']['id'] );
-    newJobId = MyCache.getData(key: 'newJobId')!;
+      MyCache.saveData(key: 'newJobId', value: response.data['data']['id']);
+      newJobId = MyCache.getData(key: 'newJobId')!;
+    }catch(e){
+      print(e.toString());
+    }
   }
   /// get saved jobs list
 
@@ -143,19 +151,20 @@ class JobsCubit extends Cubit<JobsStates> {
     // print('sahhhhhdhdlllllllllllllll');
     // print(savedJobsList['id']);
     // newJobId = MyCache.getData(key: 'newJobId')!;
-    return data;
+    return jobs;
   }
 
   Future<void> deleteJob(jobId, token) async {
-    String url = "http://164.92.246.77/api/favorites/$jobId";
-    Response response;
-    var dio = Dio();
-    dio.options.headers['Authorization'] = 'Bearer $token';
-    emit(deleteJobState());
-    response = await dio.delete(url,);
-    print(response.data);
-
-  }
+    String url = "http://167.71.79.133/api/favorites/$jobId";
+    // var dio = Dio();
+    try {
+      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
+      emit(deleteJobState());
+      Response response = await networkService.dio.delete(url,);
+    }catch(e){
+      print(e.toString());
+    }
+    }
   Future<Response?> editProfile(token,userID, String name,
       String bio, String address, String mobile) async {
    try {

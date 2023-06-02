@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/constants/custom_widgets.dart';
+import 'package:wazefa/view/login%20and%20register/get_start.dart';
 
+import '../../constants/constants.dart';
 import '../../constants/utils.dart';
 import '../apply_job/apply_job_view.dart';
 
@@ -100,7 +102,7 @@ class _PreferredLocation extends State<PreferredLocation> {
       floatingActionButton: Container(
           color: Colors.transparent,
           child: mainbuttom(text: 'Next', onTap: () {
-          //  navigateTo(context,JobApplication() );
+            navigateTo(context,GetStarted() );
 
           })
       ),
