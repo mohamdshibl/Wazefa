@@ -23,7 +23,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   //const OnBoardingScreen({Key? key}) : super(key: key);
   var boardController = PageController();
   bool isLast = false;
-   String text= 'Next';
+  // String text= 'Next';
+   int current=0;
 
 
   void _submit(){
@@ -42,10 +43,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding:  const EdgeInsets.only(left: 24,right: 24),
+            // Expanded(
+            //   flex: 1,
+            //   child:
+        Padding(
+                padding:  const EdgeInsets.only(left: 20,right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -64,13 +66,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ],
                 ),
               ),
-            ),
-            //const SizedBox(height: 20,),
+            //),
              Expanded(
-               flex: 8,
-               child: SizedBox(
-                 child:
-                   PageView.builder(
+              // flex: 8,
+               child: PageView.builder(
                       controller: boardController,
                       itemBuilder: (context,index) =>
                           buildBoardingItem(boarding[index]),
@@ -79,6 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         if (index == boarding.length-1){
                           setState(() {
                             isLast =true;
+                            current = index;
                           });
                         }else{
                           setState(() {
@@ -88,12 +88,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
                       },
                     ),
-               ),
+
              ),
             SizedBox(height: 10,),
-            Expanded(
-              flex: 1,
-              child: Row (
+            // Expanded(
+            //   flex: 1,
+            //   child:
+              Row (
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SmoothPageIndicator(
@@ -103,26 +104,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                 ],
               ),
-            ),
-            Expanded(
-              flex: 1,
-                child:mainbuttom(text:text, onTap: (){
-                  if (isLast){
-                    setState(() {
-                      text= 'Get Started';
-                    });
-                    _submit();
-                  }else{
-                    text = 'Next';
-                    boardController.nextPage
-                      (
-                        duration: const Duration(milliseconds: 1000),
-                        curve: Curves.fastLinearToSlowEaseIn
-                    );
-                  }
+           // ),
+           //  Expanded(
+           //    flex: 1,
+           //      child:
+            SizedBox(height: 3.h,),
+            mainbuttom(
+              text: (current == boarding.length - 1) ? "Get Started" : "Next",
+              onTap: () {
+                if (isLast) {
+                  _submit();
                 }
+
+                  boardController.nextPage(
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  );
+              },
             )
-            ),
+
+            // ),
           ],
         ),
       ),
@@ -136,36 +137,41 @@ List<BoardingModel> boarding = [
   BoardingModel(image: 'assets/images/back2.png',title: 'Hundreds of jobs are '
       'waiting for you to join together',body:'Immediately join us and start '
       'applying for the job you are interested in.'),
-  BoardingModel(image: 'assets/images/onboard3.png',title: 'Get the best choice for the '
+  BoardingModel(image: 'assets/images/back3.png',title: 'Get the best choice for the '
       'job you ve always dreamed of',body:'The better the skills you have,'
       ' the greater the good job opportunities for you.'),
 ];
 Widget buildBoardingItem(BoardingModel board) => Column(
   children: [
-    Expanded(
-      flex: 6,
-        child: Image(image:AssetImage(board.image),
-        fit: BoxFit.fill,)),
+    // Expanded(
+    //   //flex: 5,
+    //     child:
+        Image(image:AssetImage(board.image),
+        fit: BoxFit.cover,)
+//)
+,
     // const SizedBox(height: 30,),
-    Expanded(
-      flex: 2,
-      child: Padding(
+    // Expanded(
+    //   flex: 2,
+    //   child:
+      Padding(
         padding: const EdgeInsets.all(14.0),
         child: Text(board.title,
           style:  TextStyle(fontSize: 18.sp,
               fontWeight: FontWeight.bold),
         ),
       ),
-    ),
-    Expanded(
-      flex: 1,
-      child: Padding(
+   // ),
+    // Expanded(
+    //   flex: 1,
+    //   child:
+   Padding(
         padding: const EdgeInsets.all(14.0),
         child: Text(board.body,
           style: TextStyle(fontSize: 11.sp,),
         ),
       ),
-    ),
+//),
   ],
 );
 

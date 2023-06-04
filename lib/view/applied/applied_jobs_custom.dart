@@ -12,6 +12,7 @@ class RejectedTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -53,23 +54,26 @@ class ActiveTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Row(
-                children: [
-                  Text(
-                    '3 Jobs',
-                    style: TextStyle(color: Color(0xff6B7280), fontSize: 9.sp),
-                  )
-                ],
-              ),
-            ),
-            color: Color(0xffE5E7EB),
             height: 5.h,
-            width: 100.w,
+            width: 360.w,
+            decoration: BoxDecoration(
+                color: const Color(0xFFF4F4F5),
+                border: Border.all(color: const Color(0xFFE5E7EB))),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  '3 jobs',
+                  style: TextStyle(
+                      fontSize:11.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF6B7280)),
+                ),
+            ),
+
           ),
           SizedBox(
             height: 1.h,),

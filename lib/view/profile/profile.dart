@@ -3,14 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/constants/constants.dart';
 import 'package:wazefa/view/profile/portfolio.dart';
-
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/utils.dart';
 import '../../shared/local/shared_pref.dart';
 import '../login and register/login_screen.dart';
-import '../notifications/notification.dart';
-import '../onboarding/onboard_screen.dart';
+import '../login and register/register.dart';
 import 'edit_profile.dart';
 import 'language.dart';
 import 'login_security.dart';
@@ -54,7 +52,7 @@ class _ProfileState extends State<Profile> {
                 IconButton(
                   icon: Image.asset(AssetsImages.logout,),
                   onPressed: () {
-                    // navigateTo(context, OnBoardingScreen());
+                     navigateTo(context, RegistrationScreen());
                   },
                 ),
               ],
@@ -74,12 +72,12 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xff111827),
+                        color: const Color(0xff111827),
                       ),
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      "Senior UI/UX Designer",
+                      "Junior Flutter Developer",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 11.sp,

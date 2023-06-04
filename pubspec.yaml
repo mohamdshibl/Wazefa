@@ -47,7 +47,7 @@ dependencies:
   device_preview: ^1.1.0
   chip_list: ^2.2.3+7
   intl_phone_field: ^3.1.0
-  easy_stepper: ^0.5.0
+  easy_stepper:
   dotted_border: ^2.0.0+3
   flutter_switch: ^0.3.2
   http:
@@ -55,7 +55,10 @@ dependencies:
   auto_size_text:
   connectivity_plus:
   shimmer:
-  fluttertoast:
+  fluttertoast: ^8.2.2
+  share_plus:
+
+
 
 
 

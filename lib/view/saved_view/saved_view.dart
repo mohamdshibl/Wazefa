@@ -4,28 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import '../../Cubit/app_cubit.dart';
-
 import '../../Cubit/app_states.dart';
 import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
+import 'no_saved_jobs.dart';
 
-class Savedjobs extends StatelessWidget {
+class SavedJobs extends StatelessWidget {
 
-  Savedjobs({Key? key,}) : super(key: key);
+  SavedJobs({Key? key,}) : super(key: key);
   var list = [];
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit,JobsStates>(
-  listener: (context, state) {
-    // if (state==GetSavedJobsSuccessState()){
-    //   var id = JobsCubit.get(context).id;
-    //   JobsCubit.get(context).getSavedJobs(id);}
-    },
+  listener: (context, state) {},
       builder: (context, state) {
 
     var cubit = JobsCubit.get(context);
     list = cubit.savedJobsList;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: Column(
             children: [
@@ -77,7 +74,7 @@ class Savedjobs extends StatelessWidget {
                         ),
                       ),
                       fallback: (context) => const Center(
-                          child: CircularProgressIndicator())),
+                          child: EmptySaved())),
 
               ),
             ],
@@ -92,8 +89,6 @@ class Savedjobs extends StatelessWidget {
 
 Widget customSavedJobsList(list, BuildContext context) {
   return   Column(
-    // crossAxisAlignment: CrossAxisAlignment.stretch,
-    // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ListTile(
             title: Text(
@@ -151,8 +146,7 @@ Widget customSavedJobsList(list, BuildContext context) {
           ),
         ],
       );
-
-  }
+}
 
 
 

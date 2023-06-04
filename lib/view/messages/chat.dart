@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/custom_widgets.dart';
 import '../../constants/utils.dart';
 import '../../model/messages_models/chat_model.dart';
@@ -15,6 +12,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -147,10 +145,10 @@ class ChatPage extends StatelessWidget {
                       ],
                     ),
                  ),
-
               ],
             ),
-          )),
+          ),
+      ),
     );
   }
 }
