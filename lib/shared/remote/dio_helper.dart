@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 
+import '../local/shared_pref.dart';
+
 class NetworkService {
   final Dio dio = Dio();
-
+  String? token = MyCache.getData(key: 'token')!;
   Future<Response> postData(String url, dynamic data) async {
     try {
+      dio.options.headers['Authorization'] = 'Bearer $token';
       final response = await dio.post(url, data: data);
       return response;
     } catch (e) {
@@ -14,6 +17,7 @@ class NetworkService {
 
   Future<Response> put(String url, dynamic data) async {
     try {
+      dio.options.headers['Authorization'] = 'Bearer $token';
       final response = await dio.put(url, data: data);
       return response;
     } catch (e) {
@@ -23,6 +27,7 @@ class NetworkService {
 
   Future<Response> delete(String url) async {
     try {
+      dio.options.headers['Authorization'] = 'Bearer $token';
       final response = await dio.delete(url);
       return response;
     } catch (e) {
@@ -32,6 +37,7 @@ class NetworkService {
 
   Future<Response> get(String url) async {
     try {
+      dio.options.headers['Authorization'] = 'Bearer $token';
       final response = await dio.get(url);
       return response;
     } catch (e) {

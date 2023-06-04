@@ -1,19 +1,19 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/constants/utils.dart';
 import 'package:chip_list/chip_list.dart';
-
 import '../Cubit/app_cubit.dart';
 import '../Cubit/app_states.dart';
 import '../model/messages_models/chat_model.dart';
 import '../shared/local/shared_pref.dart';
-import '../view/Splash/ss.dart';
-import '../view/messages/messages.dart';
 import '../view/messages/unread_message.dart';
 import 'colors.dart';
 import 'constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({Key? key}) : super(key: key);
@@ -21,19 +21,22 @@ class SplashViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-
       children: [
-        Image.asset(AssetsImages.splashImage, height: MediaQuery
-            .of(context)
-            .size
-            .height,
-          fit: BoxFit.fitWidth,),
-        Align(alignment: Alignment.center,
-            child: Image.asset(AssetsImages.splashLogo,)),
+        Image.asset(
+          AssetsImages.splashImage,
+          height: MediaQuery.of(context).size.height,
+          fit: BoxFit.fitWidth,
+        ),
+        Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              AssetsImages.splashLogo,
+            )),
       ],
     );
   }
 }
+
 /// btn sheet 1
 class FilterBottomSheet extends StatefulWidget {
   const FilterBottomSheet({Key? key}) : super(key: key);
@@ -269,7 +272,10 @@ class ChipsBottomSheet extends StatelessWidget {
 
 /// btn sheet 3
 class SavedBottomSheet extends StatelessWidget {
-  const SavedBottomSheet({super.key,});
+  const SavedBottomSheet({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<JobsCubit, JobsStates>(
@@ -339,7 +345,10 @@ class SavedBottomSheet extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40)),
                         backgroundColor: const Color(0xFFFFFFFF)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Share.share('Hello Welcome to FlutterCampus', subject: 'Welcome Message');
+
+                    },
                     child: Row(
                       children: [
                         Image.asset(
@@ -377,9 +386,16 @@ class SavedBottomSheet extends StatelessWidget {
                           backgroundColor: const Color(0xFFFFFFFF)),
                       onPressed: () {
                         var token = MyCache.getData(key: 'token')!;
-                        cubit.deleteJob(newJobId,token);
+                        cubit.deleteJob(newJobId, token);
                         cubit.getSavedJobs(MyCache.getData(key: 'id'));
                         Navigator.pop(context);
+                        Fluttertoast.showToast(
+                          msg: "you deleted this job",
+                          toastLength: Toast.LENGTH_SHORT,
+                          backgroundColor: Colors.blueAccent,
+                          textColor: Colors.white,
+                          fontSize: 9.sp,
+                        );
                       },
                       child: Row(
                         children: [
@@ -411,7 +427,9 @@ class SavedBottomSheet extends StatelessWidget {
 
 /// btn sheet 4
 class MessagesBottomSheet extends StatelessWidget {
-  const MessagesBottomSheet({super.key,});
+  const MessagesBottomSheet({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -550,7 +568,9 @@ class MessagesBottomSheet extends StatelessWidget {
 /// btn sheet 5
 
 class ChatBottomSheet extends StatelessWidget {
-  const ChatBottomSheet({super.key,});
+  const ChatBottomSheet({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -791,7 +811,10 @@ class ChatBottomSheet extends StatelessWidget {
 class MessageBubble extends StatelessWidget {
   final Chat chat;
 
-  const MessageBubble({required this.chat, super.key,});
+  const MessageBubble({
+    required this.chat,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1126,13 +1149,14 @@ Widget mainbuttom({
 Widget defaultText({
   required String text,
   var fontSize,
-  required color, }) =>
+  required color,
+}) =>
     Text(
       text,
       style: TextStyle(fontSize: fontSize, color: color),
     );
 
-Widget ss ({required String name}) => Container(
+Widget ss({required String name}) => Container(
     height: 5.h,
     width: 360.w,
     decoration: BoxDecoration(

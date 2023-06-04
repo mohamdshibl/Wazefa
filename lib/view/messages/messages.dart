@@ -21,6 +21,7 @@ class ContactsPage extends StatelessWidget {
         var cubit = JobsCubit.get(context);
 
         return Scaffold(
+          backgroundColor: Colors.white,
       // appBar:AppBar(
       //   backgroundColor: Colors.white,
       //   //iconTheme: IconThemeData(color: Colors.black),

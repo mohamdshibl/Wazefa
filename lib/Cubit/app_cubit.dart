@@ -32,7 +32,7 @@ class JobsCubit extends Cubit<JobsStates> {
     HomeView(),
     ContactsPage(),
     AppliedJobs(),
-    Savedjobs(),
+    SavedJobs(),
     Profile(),
   ];
   List<BottomNavigationBarItem> b = [
@@ -128,7 +128,6 @@ class JobsCubit extends Cubit<JobsStates> {
     String url = "http://167.71.79.133/api/favorites";
    // var dio = Dio();
     try {
-      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
       Response response = await networkService.postData(
           url, {'job_id': jobId, 'user_id': id});
 
@@ -139,7 +138,6 @@ class JobsCubit extends Cubit<JobsStates> {
     }
   }
   /// get saved jobs list
-
   List<JobsModel> savedJobsList = [];
   Future<List> getSavedJobs(id) async {
     List<dynamic> data = await Api().get(url:'http://167.71.79.133/api/favorites/$id');
@@ -147,35 +145,31 @@ class JobsCubit extends Cubit<JobsStates> {
         JobsModel.fromJson(job)).toList();
     savedJobsList = jobs;
     emit(GetSavedJobsSuccessState());
-    // MyCache.saveData(key: 'newJobId', value: savedJobsList.last );
-    // print('sahhhhhdhdlllllllllllllll');
-    // print(savedJobsList['id']);
-    // newJobId = MyCache.getData(key: 'newJobId')!;
     return jobs;
   }
-
+/// deleteJob
   Future<void> deleteJob(jobId, token) async {
     String url = "http://167.71.79.133/api/favorites/$jobId";
-    // var dio = Dio();
     try {
-      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
       emit(deleteJobState());
       Response response = await networkService.dio.delete(url,);
     }catch(e){
       print(e.toString());
     }
     }
+ /// editProfile
   Future<Response?> editProfile(token,userID, String name,
       String bio, String address, String mobile) async {
    try {
-     networkService.dio.options.headers['Authorization'] = 'Bearer $token';
      Response response = await networkService.put(
          'http://167.71.79.133/api/user/profile/edit/${userID}',
          {'bio': bio, 'address': address, 'mobile': mobile, 'name': name});
    }catch(e){
      print(e.toString());
    }
+   return null;
   }
+  /// updateProfile
   Future<Response?> updateProfile(token,userID,interestedWork,onsitePlace,remotePlace) async {
    try {
      networkService.dio.options.headers['Authorization'] = 'Bearer $token';
@@ -189,6 +183,7 @@ class JobsCubit extends Cubit<JobsStates> {
    }catch(e) {
      print(e.toString());
    }
+   return null;
   }
 
 
@@ -203,16 +198,6 @@ class JobsCubit extends Cubit<JobsStates> {
       emit(searchState());
     }
   }
-  // Future<void> registerr(name,email,password) async {
-  //   String url = "http://164.92.246.77/api/auth/register";
-  //   Response response;
-  //   var dio = Dio();
-  //   response = await dio.post(url,
-  //       data: {
-  //         'name':name,
-  //         'email':email,
-  //         'password':password,
-  //       });
-  //   print(response.data);
-  // }
+
+
 }

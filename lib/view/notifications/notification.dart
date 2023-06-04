@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Cubit/app_cubit.dart';
@@ -17,6 +18,7 @@ class NotificationPage extends StatelessWidget{
   listener: (context, state) {},
   builder: (context, state) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -41,8 +43,10 @@ class NotificationPage extends StatelessWidget{
                         fontWeight: FontWeight.w500,
                         color: const Color(0xFF111827)),
                   ),
+
                 ],
               ),
+              SizedBox(height: 1.h,),
               Container(
                   height: 5.h,
                   width: 360.w,
@@ -51,9 +55,7 @@ class NotificationPage extends StatelessWidget{
                       border: Border.all(color: const Color(0xFFE5E7EB))),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: 5.w,
-                      ),
+                      SizedBox(width: 5.w,),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -138,6 +140,13 @@ class NotificationPage extends StatelessWidget{
                         Text('${oldNotificationList[index].subtitle}'),
                         trailing: Text('${oldNotificationList[index].time}'))),
               ),
+              ElevatedButton(
+                  onPressed: () async {
+                    String text = "Hello, this is the text to share!";
+                   await Share.share(text);
+
+                  },
+                  child: Text("Share Plain Text")),
             ],
           ),
         ),
@@ -193,12 +202,12 @@ List<Notifications> notificationList = [
   Notifications(
       title: 'Shoope',
       subtitle: 'Posted new design jobs',
-      icon: 'assets/images/zoom.png',
+      icon: 'assets/images/Shopelogo.png',
       time: '10.00AM'),
   Notifications(
       title: 'Slack',
       subtitle: 'Posted new design jobs',
-      icon: 'assets/images/zoom.png',
+      icon: 'assets/images/slacklogo.png',
       time: '10.00AM'),
   Notifications(
       title: 'Facebook',

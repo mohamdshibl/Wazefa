@@ -34,7 +34,7 @@ class AssetsImages{
   static const emailIcon= 'assets/images/Email.png';
   static const searchIconBlue= 'assets/images/searchlogo.png';
   static const successAccount= 'assets/images/Success Account Ilustration.png';
-
+  static const noSaved= 'assets/images/nosaved.png';
 
 
 

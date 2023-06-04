@@ -2,10 +2,7 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:wazefa/constants/constants.dart';
-import 'package:wazefa/view/Home/Home_Screen.dart';
-
 import '../../Cubit/app_cubit.dart';
 import '../../Cubit/app_states.dart';
 import '../../constants/colors.dart';

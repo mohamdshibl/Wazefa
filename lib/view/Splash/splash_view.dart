@@ -17,11 +17,10 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 2), () => navigateToAndStop(context,const OnBoardingScreen()) );
-
   }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -29,11 +28,3 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 }
-
-
-/*
-    flutter_icons:
-      android: true
-      ios: true
-      image_path: "assets/images/Wazzefa.png"
-    */
