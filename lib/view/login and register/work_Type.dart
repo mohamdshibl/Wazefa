@@ -125,12 +125,12 @@ class Works{
   Works(this.image,{ required this.text,required this.selected});
   static List<Works>worksList= <Works>
   [
-    Works(AssetsImages.searchIcon,  text:"UI/UX",selected: false),
-    Works(AssetsImages.saveRounded, text:"Illustrator Designer",selected: false),
-    Works(AssetsImages.saveRounded, text:"Developer",selected: false),
-    Works(AssetsImages.saveRounded, text:"Management",selected: false),
-    Works(AssetsImages.saveRounded, text:"Information Technology",selected: false),
-    Works(AssetsImages.saveRounded, text:"Research Analysis",selected: false),
+    Works(AssetsImages.ui,  text:"UI/UX",selected: false),
+    Works(AssetsImages.illust, text:"Illustrator Designer",selected: false),
+    Works(AssetsImages.dev, text:"Developer",selected: false),
+    Works(AssetsImages.manage, text:"Management",selected: false),
+    Works(AssetsImages.info, text:"Information Technology",selected: false),
+    Works(AssetsImages.research, text:"Research Analysis",selected: false),
   ];
 
 }

@@ -43,21 +43,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             if (_formKey.currentState!.validate()) {
               cubit.register(name,email,password,context);
             } else {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text('Invalid username or password'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('OK'),
-                    ),
-                  ],
-                ),
-              );
+              // showDialog(
+              //   context: context,
+              //   builder: (context) => AlertDialog(
+              //     title: Text('Error'),
+              //     content: Text('Invalid username or password'),
+              //     actions: [
+              //       TextButton(
+              //         onPressed: () {
+              //           Navigator.pop(context);
+              //         },
+              //         child: Text('OK'),
+              //       ),
+              //     ],
+              //   ),
+              // );
             }
           }
           return Scaffold(

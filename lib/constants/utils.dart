@@ -36,6 +36,14 @@ class AssetsImages{
   static const successAccount= 'assets/images/Success Account Ilustration.png';
   static const noSaved= 'assets/images/nosaved.png';
 
+  static const ui= 'assets/images/ui.png';
+  static const illust= 'assets/images/Ilust.png';
+  static const dev= 'assets/images/dev.png';
+  static const manage= 'assets/images/mange.png';
+  static const info= 'assets/images/info.png';
+  static const research= 'assets/images/research.png';
+
+
 
 
   static const String Portugal = 'assets/images/Portugal.png' ;

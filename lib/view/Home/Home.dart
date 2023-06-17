@@ -1,26 +1,22 @@
-//import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc/bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:sizer/sizer.dart';
 import 'package:wazefa/Cubit/app_states.dart';
-import 'package:wazefa/shared/remote/http_helper.dart';
 import '../../Cubit/app_cubit.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../../constants/utils.dart';
-import '../../model/jobs_model/jobs_model.dart';
 import '../../shared/local/shared_pref.dart';
 import '../Search_Screen/search_Screen.dart';
 import '../job_details/job_dedails_view.dart';
 import '../login and register/login_screen.dart';
 import '../notifications/notification.dart';
-import '../saved_view/saved_view.dart';
 
 class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -29,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
   // HomeScreen({Key? key}) : super(key: key);
   var list = [];
   var name;
-  bool _isSaved = false;
+ // bool _isSaved = false;
 
   @override
   void initState() {
@@ -403,6 +399,145 @@ Widget customSuggestedJobsList(list, BuildContext context) {
       ),
   );
 }
+//
+// class CustomJobsList extends StatefulWidget {
+//   final dynamic list;
+//
+//   CustomJobsList(this.list);
+//
+//   @override
+//   _CustomJobsListState createState() => _CustomJobsListState();
+// }
+//
+// class _CustomJobsListState extends State<CustomJobsList> {
+//   bool isPressed = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.stretch,
+//       mainAxisAlignment: MainAxisAlignment.start,
+//       children: [
+//         ListTile(
+//           leading: Image.asset(AssetsImages.amitLogo,),
+//           title: Text(
+//             '${widget.list.name}',
+//             style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+//           ),
+//           subtitle: Text(
+//             '${widget.list.compName}',
+//             style: TextStyle(
+//               fontSize: 9.sp,
+//             ),
+//             textAlign: TextAlign.start,
+//           ),
+//           trailing: GestureDetector(
+//             onTapDown: (_) {
+//               setState(() {
+//                 isPressed = true;
+//               });
+//             },
+//             onTapUp: (_) {
+//               setState(() {
+//                 isPressed = false;
+//               });
+//             },
+//             onTapCancel: () {
+//               setState(() {
+//                 isPressed = false;
+//               });
+//             },
+//             onTap: () {
+//               var token = MyCache.getData(key: 'token')!;
+//               var id = MyCache.getData(key: 'id')!;
+//
+//               JobsCubit.get(context).saveJob(widget.list.id, id, token);
+//             },
+//             child: Image.asset(
+//               AssetsImages.saveRounded,
+//               color: isPressed ? Colors.red : Colors.transparent,
+//             ),
+//           ),
+//         ),
+//         SizedBox(height: 2.h,),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Row(
+//               children: [
+//                 Container(
+//                   width: 70,
+//                   height: 30,
+//                   decoration: BoxDecoration(
+//                     border: Border.all(
+//                       color: Colors.grey,
+//                     ),
+//                     borderRadius: BorderRadius.circular(20),
+//                     color: const Color(0xFFD6E4FF),
+//                   ),
+//                   child: Center(
+//                     child: Text(
+//                       '${widget.list.jobTimeType}',
+//                       style: TextStyle(
+//                         fontSize: 9.sp,
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(width: 2.w,),
+//                 Container(
+//                   width: 70,
+//                   height: 30,
+//                   decoration: BoxDecoration(
+//                     border: Border.all(
+//                       color: Colors.grey,
+//                     ),
+//                     borderRadius: BorderRadius.circular(20),
+//                     color: const Color(0xFFD6E4FF),
+//                   ),
+//                   child: Center(
+//                     child: Text(
+//                       'Remote',
+//                       style: TextStyle(
+//                         fontSize: 9.sp,
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(width: 2.w,),
+//                 Container(
+//                   width: 70,
+//                   height: 30,
+//                   decoration: BoxDecoration(
+//                     border: Border.all(
+//                       color: Colors.grey,
+//                     ),
+//                     borderRadius: BorderRadius.circular(20),
+//                     color: const Color(0xFFD6E4FF),
+//                   ),
+//                   child: Center(
+//                     child: Text(
+//                       '${widget.list.jobLevel}',
+//                       style: TextStyle(
+//                         fontSize: 9.sp,
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Text(
+//               '\$${widget.list.salary}/Month',
+//               style: TextStyle(fontSize: 10.sp),
+//             ),
+//           ],
+//         ),
+//         SizedBox(height: 2.h,)
+//       ],
+//     );
+//   }
+// }
+
 Widget customJobsList(list, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -427,7 +562,6 @@ Widget customJobsList(list, BuildContext context) {
             var id = MyCache.getData(key: 'id')!;
 
             JobsCubit.get(context).saveJob(list.id, id, token);
-           // JobsCubit.get(context).getSavedJobs(id);
           },
           child: Image.asset(AssetsImages.saveRounded,),
         ),

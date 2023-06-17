@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wazefa/shared/remote/dio_helper.dart';
 import 'package:wazefa/view/login%20and%20register/work_Type.dart';
 import '../constants/constants.dart';
@@ -12,11 +11,9 @@ import '../shared/remote/http_helper.dart';
 import '../view/Home/Home.dart';
 import '../view/Home/Home_Screen.dart';
 import '../view/applied/applied_jobs.dart';
-import '../view/apply_job/apply_job_view.dart';
 import '../view/login and register/login_screen.dart';
 import '../view/login and register/register.dart';
 import '../view/messages/messages.dart';
-import '../view/notifications/notification.dart';
 import '../view/profile/profile.dart';
 import '../view/saved_view/saved_view.dart';
 import 'app_states.dart';
@@ -52,7 +49,7 @@ class JobsCubit extends Cubit<JobsStates> {
         label: 'Saved',
         icon: Image.asset('assets/images/archive.png'),
         activeIcon: Image.asset('assets/images/archive2.png')),
-     const BottomNavigationBarItem(
+    BottomNavigationBarItem(
         label: 'Profile',
         icon: Icon(Icons.person)
     ),
@@ -149,7 +146,7 @@ class JobsCubit extends Cubit<JobsStates> {
   }
 /// deleteJob
   Future<void> deleteJob(jobId, token) async {
-    String url = "http://167.71.79.133/api/favorites/$jobId";
+    String url = "http://167.71.79.133/api/favorites/$jobId" ;
     try {
       emit(deleteJobState());
       Response response = await networkService.dio.delete(url,);
